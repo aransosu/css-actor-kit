@@ -514,16 +514,129 @@ body{
 .result-side .btn{ margin-top:auto; }
 
 @media (prefers-reduced-motion: reduce){ .dg-banner.show, .dg-reward, .dg-result, .dg-toast.show, .ak-actor.is-equip .ak-fig{ animation:none !important; } }
+
+/* [06] NEW 칩 (신규 파츠/직업 표시) */
+.chip--new{ color:#1c1526; background:linear-gradient(180deg,#f3e2a4,var(--gold)); border-color:var(--gold); font-weight:800; letter-spacing:.04em; }
+.part-new{ font:800 8px/1 var(--font-mono); color:#1c1526; background:var(--gold); padding:1px 5px; border-radius:5px; }
+
+/* =========================================================================
+   [구역 8B] WORKSHOP CATALOG BINDER (CSS) — 06B
+   ========================================================================= */
+.tab{ font-size:11.5px; padding:10px 4px; }            /* 탭 6개 폭 맞춤 */
+
+/* 카탈로그 필터 바 */
+.cat-filters{ display:flex; flex-direction:column; gap:7px; margin:2px 0 12px; }
+.fbar{ display:flex; align-items:center; gap:7px; flex-wrap:wrap; }
+.fbar-k{ font-size:9.5px; letter-spacing:.12em; color:var(--gold-dim); width:30px; flex:0 0 auto; }
+.fchips{ display:flex; gap:5px; flex-wrap:wrap; }
+.fchip{ font:600 11px/1 var(--font-body); color:var(--muted); background:var(--panel-2); border:1px solid var(--line-2);
+  padding:6px 10px; border-radius:999px; cursor:pointer; transition:background .14s, color .14s, border-color .14s; }
+.fchip:hover{ color:var(--ink); }
+.fchip.is-on{ color:#1c1526; background:linear-gradient(180deg,#cfe3ff,var(--ally)); border-color:var(--ally); font-weight:800; }
+.fchip--new{ color:var(--gold); border-color:var(--gold-deep); }
+.fchip--new.is-on{ color:#1c1526; background:linear-gradient(180deg,#f3e2a4,var(--gold)); border-color:var(--gold); }
+.fcount{ font-size:10px; color:var(--gold-dim); margin-left:auto; }
+
+/* 핵심 파츠 칩 */
+.chip--core{ color:#1c1526; background:linear-gradient(180deg,#f3e6bf,var(--gold)); border-color:var(--gold); font-weight:700; }
+
+/* 파츠 큰 미리보기 */
+.part-preview{ display:flex; gap:12px; align-items:center; min-height:120px; margin-bottom:12px;
+  border:1px solid var(--line); border-radius:14px; padding:12px; background:var(--panel); }
+.pp-stage{ position:relative; flex:0 0 auto; width:96px; height:118px; border-radius:11px; overflow:hidden;
+  background: radial-gradient(120% 86% at 50% 24%, #2b2548 0%, #1b1630 72%, #131022 100%); box-shadow: inset 0 1px 7px rgba(0,0,0,.5); }
+.pp-actor{ position:absolute; left:50%; bottom:7px; transform:translateX(-50%); }
+.pp-actor .ak-actor{ width:76px; }
+.pp-info{ flex:1; min-width:0; display:flex; flex-direction:column; gap:6px; }
+.pp-name{ font:800 16px/1 var(--font-display); color:var(--ink); }
+.pp-meta{ font-size:10.5px; color:var(--gold-dim); }
+.pp-used{ font-size:10.5px; color:var(--muted); line-height:1.4; }
+.pp-empty{ flex:1; text-align:center; color:var(--faint); font-size:11px; align-self:center; }
+
+/* 파츠 카드 버튼화 + 사용 직업 수 */
+.part-card{ text-align:left; cursor:pointer; font-family:inherit; }
+.part-used{ margin-top:4px; font-size:9px; color:var(--gold-dim); }
+
+/* 보상 카탈로그 (수장고 목록) */
+.dg-catalog{ margin-top:14px; }
+.rc-grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:8px; margin-top:8px; }
+.rc-card{ border:1px solid var(--line); border-radius:12px; padding:8px; background:var(--panel-2); display:flex; flex-direction:column; gap:3px; }
+.rc-target{ font-size:8.5px; color:var(--gold-dim); line-height:1.3; }
+
+/* 조합대 (Look Mixer) */
+.mix-head{ display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:12px; }
+.mix-seg{ flex:0 0 auto; width:auto; }
+.mix-wrap{ display:flex; gap:12px; align-items:stretch; margin-bottom:14px; }
+.mix-stage{ position:relative; flex:0 0 auto; width:128px; height:158px; border-radius:14px; overflow:hidden;
+  background: radial-gradient(120% 88% at 50% 22%, #34507a 0%, #1d2a44 66%, #141c2e 100%); box-shadow: inset 0 1px 9px rgba(0,0,0,.55); }
+.mix-actor{ position:absolute; left:50%; bottom:9px; transform:translateX(-50%); }
+.mix-actor .ak-actor{ width:104px; }
+.mix-side{ flex:1; min-width:0; display:flex; flex-direction:column; gap:10px; }
+.mix-recipe{ flex:1; font-size:11px; line-height:1.5; color:var(--ink); background:var(--panel-2); border:1px solid var(--line-2);
+  border-radius:11px; padding:11px; word-break:break-all; }
+.mix-btns{ display:flex; gap:8px; }
+.mix-btns .btn{ flex:1; }
+.mix-slots{ display:flex; flex-direction:column; gap:9px; }
+.mix-row{ display:flex; flex-direction:column; gap:5px; }
+.mix-slotlabel{ font:700 11px/1 var(--font-body); color:var(--gold); }
+.mix-slotlabel small{ color:var(--gold-dim); font-weight:600; margin-left:4px; }
+.mix-chiprow{ display:flex; gap:5px; overflow-x:auto; padding-bottom:3px; -webkit-overflow-scrolling:touch; }
+.mchip{ flex:0 0 auto; font:600 11px/1 var(--font-body); color:var(--muted); background:var(--panel-2); border:1px solid var(--line-2);
+  padding:6px 10px; border-radius:999px; cursor:pointer; white-space:nowrap; transition:background .14s, color .14s, border-color .14s; }
+.mchip:hover{ color:var(--ink); }
+.mchip.is-on{ color:#1c1526; background:linear-gradient(180deg,#f3e6bf,var(--gold)); border-color:var(--gold); font-weight:800; }
+
+/* =========================================================================
+   [구역 8C] LOOK MIXER JOY POLISH (CSS) — 06C
+   ========================================================================= */
+.mix-candidate{ height:100%; display:flex; flex-direction:column; gap:8px; border:1px solid var(--gold-deep);
+  border-radius:13px; padding:12px; background:linear-gradient(180deg, rgba(231,200,115,.07), var(--panel-2)); }
+.cand-name{ font:800 17px/1.1 var(--font-display); color:var(--ink); }
+.cand-tags{ display:flex; gap:5px; flex-wrap:wrap; }
+.cand-rows{ display:flex; flex-direction:column; gap:4px; font-size:11px; color:var(--muted); margin-top:2px; }
+.cand-rows b{ color:var(--gold); font-weight:700; margin-right:5px; display:inline-block; min-width:34px; }
+
+.mix-randoms{ display:flex; align-items:center; gap:6px; flex-wrap:wrap; margin-bottom:9px; }
+.mix-quick{ display:flex; gap:7px; flex-wrap:wrap; margin-bottom:14px; }
+.mix-quick .btn{ flex:1 1 auto; }
+
+.mix-rowhead{ display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.mix-lock{ flex:0 0 auto; font:700 10px/1 var(--font-body); color:var(--muted); background:var(--panel-2);
+  border:1px solid var(--line-2); padding:5px 9px; border-radius:999px; cursor:pointer; transition:background .14s, color .14s, border-color .14s; }
+.mix-lock.is-on{ color:#1c1526; background:linear-gradient(180deg,#f3d29a,var(--gold-deep)); border-color:var(--gold-deep); font-weight:800; }
+
+.mix-recipes{ display:flex; flex-direction:column; gap:7px; margin-bottom:14px; }
+.mix-code{ width:100%; box-sizing:border-box; font:600 10.5px/1.5 var(--font-mono); color:var(--ink);
+  background:#15101f; border:1px solid var(--line-2); border-radius:10px; padding:9px 10px; resize:vertical; }
+.mix-code:focus-visible{ outline:2px solid var(--gold); outline-offset:1px; }
+
+.mix-discovery{ margin-top:2px; }
+.disc-head{ display:flex; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap; }
+.disc-btns{ display:flex; gap:7px; }
+.disc-grid{ display:grid; grid-template-columns:repeat(3, 1fr); gap:8px; margin-top:9px; }
+.disc-card{ text-align:left; cursor:pointer; font-family:inherit; border:1px solid var(--line); border-radius:12px;
+  padding:8px; background:var(--panel-2); display:flex; flex-direction:column; gap:4px; }
+.disc-card:hover{ border-color:var(--gold-deep); }
+.disc-stage{ position:relative; height:86px; border-radius:9px; overflow:hidden;
+  background: radial-gradient(120% 86% at 50% 24%, #2b2548 0%, #1b1630 72%, #131022 100%); }
+.disc-actor{ position:absolute; left:50%; bottom:5px; transform:translateX(-50%); }
+.disc-actor .ak-actor{ width:58px; }
+.disc-name{ font:700 11px/1.2 var(--font-body); color:var(--ink); }
+.disc-recipe{ font-size:8.5px; color:var(--gold-dim); line-height:1.3; word-break:break-all; }
+.disc-empty{ grid-column:1 / -1; text-align:center; color:var(--faint); font-size:11px; padding:14px 0; }
+
+.spot-to-mix, .pp-to-mix{ margin-top:4px; }
+.rc-to-mix{ margin-top:4px; width:100%; font-size:9.5px; padding:6px 6px; }
 </style>
 </head>
 <body>
 <div class="app">
 
   <header class="hd">
-    <div class="eyebrow">R&D MASTER CANVAS · 05B REWARD FEEL POLISH</div>
-    <h1 class="title">CSS ACTOR KIT 05B</h1>
-    <p class="lede">03R 기반 · 기본 바디/얼굴/미감 고정. 3×3 던전 보드 ROOM 1~3 + <b>파츠·오라 보상 루프</b>(고를 맛·장착 체감·오늘의 수확). 구조만 참고, 룩은 공방.</p>
-    <div class="spec">직업 13 + 기본 2 + 몬스터 2 · 파츠 33 / 슬롯 7 · 3×3 Formation + Dungeon Loot Loop 02 · 외부자원 0 · 단일 index.html</div>
+    <div class="eyebrow">R&D MASTER CANVAS · 06C LOOK MIXER JOY POLISH</div>
+    <h1 class="title">CSS ACTOR KIT 06C</h1>
+    <p class="lede">03R 기반 · 기본 바디/얼굴/미감 고정. 조합대를 <b>장난감 + 발견 도구</b>로 — 슬롯 잠금·랜덤 프리셋·직업 후보 카드·recipe 출력·세션 발견 목록(저장 없음).</p>
+    <div class="spec">직업 25 + 기본 2 + 몬스터 2 · 파츠 65 / 슬롯 7 · 보상 풀 22 · 조합대(잠금·프리셋6·발견목록) · 외부자원 0 · 단일 index.html</div>
   </header>
 
   <nav class="tabs" role="tablist" aria-label="화면 전환">
@@ -532,6 +645,7 @@ body{
     <button class="tab"           data-view="parts" role="tab" aria-selected="false">파츠</button>
     <button class="tab"           data-view="play"  role="tab" aria-selected="false">전투</button>
     <button class="tab"           data-view="loop"  role="tab" aria-selected="false">던전 루프</button>
+    <button class="tab"           data-view="mix"   role="tab" aria-selected="false">조합대</button>
   </nav>
 
   <!-- ===================== [탭1] 기본 바디 ===================== -->
@@ -546,6 +660,25 @@ body{
       <button data-g="m" class="is-active" aria-pressed="true">남</button>
       <button data-g="f" aria-pressed="false">여</button>
     </div>
+    <div class="cat-filters">
+      <div class="fbar"><span class="fbar-k mono">SIG</span><div class="fchips" id="jf-sig">
+        <button class="fchip is-on" data-v="all">all</button>
+        <button class="fchip" data-v="melee">근접</button>
+        <button class="fchip" data-v="shoot">원거리</button>
+        <button class="fchip" data-v="cast">주문</button>
+        <button class="fchip" data-v="heal">치유</button>
+        <button class="fchip" data-v="block">방어</button>
+      </div></div>
+      <div class="fbar"><span class="fbar-k mono">USE</span><div class="fchips" id="jf-usage">
+        <button class="fchip is-on" data-v="all">all</button>
+        <button class="fchip" data-v="행렬RPG">행렬RPG</button>
+        <button class="fchip" data-v="오토배틀러">오토배틀러</button>
+        <button class="fchip" data-v="퍼즐RPG">퍼즐RPG</button>
+        <button class="fchip" data-v="formation-shift-lab">formation</button>
+        <button class="fchip" data-v="Dungeon Board Loop">Dungeon</button>
+      </div></div>
+      <div class="fbar"><button class="fchip fchip--new" id="jf-new" aria-pressed="false">06 신규만</button><span class="fcount mono" id="job-count"></span></div>
+    </div>
     <div class="spotlight" id="spotlight"></div>
     <div class="cat-grid" id="cat-grid"></div>
     <p class="hint mono">카드를 누르면 위 스포트라이트에서 시그니처 액션을 시연해.</p>
@@ -557,7 +690,20 @@ body{
       <button data-g="m" class="is-active" aria-pressed="true">남</button>
       <button data-g="f" aria-pressed="false">여</button>
     </div>
-    <p class="hint mono">슬롯 7종 · 파츠 33종. 각 파츠를 기본 바디에 장착해 미리보기.</p>
+    <div class="cat-filters">
+      <div class="fbar"><span class="fbar-k mono">슬롯</span><div class="fchips" id="ps-jump">
+        <button class="fchip" data-v="head">머리</button>
+        <button class="fchip" data-v="chest">몸통</button>
+        <button class="fchip" data-v="mainHand">주무기</button>
+        <button class="fchip" data-v="offHand">보조</button>
+        <button class="fchip" data-v="back">등</button>
+        <button class="fchip" data-v="accessory">장신구</button>
+        <button class="fchip" data-v="aura">오라</button>
+      </div></div>
+      <div class="fbar"><button class="fchip fchip--new" id="pf-new" aria-pressed="false">06 신규만</button><span class="fcount mono" id="part-count"></span></div>
+    </div>
+    <div class="part-preview" id="part-preview"><div class="pp-empty mono">파츠 카드를 누르면 여기에 장착 모습이 떠.</div></div>
+    <p class="hint mono">슬롯 7종 · 파츠 65종. 슬롯 바로가기로 이동하고, 카드를 누르면 위에서 크게 봐.</p>
     <div id="parts-root"></div>
   </section>
 
@@ -665,12 +811,67 @@ body{
         </div>
       </div>
     </div>
+    <div class="dg-catalog">
+      <div class="grp-label">보상 카드 풀 · <span id="rc-count"></span> · 공방 수장고</div>
+      <div class="rc-grid" id="reward-catalog"></div>
+    </div>
     <p class="hint mono">전투 시작 → 자동 전투 → CLEAR → 보상 카드 3장 중 택1 → 다음 방. (구조만 던전러시 참고 · 룩은 공방)</p>
+  </section>
+
+  <section class="view view--mix" id="view-mix">
+    <div class="mix-head">
+      <div class="grp-label">공방 조합대 · LOOK MIXER</div>
+      <div class="seg mix-seg" id="mix-seg" role="group" aria-label="성별">
+        <button data-g="m" class="is-active" aria-pressed="true">남</button>
+        <button data-g="f" aria-pressed="false">여</button>
+      </div>
+    </div>
+
+    <div class="mix-wrap">
+      <div class="mix-stage"><div class="mix-actor" id="mix-actor"></div></div>
+      <div class="mix-side"><div class="mix-candidate" id="mix-candidate"></div></div>
+    </div>
+
+    <div class="mix-randoms">
+      <span class="fbar-k mono">랜덤</span>
+      <button type="button" class="mchip" data-preset="full">완전</button>
+      <button type="button" class="mchip" data-preset="warrior">전사형</button>
+      <button type="button" class="mchip" data-preset="mage">마법형</button>
+      <button type="button" class="mchip" data-preset="support">지원형</button>
+      <button type="button" class="mchip" data-preset="reward">보상형</button>
+      <button type="button" class="mchip" data-preset="weird">이상한</button>
+    </div>
+    <div class="mix-quick">
+      <button class="btn btn--ghost" id="mix-one">한 파츠만</button>
+      <button class="btn btn--ghost" id="mix-aura">오라만</button>
+      <button class="btn btn--ghost" id="mix-weapon">무기만</button>
+      <button class="btn btn--ghost" id="mix-clear">전체 비우기</button>
+    </div>
+
+    <div class="mix-slots" id="mix-slots"></div>
+
+    <div class="mix-recipes">
+      <div class="grp-label">recipe · 노트북 이식용 (선택 복사)</div>
+      <textarea class="mix-code" id="mix-recipe" readonly rows="2" aria-label="짧은 recipe"></textarea>
+      <textarea class="mix-code" id="mix-meta" readonly rows="3" aria-label="META 프리셋 초안"></textarea>
+    </div>
+
+    <div class="mix-discovery">
+      <div class="disc-head">
+        <div class="grp-label">이번 세션 발견 목록 · <span id="disc-count">0</span></div>
+        <div class="disc-btns">
+          <button class="btn btn--combo" id="disc-add">현재 조합 발견 추가</button>
+          <button class="btn btn--ghost" id="disc-clear">목록 비우기</button>
+        </div>
+      </div>
+      <div class="disc-grid" id="disc-grid"></div>
+    </div>
+    <p class="hint mono">슬롯 잠금 후 랜덤/한 파츠 변경 · recipe는 화면 확인용(저장 없음) · 발견 목록은 새로고침하면 사라져.</p>
   </section>
 
   <footer class="ft">
     <div class="mono">window.ActorKit · ActorGridAdapter · spawn(type[, gender]) · 공개 API 불변 · 외부 의존성 0 · 스토리지 0</div>
-    <div class="mono faint">CSS Actor Kit 05B · Dungeon Board Loot Loop 02 (Reward Feel Polish) · 나라의 공방</div>
+    <div class="mono faint">CSS Actor Kit 06C · Look Mixer Joy Polish / Recipe Discovery Binder · 나라의 공방</div>
   </footer>
 </div>
 
@@ -917,7 +1118,135 @@ body{
       '<path d="M60 132 l2 5 5 0 -4 3.5 1.5 5 -4.5 -3 -4.5 3 1.5 -5 -4 -3.5 5 0 z" fill="#cdebe8" opacity="0.8"/></g>' },
     ember:     { kr:"불씨 오라", slot:"aura", z:6, svg:
       '<g class="ak-rune"><circle cx="44" cy="120" r="2.4" fill="#e7a85a"/><circle cx="78" cy="112" r="2" fill="#e7c873"/>'+
-      '<circle cx="60" cy="130" r="2.6" fill="#e78f4a"/><circle cx="70" cy="124" r="1.8" fill="#f0d98a"/></g>' }
+      '<circle cx="60" cy="130" r="2.6" fill="#e78f4a"/><circle cx="70" cy="124" r="1.8" fill="#f0d98a"/></g>' },
+
+    /* ===== [06] PARTS VARIETY PACK 01 — 신규 파츠 32 (new06) ===== */
+    /* head (+5) */
+    crown:      { kr:"작은 왕관", slot:"head", z:75, new06:true, svg:
+      '<path d="M44 30 l3 -10 5 7 3 -11 3 11 5 -7 3 10 z" fill="url(#gold__ID__)" stroke="#3a2f44" stroke-width="1.8"/>'+
+      '<rect x="44" y="28" width="32" height="6" rx="2" fill="url(#gold__ID__)" stroke="#3a2f44" stroke-width="1.6"/>'+
+      '<circle cx="60" cy="24" r="2" fill="#c75b6a"/>' },
+    hornhelm:   { kr:"뿔 투구", slot:"head", z:74, new06:true, svg:
+      '<path d="M37 46 a23 23 0 0 1 46 0 q-23 -10 -46 0 z" fill="url(#steel__ID__)" stroke="#3a2f44" stroke-width="2.4"/>'+
+      '<path d="M40 38 q-10 -14 -16 -6 q8 2 12 10 z" fill="#e8e2d0" stroke="#3a2f44" stroke-width="1.8"/>'+
+      '<path d="M80 38 q10 -14 16 -6 q-8 2 -12 10 z" fill="#e8e2d0" stroke="#3a2f44" stroke-width="1.8"/>' },
+    mask:       { kr:"가면", slot:"head", z:78, new06:true, svg:
+      '<path d="M40 44 q20 -8 40 0 q-2 10 -8 12 q-12 5 -24 0 q-6 -2 -8 -12 z" fill="#2e2740" stroke="#3a2f44" stroke-width="2"/>'+
+      '<ellipse cx="51" cy="46" rx="4" ry="3" fill="#9fe6e0"/><ellipse cx="69" cy="46" rx="4" ry="3" fill="#9fe6e0"/>' },
+    flowercrown:{ kr:"꽃관", slot:"head", z:75, new06:true, svg:
+      '<path d="M40 38 q20 -10 40 0" fill="none" stroke="#6a9a4a" stroke-width="3" stroke-linecap="round"/>'+
+      '<circle cx="44" cy="36" r="4" fill="#e58fae"/><circle cx="56" cy="31" r="4.5" fill="#f0c24a"/><circle cx="68" cy="31" r="4" fill="#d96aa0"/><circle cx="78" cy="37" r="3.6" fill="#e58fae"/>'+
+      '<circle cx="56" cy="31" r="1.6" fill="#fff"/>' },
+    beasthood:  { kr:"동물귀 후드", slot:"head", z:72, new06:true, svg:
+      '<path d="M34 50 q0 -32 26 -33 q26 1 26 33 q-13 -11 -26 -11 q-13 0 -26 11 z" fill="url(#wood__ID__)" stroke="#46331f" stroke-width="2.4"/>'+
+      '<path d="M40 22 l-4 -14 12 6 z" fill="url(#wood__ID__)" stroke="#46331f" stroke-width="2"/><path d="M80 22 l4 -14 -12 6 z" fill="url(#wood__ID__)" stroke="#46331f" stroke-width="2"/>'+
+      '<path d="M40 20 l-1 -7 5 3 z" fill="#e89a86"/><path d="M80 20 l1 -7 -5 3 z" fill="#e89a86"/>' },
+
+    /* chest (+5) */
+    longcoat:   { kr:"긴 코트", slot:"chest", z:53, new06:true, svg:
+      '<path d="M42 70 C42 60 78 60 78 70 L86 138 73 138 70 96 60 100 50 96 47 138 34 138 Z" fill="url(#navy__ID__)" stroke="#3a2f44" stroke-width="2.4"/>'+
+      '<path d="M60 64 L60 100" stroke="#2a3450" stroke-width="1.4" opacity="0.6"/>'+
+      '<ellipse cx="55" cy="82" rx="13" ry="9" fill="url(#hi__ID__)" opacity="0.25"/>' },
+    leathervest:{ kr:"가죽 조끼", slot:"chest", z:54, new06:true, svg:
+      '<path d="M42 70 q18 -8 36 0 l-3 34 q-15 6 -30 0 z" fill="#7a4f2e" stroke="#46331f" stroke-width="2.4"/>'+
+      '<path d="M60 66 L60 102" stroke="#3a2616" stroke-width="1.6"/>'+
+      '<circle cx="60" cy="84" r="1.6" fill="#d8b06a"/><circle cx="60" cy="92" r="1.6" fill="#d8b06a"/>' },
+    chainmail:  { kr:"사슬갑옷", slot:"chest", z:54, new06:true, svg:
+      '<path d="M40 72 C40 62 80 62 80 72 L78 108 C78 116 42 116 42 108 Z" fill="#8a92a6" stroke="#3a2f44" stroke-width="2.4"/>'+
+      '<path d="M46 78 h28 M46 86 h28 M46 94 h28 M46 102 h28" stroke="#6a7388" stroke-width="1.4" opacity="0.7"/>'+
+      '<path d="M52 74 v36 M64 74 v36" stroke="#6a7388" stroke-width="1" opacity="0.5"/>' },
+    ritualrobe: { kr:"의식복", slot:"chest", z:52, new06:true, svg:
+      '<path d="M42 70 C42 60 78 60 78 70 L88 140 C68 150 52 150 32 140 Z" fill="#3a2d5a" stroke="#3a2f44" stroke-width="2.6"/>'+
+      '<circle cx="60" cy="96" r="8" fill="none" stroke="url(#gold__ID__)" stroke-width="1.8"/><path d="M60 90 l0 12 M54 96 l12 0" stroke="url(#gold__ID__)" stroke-width="1.6"/>'+
+      '<ellipse cx="56" cy="84" rx="14" ry="9" fill="url(#hi__ID__)" opacity="0.25"/>' },
+    apron:      { kr:"공방 앞치마", slot:"chest", z:55, new06:true, svg:
+      '<path d="M50 70 q10 -4 20 0 l-2 8 6 30 q-14 5 -28 0 l6 -30 z" fill="#9a6a3a" stroke="#46331f" stroke-width="2.2"/>'+
+      '<rect x="52" y="92" width="16" height="10" rx="2" fill="#7a4f28"/>'+
+      '<path d="M50 72 l-6 -4 M70 72 l6 -4" stroke="#46331f" stroke-width="2" stroke-linecap="round"/>' },
+
+    /* mainHand (+6) — 오른손 85,104 */
+    hammer:     { kr:"망치", slot:"mainHand", z:82, new06:true, svg:
+      '<rect x="86" y="58" width="6" height="48" rx="3" fill="url(#wood__ID__)" stroke="#46331f" stroke-width="2.2"/>'+
+      '<rect x="78" y="46" width="24" height="16" rx="3" fill="url(#steel__ID__)" stroke="#3a2f44" stroke-width="2.4"/>'+
+      '<ellipse cx="84" cy="51" rx="5" ry="3" fill="url(#hi__ID__)" opacity="0.5"/>' },
+    scythe:     { kr:"낫", slot:"mainHand", z:82, new06:true, svg:
+      '<line x1="86" y1="118" x2="96" y2="26" stroke="#46331f" stroke-width="5"/>'+
+      '<line x1="86" y1="118" x2="96" y2="26" stroke="url(#wood__ID__)" stroke-width="3"/>'+
+      '<path d="M96 26 q-26 -2 -34 14 q18 -6 34 2 z" fill="url(#steel__ID__)" stroke="#3a2f44" stroke-width="2"/>' },
+    whip:       { kr:"채찍", slot:"mainHand", z:82, new06:true, svg:
+      '<path d="M86 104 q14 -20 4 -36 q-12 -14 6 -24" fill="none" stroke="#5a3a22" stroke-width="4" stroke-linecap="round"/>'+
+      '<circle cx="86" cy="104" r="3.2" fill="url(#wood__ID__)" stroke="#46331f" stroke-width="1.4"/>' },
+    twinblade:  { kr:"쌍검", slot:"mainHand", z:82, new06:true, svg:
+      '<g stroke-linecap="round"><line x1="86" y1="102" x2="104" y2="60" stroke="#3a2f44" stroke-width="7"/><line x1="86" y1="102" x2="104" y2="60" stroke="url(#steel__ID__)" stroke-width="4"/>'+
+      '<line x1="86" y1="102" x2="72" y2="64" stroke="#3a2f44" stroke-width="7"/><line x1="86" y1="102" x2="72" y2="64" stroke="url(#steel__ID__)" stroke-width="4"/>'+
+      '<circle cx="86" cy="104" r="3.4" fill="url(#gold__ID__)" stroke="#3a2f44" stroke-width="1.2"/></g>' },
+    runeblade:  { kr:"룬검", slot:"mainHand", z:82, new06:true, svg:
+      '<g stroke-linecap="round"><line x1="86" y1="100" x2="108" y2="52" stroke="#3a2f44" stroke-width="9"/><line x1="86" y1="100" x2="108" y2="52" stroke="#7ab0c8" stroke-width="5"/>'+
+      '<line x1="92" y1="92" x2="104" y2="62" stroke="#cdeef5" stroke-width="1.6"/>'+
+      '<rect x="78" y="96" width="20" height="6" rx="3" transform="rotate(-64 88 99)" fill="url(#gold__ID__)" stroke="#3a2f44" stroke-width="1.6"/></g>'+
+      '<circle class="ak-orb" cx="100" cy="66" r="3" fill="#9fe6e0"/>' },
+    lute:       { kr:"류트", slot:"mainHand", z:82, new06:true, svg:
+      '<ellipse cx="84" cy="100" rx="13" ry="16" fill="url(#wood__ID__)" stroke="#46331f" stroke-width="2.2"/>'+
+      '<rect x="82" y="62" width="5" height="30" rx="2" fill="#5a3a22" stroke="#46331f" stroke-width="1.4"/>'+
+      '<circle cx="84" cy="100" r="4" fill="#3a2616"/>'+
+      '<line x1="81" y1="66" x2="81" y2="110" stroke="#efe6cb" stroke-width="0.8"/><line x1="84" y1="66" x2="84" y2="112" stroke="#efe6cb" stroke-width="0.8"/><line x1="87" y1="66" x2="87" y2="110" stroke="#efe6cb" stroke-width="0.8"/>' },
+
+    /* offHand (+4) — 왼손 35,104 */
+    lantern:    { kr:"등불", slot:"offHand", z:84, new06:true, svg:
+      '<path d="M36 90 l0 -6" stroke="#46331f" stroke-width="2"/>'+
+      '<rect x="30" y="90" width="12" height="3" rx="1.5" fill="url(#gold__ID__)"/>'+
+      '<rect x="30" y="92" width="12" height="16" rx="2.5" fill="#3a2f44"/><rect x="32" y="94" width="8" height="12" fill="#f5d878" opacity="0.9"/>' },
+    chalice:    { kr:"성배", slot:"offHand", z:84, new06:true, svg:
+      '<path d="M28 92 q8 12 14 0 z" fill="url(#gold__ID__)" stroke="#3a2f44" stroke-width="1.8"/>'+
+      '<ellipse cx="35" cy="92" rx="7" ry="2.2" fill="#c75b6a"/>'+
+      '<rect x="33" y="100" width="4" height="8" fill="url(#gold__ID__)"/><ellipse cx="35" cy="110" rx="7" ry="2.4" fill="url(#gold__ID__)" stroke="#3a2f44" stroke-width="1.4"/>' },
+    crystalorb: { kr:"수정구", slot:"offHand", z:84, new06:true, svg:
+      '<path d="M26 108 q7 4 14 0" fill="none" stroke="url(#gold__ID__)" stroke-width="2"/>'+
+      '<circle class="ak-orb" cx="33" cy="98" r="10" fill="url(#magic__ID__)" stroke="#3a6f7a" stroke-width="1.6"/>'+
+      '<ellipse cx="29" cy="94" rx="3.5" ry="2.4" fill="#fff" opacity="0.8"/>' },
+    flowerbasket:{ kr:"꽃바구니", slot:"offHand", z:84, new06:true, svg:
+      '<path d="M26 100 l4 12 q5 3 10 0 l4 -12 z" fill="url(#wood__ID__)" stroke="#46331f" stroke-width="2"/>'+
+      '<path d="M26 100 q9 -4 18 0" fill="none" stroke="#46331f" stroke-width="2"/>'+
+      '<circle cx="30" cy="96" r="3.4" fill="#e58fae"/><circle cx="37" cy="93" r="3.6" fill="#f0c24a"/><circle cx="42" cy="97" r="3.2" fill="#d96aa0"/>' },
+
+    /* back (+4) — 몸체 뒤 (z<50) */
+    tinywings:  { kr:"작은 날개", slot:"back", z:13, new06:true, svg:
+      '<path d="M58 72 q-22 -6 -30 8 q14 0 22 6 q-10 2 -14 10 q12 -2 22 -4 z" fill="#dfe6f2" stroke="#8a92a6" stroke-width="1.8"/>'+
+      '<path d="M62 72 q22 -6 30 8 q-14 0 -22 6 q10 2 14 10 q-12 -2 -22 -4 z" fill="#dfe6f2" stroke="#8a92a6" stroke-width="1.8"/>' },
+    bigpack:    { kr:"큰 배낭", slot:"back", z:14, new06:true, svg:
+      '<rect x="44" y="62" width="32" height="32" rx="8" fill="#7a4f2e" stroke="#46331f" stroke-width="2.4"/>'+
+      '<rect x="44" y="76" width="32" height="6" fill="#5a3a22"/>'+
+      '<rect x="50" y="56" width="7" height="10" rx="3" fill="#5a3a22"/><rect x="63" y="56" width="7" height="10" rx="3" fill="#5a3a22"/><rect x="56" y="66" width="8" height="6" rx="1.5" fill="#d8b06a"/>' },
+    feathercape:{ kr:"깃털 망토", slot:"back", z:12, new06:true, svg:
+      '<path d="M40 70 q20 -8 40 0 l6 64 q-26 11 -52 0 z" fill="#4a5a6a" stroke="#2f3a44" stroke-width="2.4"/>'+
+      '<path d="M44 96 q16 6 32 0 M44 110 q16 6 32 0 M44 124 q16 6 32 0" fill="none" stroke="#5f7080" stroke-width="2" opacity="0.7"/>' },
+    charmstrings:{ kr:"부적끈", slot:"back", z:14, new06:true, svg:
+      '<path d="M46 64 h28" stroke="#7d2e38" stroke-width="2"/>'+
+      '<g stroke="#a8444f" stroke-width="1.4"><line x1="50" y1="64" x2="50" y2="86"/><line x1="60" y1="64" x2="60" y2="92"/><line x1="70" y1="64" x2="70" y2="84"/></g>'+
+      '<rect x="47" y="86" width="6" height="9" rx="1" fill="url(#cream__ID__)" stroke="#46331f" stroke-width="1"/><rect x="57" y="92" width="6" height="9" rx="1" fill="#e58fae" stroke="#46331f" stroke-width="1"/><rect x="67" y="84" width="6" height="9" rx="1" fill="url(#cream__ID__)" stroke="#46331f" stroke-width="1"/>' },
+
+    /* accessory (+3) */
+    brooch:     { kr:"브로치", slot:"accessory", z:60, new06:true, svg:
+      '<circle cx="60" cy="74" r="5" fill="url(#gold__ID__)" stroke="#3a2f44" stroke-width="1.6"/><circle cx="60" cy="74" r="2.4" fill="#5aa0c8"/>' },
+    scarf:      { kr:"목도리", slot:"accessory", z:59, new06:true, svg:
+      '<path d="M46 66 q14 8 28 0 l-2 8 q-12 5 -24 0 z" fill="#c0504a" stroke="#7d2e38" stroke-width="1.8"/>'+
+      '<path d="M66 72 l6 22 -7 -2 -3 -18 z" fill="#c0504a" stroke="#7d2e38" stroke-width="1.6"/>' },
+    waistpouch: { kr:"허리 주머니", slot:"accessory", z:58, new06:true, svg:
+      '<rect x="62" y="100" width="13" height="13" rx="4" fill="url(#wood__ID__)" stroke="#46331f" stroke-width="2"/>'+
+      '<path d="M62 104 q6.5 -3 13 0" fill="none" stroke="#46331f" stroke-width="1.6"/><circle cx="68.5" cy="106" r="1.8" fill="url(#gold__ID__)"/>' },
+
+    /* aura (+5) — 몸체 뒤 발광 (z<50) */
+    stardust:   { kr:"별가루", slot:"aura", z:6, new06:true, svg:
+      '<g class="ak-rune" fill="#f0e6b0"><path d="M40 60 l1.4 4 4 1.4 -4 1.4 -1.4 4 -1.4 -4 -4 -1.4 4 -1.4 z"/><path d="M82 80 l1.2 3.4 3.4 1.2 -3.4 1.2 -1.2 3.4 -1.2 -3.4 -3.4 -1.2 3.4 -1.2 z"/>'+
+      '<path d="M70 50 l1 3 3 1 -3 1 -1 3 -1 -3 -3 -1 3 -1 z"/><circle cx="50" cy="92" r="1.6"/><circle cx="86" cy="58" r="1.4"/></g>' },
+    poisonmist: { kr:"독안개", slot:"aura", z:6, new06:true, svg:
+      '<g class="ak-rune" fill="#7bbf5a" opacity="0.55"><ellipse cx="48" cy="120" rx="14" ry="7"/><ellipse cx="74" cy="116" rx="12" ry="6"/><ellipse cx="60" cy="128" rx="16" ry="7"/></g>' },
+    windswirl:  { kr:"바람결", slot:"aura", z:6, new06:true, svg:
+      '<g class="ak-rune" fill="none" stroke="#bfe0e6" stroke-width="2.2" stroke-linecap="round" opacity="0.8"><path d="M30 70 q20 -8 36 2 q8 5 0 11"/><path d="M34 92 q22 -6 38 4"/><path d="M30 110 q18 -6 32 2"/></g>' },
+    shadow:     { kr:"그림자 오라", slot:"aura", z:6, new06:true, svg:
+      '<g class="ak-rune"><ellipse cx="60" cy="142" rx="30" ry="9" fill="#2a2440" opacity="0.7"/><path d="M44 130 q-4 -14 4 -22 M76 130 q4 -14 -4 -22" fill="none" stroke="#4a3f6a" stroke-width="3" stroke-linecap="round" opacity="0.7"/></g>' },
+    blessing:   { kr:"축복 원", slot:"aura", z:6, new06:true, svg:
+      '<g class="ak-rune"><circle cx="60" cy="80" r="34" fill="none" stroke="#f4e3b0" stroke-width="2" opacity="0.5"/><circle cx="60" cy="80" r="26" fill="none" stroke="#f4e3b0" stroke-width="1.4" opacity="0.4"/></g>' }
   };
 
   /* =======================================================================
@@ -944,6 +1273,20 @@ body{
     alchemist: { kr:"연금술사",en:"Alchemist",  role:"주문 · 약물",   team:"ally", sig:"cast",  gender:"m", parts:["goggles","satchel","flask"],              usage:["퍼즐RPG","행렬RPG"] },
     summoner:  { kr:"소환사", en:"Summoner",    role:"주문 · 마도서", team:"ally", sig:"cast",  gender:"f", parts:["tome","talisman","circle"],              usage:["오토배틀러","행렬RPG"] },
     hunter:    { kr:"사냥꾼", en:"Hunter",      role:"원거리 · 단궁", team:"ally", sig:"shoot", gender:"m", parts:["hood","trappouch","shortbow"],            usage:["formation-shift-lab","퍼즐RPG"] },
+
+    /* ===== [06] JOB LOOK PRESET EXPANSION — 신규 외형 프리셋 12 (new06, 기존 바디+파츠) ===== */
+    paladin:    { kr:"성기사",   en:"Paladin",     role:"방어 · 성검+방패", team:"ally", sig:"block", gender:"m", new06:true, parts:["breastplate","helm","sword","roundshield","blessing"], usage:["행렬RPG","Dungeon Board Loop"] },
+    bard:       { kr:"음유시인", en:"Bard",        role:"주문 · 류트",      team:"ally", sig:"cast",  gender:"f", new06:true, parts:["ribbon","lute","scarf"],                          usage:["퍼즐RPG","오토배틀러"] },
+    druid:      { kr:"숲술사",   en:"Druid",       role:"치유 · 자연",      team:"ally", sig:"heal",  gender:"f", new06:true, parts:["flowercrown","staff","blessing"],                 usage:["행렬RPG","Dungeon Board Loop"] },
+    plagueDoctor:{kr:"역병의사", en:"Plague Doctor",role:"주문 · 독",       team:"ally", sig:"cast",  gender:"m", new06:true, parts:["mask","longcoat","poisonmist"],                   usage:["퍼즐RPG","Dungeon Board Loop"] },
+    runeknight: { kr:"룬기사",   en:"Rune Knight", role:"근접 · 룬검",      team:"ally", sig:"melee", gender:"m", new06:true, parts:["hornhelm","chainmail","runeblade"],                usage:["행렬RPG","formation-shift-lab"] },
+    monk:       { kr:"수도승",   en:"Monk",        role:"근접 · 봉술",      team:"ally", sig:"melee", gender:"m", new06:true, parts:["hood","sash","staff"],                            usage:["오토배틀러","행렬RPG"] },
+    necromancer:{ kr:"망령술사", en:"Necromancer", role:"주문 · 망령",      team:"ally", sig:"cast",  gender:"m", new06:true, parts:["hood","ritualrobe","tome","shadow"],               usage:["퍼즐RPG","Dungeon Board Loop"] },
+    mechanic:   { kr:"기계공",   en:"Mechanic",    role:"근접 · 망치",      team:"ally", sig:"melee", gender:"m", new06:true, parts:["goggles","apron","hammer"],                       usage:["오토배틀러","퍼즐RPG"] },
+    astrologer: { kr:"별점술사", en:"Astrologer",  role:"주문 · 별",        team:"ally", sig:"cast",  gender:"f", new06:true, parts:["wizardhat","robe","crystalorb","stardust"],        usage:["행렬RPG","퍼즐RPG"] },
+    berserker:  { kr:"광전사",   en:"Berserker",   role:"근접 · 대검",      team:"ally", sig:"melee", gender:"m", new06:true, parts:["hornhelm","leathervest","greatsword","ember"],     usage:["오토배틀러","Dungeon Board Loop"] },
+    frostwitch: { kr:"서리마녀", en:"Frost Witch", role:"주문 · 서리",      team:"ally", sig:"cast",  gender:"f", new06:true, parts:["wizardhat","longcoat","crystalorb","windswirl"],    usage:["행렬RPG","퍼즐RPG"] },
+    beastmaster:{ kr:"야수조련사",en:"Beastmaster", role:"원거리 · 야수",    team:"ally", sig:"shoot", gender:"m", new06:true, parts:["beasthood","leathervest","shortbow"],              usage:["formation-shift-lab","오토배틀러"] },
 
     goblin:    { kr:"고블린", en:"Goblin",      role:"몬스터 · 단검", team:"enemy", sig:"melee", gender:"m", fig:true },
     brute:     { kr:"오우거", en:"Brute",       role:"몬스터 · 곤봉", team:"enemy", sig:"melee", gender:"m", fig:true }
@@ -1406,7 +1749,8 @@ body{
     jobs:  document.getElementById("view-jobs"),
     parts: document.getElementById("view-parts"),
     play:  document.getElementById("view-play"),
-    loop:  document.getElementById("view-loop")
+    loop:  document.getElementById("view-loop"),
+    mix:   document.getElementById("view-mix")
   };
   tabs.forEach(function(t){
     t.addEventListener("click", function(){
@@ -1415,6 +1759,10 @@ body{
       for(var k in views){ views[k].classList.toggle("is-active", k===t.dataset.view); }
     });
   });
+  function gotoView(name){
+    tabs.forEach(function(x){ var on=x.dataset.view===name; x.classList.toggle("is-active",on); x.setAttribute("aria-selected",on?"true":"false"); });
+    for(var k in views){ views[k].classList.toggle("is-active", k===name); }
+  }
 
   /* ----- 시그니처 액션 시연(sig 기준) ----- */
   function front(actor){ var r=I.bodyRect(actor); return { x:r.left + r.width*0.5, y:r.top + r.height*0.18 }; }
@@ -1470,58 +1818,86 @@ body{
     });
   }
 
-  /* ===================== [탭2] 직업 세트 ===================== */
+  /* ===================== [탭2] 직업 세트 + [06B 카탈로그] ===================== */
   var JOBS = AK.TYPES.filter(function(t){ return !META[t].base && !META[t].fig; });
-  var jobsGender = "m";
+  var jobsGender = "m", partsGender = "m";
   var selectedJob = JOBS[0];
+  var jobSig = "all", jobUsage = "all", jobNewOnly = false, partNewOnly = false;
 
-  function partChips(parts){
-    return (parts||[]).map(function(k){
-      var p = PART[k]; var kr = p ? p.kr : k;
-      return '<span class="chip">'+kr+'</span>';
-    }).join("");
-  }
-  function keyChips(parts){
-    return (parts||[]).map(function(k){ return '<span class="chip chip--key">'+k+'</span>'; }).join("");
-  }
-  function usageChips(usage){
-    return (usage||[]).map(function(u){ return '<span class="chip chip--use">'+u+'</span>'; }).join("");
+  function partChips(parts){ return (parts||[]).map(function(k){ var p=PART[k]; return '<span class="chip">'+(p?p.kr:k)+'</span>'; }).join(""); }
+  function keyChips(parts){ return (parts||[]).map(function(k){ return '<span class="chip chip--key">'+k+'</span>'; }).join(""); }
+  function usageChips(usage){ return (usage||[]).map(function(u){ return '<span class="chip chip--use">'+u+'</span>'; }).join(""); }
+
+  /* 파츠가 쓰이는 직업 / 희소도 → 핵심 파츠 */
+  function partUsedBy(key){ return JOBS.filter(function(t){ return (META[t].parts||[]).indexOf(key)>=0; }); }
+  var _useCount = {};
+  Object.keys(PART).forEach(function(k){ _useCount[k]=0; });
+  JOBS.forEach(function(t){ (META[t].parts||[]).forEach(function(k){ if(_useCount[k]!=null) _useCount[k]++; }); });
+  function coreParts(m){ return (m.parts||[]).slice().sort(function(a,b){ return (_useCount[a]||0)-(_useCount[b]||0); }).slice(0,2); }
+  function silhouetteKw(m){
+    var ps=m.parts||[];
+    var has=function(arr){ return ps.some(function(k){ return arr.indexOf(k)>=0; }); };
+    var slotHas=function(sl){ return ps.some(function(k){ return PART[k]&&PART[k].slot===sl; }); };
+    if(has(["roundshield","towershield"])) return "검+방패";
+    if(has(["greatsword","hammer","scythe","spear","twinblade","mace"])) return "큰 무기";
+    if(slotHas("aura")) return "오라";
+    if(m.sig==="cast") return "주문형";
+    if(m.sig==="heal") return "치유형";
+    if(m.sig==="shoot") return "원거리";
+    if(slotHas("back")) return "등 장비";
+    if(slotHas("accessory")) return "장신구";
+    return "근접";
   }
 
   function renderSpotlight(){
     var sp = document.getElementById("spotlight");
     var t = selectedJob, m = META[t];
     var idx = JOBS.indexOf(t) + 1;
+    var core = coreParts(m).map(function(k){ return '<span class="chip chip--core">'+(PART[k]?PART[k].kr:k)+'</span>'; }).join("");
     sp.innerHTML =
       '<div class="spot-stage"><div class="ak-fxlayer"></div></div>'+
       '<div class="spot-head"><span class="spot-num">'+(idx<10?("0"+idx):idx)+'</span>'+
-        '<span class="spot-name">'+m.kr+'</span><span class="spot-en">'+m.en+'</span></div>'+
+        '<span class="spot-name">'+m.kr+'</span><span class="spot-en">'+m.en+'</span>'+(m.new06?'<span class="chip chip--new">06</span>':'')+'</div>'+
       '<div class="info">'+
-        '<div class="info-row"><div class="info-k">시그니처</div><div class="info-v">'+
-          '<span class="badge badge--'+m.sig+'">'+sigKr(m.sig)+' · '+m.sig+'</span></div></div>'+
-        '<div class="info-row"><div class="info-k">파츠</div><div class="info-v">'+partChips(m.parts)+keyChips(m.parts)+'</div></div>'+
+        '<div class="info-row"><div class="info-k">시그니처</div><div class="info-v"><span class="badge badge--'+m.sig+'">'+sigKr(m.sig)+' · '+m.sig+'</span><span class="chip chip--use">'+silhouetteKw(m)+'</span></div></div>'+
+        '<div class="info-row"><div class="info-k">핵심 파츠</div><div class="info-v">'+(core||'<span class="chip">없음</span>')+'</div></div>'+
+        '<div class="info-row"><div class="info-k">전체 파츠</div><div class="info-v">'+partChips(m.parts)+keyChips(m.parts)+'</div></div>'+
         '<div class="info-row"><div class="info-k">용도</div><div class="info-v">'+usageChips(m.usage)+'</div></div>'+
-      '</div>';
+      '</div>'+
+      '<button type="button" class="btn btn--ghost spot-to-mix">이 직업 recipe를 조합대로 ▸</button>';
     var stage = sp.querySelector(".spot-stage");
     var layer = sp.querySelector(".ak-fxlayer");
     var actor = AK.spawn(t, jobsGender); actor.style.setProperty("--dir", 1);
     var wrap = document.createElement("div"); wrap.className = "spot-actor"; wrap.appendChild(actor);
     stage.appendChild(wrap);
     setTimeout(function(){ signatureDemo(actor, layer, m.sig); }, 360);
+    var smb = sp.querySelector(".spot-to-mix");
+    if(smb) smb.addEventListener("click", function(){ sendToMixer((META[selectedJob].parts||[]).slice(), jobsGender, true); });
   }
 
+  function filteredJobs(){
+    return JOBS.filter(function(t){ var m=META[t];
+      if(jobSig!=="all" && m.sig!==jobSig) return false;
+      if(jobUsage!=="all" && (m.usage||[]).indexOf(jobUsage)<0) return false;
+      if(jobNewOnly && !m.new06) return false;
+      return true;
+    });
+  }
   function buildJobs(){
     var grid = document.getElementById("cat-grid");
     grid.innerHTML = "";
-    JOBS.forEach(function(t, i){
-      var m = META[t];
+    var list = filteredJobs();
+    var cntEl = document.getElementById("job-count"); if(cntEl) cntEl.textContent = list.length+" / "+JOBS.length+" 직업";
+    if(list.length && list.indexOf(selectedJob)<0){ selectedJob = list[0]; renderSpotlight(); }
+    list.forEach(function(t){
+      var m = META[t]; var num = JOBS.indexOf(t)+1;
       var card = document.createElement("button"); card.type="button"; card.className="ak-card"+(t===selectedJob?" is-sel":"");
       card.setAttribute("aria-label", m.kr+" 선택");
       card.innerHTML =
         '<div class="ak-stage"><div class="ak-fxlayer"></div></div>'+
-        '<div class="card-top"><div class="ak-card-name">'+m.kr+'</div><div class="ak-card-num">'+(i+1<10?("0"+(i+1)):(i+1))+'</div></div>'+
-        '<div class="ak-card-role">'+m.en+'</div>'+
-        '<div class="card-chips"><span class="badge badge--'+m.sig+'">'+sigKr(m.sig)+'</span>'+partChips(m.parts)+'</div>';
+        '<div class="card-top"><div class="ak-card-name">'+m.kr+'</div><div class="ak-card-num">'+(num<10?("0"+num):num)+'</div></div>'+
+        '<div class="ak-card-role">'+silhouetteKw(m)+' · 파츠 '+(m.parts?m.parts.length:0)+'</div>'+
+        '<div class="card-chips"><span class="badge badge--'+m.sig+'">'+sigKr(m.sig)+'</span>'+(m.new06?'<span class="chip chip--new">06</span>':'')+partChips(m.parts)+'</div>';
       var stage = card.querySelector(".ak-stage");
       var actor = AK.spawn(t, jobsGender); actor.style.setProperty("--dir", 1);
       var wrap = document.createElement("div"); wrap.className="ak-stage-actor"; wrap.appendChild(actor);
@@ -1536,35 +1912,81 @@ body{
       grid.appendChild(card);
     });
   }
+  function wireChips(wrapId, onPick){
+    var w = document.getElementById(wrapId); if(!w) return;
+    Array.prototype.forEach.call(w.querySelectorAll(".fchip"), function(b){
+      b.addEventListener("click", function(){
+        Array.prototype.forEach.call(w.querySelectorAll(".fchip"), function(x){ x.classList.toggle("is-on", x===b); });
+        onPick(b.dataset.v);
+      });
+    });
+  }
+  function wireJobFilters(){
+    wireChips("jf-sig",   function(v){ jobSig=v;   buildJobs(); });
+    wireChips("jf-usage", function(v){ jobUsage=v; buildJobs(); });
+    var nb = document.getElementById("jf-new");
+    if(nb) nb.addEventListener("click", function(){ jobNewOnly=!jobNewOnly; nb.classList.toggle("is-on",jobNewOnly); nb.setAttribute("aria-pressed",jobNewOnly?"true":"false"); buildJobs(); });
+  }
 
-  /* ===================== [탭3] 파츠 ===================== */
-  var partsGender = "m";
+  /* ===================== [탭3] 파츠 + [06B 카탈로그] ===================== */
+  function renderPartPreview(key){
+    var box = document.getElementById("part-preview"); if(!box) return;
+    var p = PART[key];
+    if(!p){ box.innerHTML = '<div class="pp-empty mono">파츠 카드를 누르면 여기에 장착 모습이 떠.</div>'; return; }
+    var used = partUsedBy(key);
+    box.innerHTML =
+      '<div class="pp-stage"><div class="pp-actor"></div></div>'+
+      '<div class="pp-info"><div class="pp-name">'+p.kr+(p.new06?' <span class="chip chip--new">06</span>':'')+'</div>'+
+      '<div class="pp-meta mono">slot: '+p.slot+' · z: '+p.z+' · key: '+key+'</div>'+
+      '<div class="pp-used mono">사용 직업 '+used.length+(used.length?' · '+used.map(function(t){ return META[t].kr; }).join(", "):"")+'</div>'+
+      '<button type="button" class="btn btn--ghost pp-to-mix">조합대에서 써보기 ▸</button></div>';
+    var st = box.querySelector(".pp-actor");
+    var a = AK.previewParts([key], partsGender); a.style.setProperty("--dir",1); st.appendChild(a);
+    var pb = box.querySelector(".pp-to-mix");
+    if(pb) pb.addEventListener("click", function(){ sendToMixer([key], partsGender, false); });
+  }
   function buildParts(){
     var root = document.getElementById("parts-root");
     root.innerHTML = "";
+    var total = 0;
     Object.keys(SLOTS).forEach(function(slot){
-      var keys = Object.keys(PART).filter(function(k){ return PART[k].slot === slot; });
-      var sec = document.createElement("div"); sec.className = "parts-section";
+      var keys = Object.keys(PART).filter(function(k){ return PART[k].slot === slot && (!partNewOnly || PART[k].new06); });
+      if(!keys.length) return;
+      total += keys.length;
+      var allCount = Object.keys(PART).filter(function(k){ return PART[k].slot===slot; }).length;
+      var sec = document.createElement("div"); sec.className = "parts-section"; sec.id = "psec-"+slot;
       sec.innerHTML =
-        '<h3>'+SLOTS[slot].kr+' <small>'+slot+' · '+keys.length+'</small></h3>'+
+        '<h3>'+SLOTS[slot].kr+' <small>'+slot+' · '+keys.length+(partNewOnly?'/'+allCount:'')+'</small></h3>'+
         '<p class="sec-desc">'+SLOTS[slot].desc+'</p>'+
         '<div class="part-grid"></div>';
       var pg = sec.querySelector(".part-grid");
       keys.forEach(function(k){
-        var p = PART[k];
-        var pc = document.createElement("div"); pc.className = "part-card";
+        var p = PART[k]; var used = partUsedBy(k).length;
+        var pc = document.createElement("button"); pc.type="button"; pc.className = "part-card";
+        pc.setAttribute("aria-label", p.kr+" 미리보기");
         pc.innerHTML =
           '<div class="part-stage"></div>'+
           '<div class="part-name">'+p.kr+'</div>'+
-          '<div class="part-meta"><span class="part-slot">'+SLOTS[slot].kr+'</span><span class="part-key">'+k+'</span></div>';
+          '<div class="part-meta"><span class="part-slot">z'+p.z+'</span>'+(p.new06?'<span class="part-new">06</span>':'')+'<span class="part-key">'+k+'</span></div>'+
+          '<div class="part-used mono">직업 '+used+'</div>';
         var stage = pc.querySelector(".part-stage");
         var actor = AK.previewParts([k], partsGender);
         var wrap = document.createElement("div"); wrap.className = "part-stage-actor"; wrap.appendChild(actor);
         stage.appendChild(wrap);
+        pc.addEventListener("click", function(){ renderPartPreview(k); document.getElementById("part-preview").scrollIntoView({behavior:"smooth", block:"nearest"}); });
         pg.appendChild(pc);
       });
       root.appendChild(sec);
     });
+    var c = document.getElementById("part-count"); if(c) c.textContent = total+" / "+Object.keys(PART).length+" 파츠";
+  }
+  function wirePartsNav(){
+    var jump = document.getElementById("ps-jump");
+    if(jump) Array.prototype.forEach.call(jump.querySelectorAll(".fchip"), function(b){
+      b.addEventListener("click", function(){ var el = document.getElementById("psec-"+b.dataset.v); if(el) el.scrollIntoView({behavior:"smooth", block:"start"}); });
+    });
+    var nb = document.getElementById("pf-new");
+    if(nb) nb.addEventListener("click", function(){ partNewOnly=!partNewOnly; nb.classList.toggle("is-on",partNewOnly); nb.setAttribute("aria-pressed",partNewOnly?"true":"false"); buildParts(); });
   }
 
   /* ----- 성별 토글(직업/파츠 공용 패턴) ----- */
@@ -1580,7 +2002,231 @@ body{
     });
   }
   wireSeg("seg-jobs",  function(g){ jobsGender = g;  buildJobs(); renderSpotlight(); });
-  wireSeg("seg-parts", function(g){ partsGender = g; buildParts(); });
+  wireSeg("seg-parts", function(g){ partsGender = g; buildParts(); renderPartPreview(null); });
+
+  /* ===================== [06B] 보상 카드 카탈로그 (수장고 목록) ===================== */
+  function renderRewardCatalog(){
+    var row = document.getElementById("reward-catalog");
+    if(!row || typeof REWARDS === "undefined") return;
+    row.innerHTML = "";
+    REWARDS.forEach(function(r){
+      var card = document.createElement("div"); card.className = "rc-card";
+      card.innerHTML =
+        '<div class="reward-stage"></div>'+
+        '<div class="reward-name">'+r.kr+'</div>'+
+        '<div class="reward-kind">'+r.kind+'</div>'+
+        '<div class="rc-target mono">대상 · '+(META[r.ally]?META[r.ally].kr:r.ally)+' · '+r.part+'</div>'+
+        '<div class="reward-desc">'+r.desc+'</div>'+
+        '<button type="button" class="btn btn--ghost rc-to-mix">조합대에 얹기</button>';
+      var prev = AK.previewParts([r.part], "m"); prev.style.setProperty("--dir",1);
+      var w = document.createElement("div"); w.className = "reward-actor"; w.appendChild(prev);
+      card.querySelector(".reward-stage").appendChild(w);
+      var mb = card.querySelector(".rc-to-mix");
+      if(mb) mb.addEventListener("click", function(){ sendToMixer([r.part], "m", false); });
+      row.appendChild(card);
+    });
+    var c = document.getElementById("rc-count"); if(c) c.textContent = REWARDS.length+"종";
+  }
+
+  /* ===================== [06C] LOOK MIXER (조합대) — Joy Polish / Recipe Discovery ===================== */
+  var MIX_SLOTS = ["head","chest","mainHand","offHand","back","accessory","aura"];
+  var mixGender = "m", mixSel = {}, mixLock = {};
+  var discoveries = [];
+  var MAX_DISCOVERY = 8;
+
+  function mixParts(){ return MIX_SLOTS.map(function(s){ return mixSel[s]; }).filter(Boolean); }
+  function partsOfSlot(s){ return Object.keys(PART).filter(function(k){ return PART[k].slot === s; }); }
+  function slotValOf(parts, s){ for(var i=0;i<parts.length;i++){ if(PART[parts[i]] && PART[parts[i]].slot===s) return parts[i]; } return null; }
+
+  /* 실루엣 키워드(여러 태그) — 판정 시스템 아님, 읽기용 태그 */
+  function mixTags(parts){
+    var tags=[], set={}; var add=function(x){ if(!set[x]){ set[x]=1; tags.push(x); } };
+    var has=function(k){ return parts.indexOf(k)>=0; };
+    var mh=slotValOf(parts,"mainHand"), oh=slotValOf(parts,"offHand"), au=slotValOf(parts,"aura"), bk=slotValOf(parts,"back"), ac=slotValOf(parts,"accessory"), ch=slotValOf(parts,"chest");
+    if(mh && ["greatsword","hammer","scythe","runeblade","twinblade","spear"].indexOf(mh)>=0) add("큰 무기");
+    if(oh && ["roundshield","towershield"].indexOf(oh)>=0) add("방어형");
+    if(au) add("오라");
+    if(bk && ["tinywings","cape","feathercape","bigpack","banner","quiver","satchel","charmstrings"].indexOf(bk)>=0) add("등 장비");
+    if(ac) add("장신구");
+    if(ch && ["robe","ritualrobe"].indexOf(ch)>=0) add("주문형");
+    if(mh && ["bow","shortbow"].indexOf(mh)>=0) add("원거리");
+    if(has("halo")||has("blessing")||has("chalice")) add("성스러움");
+    if(has("poisonmist")||has("mask")||has("longcoat")) add("수상한 의식감");
+    if(mh && ["staff","tome","runeblade"].indexOf(mh)>=0) add("마법");
+    if(mh && ["sword","mace","dagger","whip","lute"].indexOf(mh)>=0 && tags.indexOf("큰 무기")<0) add("근접");
+    if(!tags.length) add("담백");
+    return tags;
+  }
+  function mixSigOf(parts){
+    var mh=slotValOf(parts,"mainHand"), oh=slotValOf(parts,"offHand");
+    if(oh && ["roundshield","towershield"].indexOf(oh)>=0) return "block";
+    if(mh && ["bow","shortbow"].indexOf(mh)>=0) return "shoot";
+    if(parts.indexOf("halo")>=0 || parts.indexOf("blessing")>=0 || oh==="chalice") return "heal";
+    if((mh && ["staff","tome","runeblade"].indexOf(mh)>=0) || slotValOf(parts,"aura") || parts.indexOf("robe")>=0 || parts.indexOf("ritualrobe")>=0) return "cast";
+    return "melee";
+  }
+  function mixSigAltOf(parts, sig){ return parts.indexOf("runeblade")>=0 ? (sig==="cast"?"melee":"cast") : null; }
+  function mixRoleOf(parts, sig){
+    var mh=slotValOf(parts,"mainHand"); var weap=(mh && PART[mh])?PART[mh].kr:"맨손";
+    var base=({ melee:"근접", shoot:"원거리", cast:"주문", heal:"치유", block:"방어" })[sig]||"근접";
+    return base+" · "+weap;
+  }
+  function mixUsageOf(sig){
+    return ({ melee:["오토배틀러","행렬RPG"], shoot:["formation-shift-lab","오토배틀러"], cast:["행렬RPG","퍼즐RPG"], heal:["행렬RPG","Dungeon Board Loop"], block:["행렬RPG","Dungeon Board Loop"] })[sig]||["행렬RPG","오토배틀러"];
+  }
+  function mixNameOf(parts){
+    var au=slotValOf(parts,"aura"), mh=slotValOf(parts,"mainHand"), ch=slotValOf(parts,"chest");
+    var pre=({ stardust:"별빛", halo:"성", blessing:"축복", ember:"불꽃", shadow:"그림자", poisonmist:"독", windswirl:"바람", circle:"룬" })[au]||"";
+    var core=({ runeblade:"룬기사", greatsword:"대검사", hammer:"망치병", scythe:"사신", staff:"마법사", tome:"현자", bow:"궁수", shortbow:"궁수", lute:"음유시인", sword:"검사", mace:"성직자", spear:"창병", dagger:"도적", twinblade:"쌍검사", whip:"조련사" })[mh];
+    if(!core) core=({ ritualrobe:"의식가", robe:"술사", apron:"공방인", chainmail:"기사", breastplate:"전사", leathervest:"순찰자", longcoat:"방랑자" })[ch]||"공방 후보";
+    return (pre?pre+" ":"")+core+" 후보";
+  }
+
+  function renderMix(){
+    var parts = mixParts();
+    var st = document.getElementById("mix-actor");
+    if(st){ st.innerHTML=""; var a = AK.previewParts(parts, mixGender); a.style.setProperty("--dir",1); st.appendChild(a); }
+
+    var sig = mixSigOf(parts), alt = mixSigAltOf(parts, sig);
+    var tags = mixTags(parts), role = mixRoleOf(parts, sig), usage = mixUsageOf(sig), name = mixNameOf(parts);
+    var cand = document.getElementById("mix-candidate");
+    if(cand){
+      cand.innerHTML =
+        '<div class="cand-name">'+name+'</div>'+
+        '<div class="cand-tags">'+tags.map(function(x){ return '<span class="chip chip--use">'+x+'</span>'; }).join("")+'</div>'+
+        '<div class="cand-rows">'+
+          '<div><b>역할</b> '+role+'</div>'+
+          '<div><b>sig</b> '+sig+(alt?(" 또는 "+alt):"")+'</div>'+
+          '<div><b>usage</b> '+usage.join(" / ")+'</div>'+
+          '<div><b>파츠</b> '+parts.length+'개</div>'+
+        '</div>';
+    }
+    var rec = document.getElementById("mix-recipe");
+    if(rec) rec.value = "gender:"+mixGender+" / parts:["+parts.join(", ")+"]";
+    var meta = document.getElementById("mix-meta");
+    if(meta) meta.value = '{ kr:"'+name+'", en:"Custom Look", role:"'+role+'", team:"ally", sig:"'+sig+'", gender:"'+mixGender+'", parts:['+parts.map(function(k){ return '"'+k+'"'; }).join(",")+'], usage:["'+usage.join('","')+'"] }';
+
+    MIX_SLOTS.forEach(function(s){
+      var w = document.getElementById("mix-"+s);
+      if(w) Array.prototype.forEach.call(w.querySelectorAll(".mchip"), function(b){ b.classList.toggle("is-on", (mixSel[s]||"")===b.dataset.k); });
+      var lk = document.querySelector('.mix-lock[data-s="'+s+'"]');
+      if(lk){ lk.classList.toggle("is-on", !!mixLock[s]); lk.textContent = mixLock[s]?"잠김":"잠금"; lk.setAttribute("aria-pressed", mixLock[s]?"true":"false"); }
+    });
+  }
+
+  var _mixerBuilt = false;
+  function buildMixer(){
+    var root = document.getElementById("mix-slots"); if(!root) return; root.innerHTML="";
+    MIX_SLOTS.forEach(function(s){
+      var keys = partsOfSlot(s);
+      var rowEl = document.createElement("div"); rowEl.className = "mix-row";
+      var chips = '<button type="button" class="mchip" data-k="">없음</button>'+
+        keys.map(function(k){ return '<button type="button" class="mchip" data-k="'+k+'">'+PART[k].kr+'</button>'; }).join("");
+      rowEl.innerHTML =
+        '<div class="mix-rowhead"><div class="mix-slotlabel">'+SLOTS[s].kr+' <small class="mono">'+s+'</small></div>'+
+        '<button type="button" class="mix-lock" data-s="'+s+'" aria-pressed="false">잠금</button></div>'+
+        '<div class="mix-chiprow" id="mix-'+s+'">'+chips+'</div>';
+      root.appendChild(rowEl);
+      var cr = rowEl.querySelector("#mix-"+s);
+      Array.prototype.forEach.call(cr.querySelectorAll(".mchip"), function(b){
+        b.addEventListener("click", function(){ mixSel[s] = b.dataset.k || null; renderMix(); });
+      });
+      rowEl.querySelector(".mix-lock").addEventListener("click", function(){ mixLock[s] = !mixLock[s]; renderMix(); });
+    });
+    _mixerBuilt = true;
+  }
+  function buildMixerEnsure(){ if(!_mixerBuilt) buildMixer(); }
+
+  /* 랜덤 프리셋 풀(역할별 큐레이션) */
+  var MIX_PRESETS = {
+    full:    { fill:0.58 },
+    warrior: { fill:0.85, pool:{ head:["helm","hornhelm","crown","goggles","beasthood"], chest:["breastplate","chainmail","leathervest","longcoat","pauldrons"], mainHand:["sword","greatsword","hammer","scythe","twinblade","mace","spear","whip"], offHand:["roundshield","towershield"], back:["cape","banner","feathercape","bigpack"], accessory:["sash","brooch","scarf","waistpouch"], aura:["ember"] } },
+    mage:    { fill:0.85, pool:{ head:["wizardhat","hood","mask"], chest:["robe","ritualrobe","longcoat"], mainHand:["staff","tome","runeblade","lute"], offHand:["crystalorb","flask","chalice"], back:["cape","charmstrings","satchel"], accessory:["talisman","amulet","brooch"], aura:["circle","stardust","windswirl","shadow"] } },
+    support: { fill:0.85, pool:{ head:["hood","flowercrown","ribbon"], chest:["robe","ritualrobe","apron"], mainHand:["staff","mace","lute"], offHand:["chalice","flask","lantern","flowerbasket"], back:["cape","banner"], accessory:["amulet","talisman","scarf"], aura:["halo","blessing","circle"] } },
+    reward:  { fill:0.80, pool:{ head:["crown","flowercrown"], chest:["breastplate","pauldrons","apron"], mainHand:["runeblade"], offHand:["lantern","chalice","crystalorb"], back:["cape","quiver","banner","charmstrings","feathercape"], accessory:["talisman","amulet"], aura:["circle","ember","halo","stardust","poisonmist","windswirl"] } },
+    weird:   { fill:1.00 }
+  };
+  function applyPreset(name){
+    var def = MIX_PRESETS[name] || MIX_PRESETS.full;
+    MIX_SLOTS.forEach(function(s){
+      if(mixLock[s]) return;
+      var pool = (def.pool && def.pool[s]) ? def.pool[s] : partsOfSlot(s);
+      if(!pool.length){ mixSel[s]=null; return; }
+      if(Math.random() >= (def.fill!=null?def.fill:0.6)){ mixSel[s]=null; return; }
+      mixSel[s] = pool[Math.floor(Math.random()*pool.length)];
+    });
+    renderMix();
+  }
+  function rerollSlot(s){ if(mixLock[s]) return; var pool=partsOfSlot(s); if(pool.length) mixSel[s]=pool[Math.floor(Math.random()*pool.length)]; renderMix(); }
+  function changeOne(){
+    var open = MIX_SLOTS.filter(function(s){ return !mixLock[s]; });
+    if(!open.length) return;
+    var s = open[Math.floor(Math.random()*open.length)], pool=partsOfSlot(s);
+    mixSel[s] = (Math.random()<0.85 && pool.length) ? pool[Math.floor(Math.random()*pool.length)] : null;
+    renderMix();
+  }
+  function clearMix(){ MIX_SLOTS.forEach(function(s){ if(!mixLock[s]) mixSel[s]=null; }); renderMix(); }
+
+  /* 세션 발견 목록(메모리 배열만 · 저장 없음) */
+  function renderDiscovery(){
+    var grid = document.getElementById("disc-grid"); if(!grid) return;
+    var c = document.getElementById("disc-count"); if(c) c.textContent = discoveries.length;
+    grid.innerHTML = "";
+    if(!discoveries.length){ grid.innerHTML = '<div class="disc-empty mono">아직 발견 없음 — 좋은 조합이 나오면 추가해봐.</div>'; return; }
+    discoveries.slice(0, MAX_DISCOVERY).forEach(function(d){
+      var card = document.createElement("button"); card.type="button"; card.className="disc-card";
+      card.setAttribute("aria-label", d.name+" 불러오기");
+      card.innerHTML = '<div class="disc-stage"></div><div class="disc-name">'+d.name+'</div><div class="disc-recipe mono">'+d.gender+" · "+d.parts.join(", ")+'</div>';
+      var prev = AK.previewParts(d.parts, d.gender); prev.style.setProperty("--dir",1);
+      var w = document.createElement("div"); w.className="disc-actor"; w.appendChild(prev);
+      card.querySelector(".disc-stage").appendChild(w);
+      card.addEventListener("click", function(){
+        mixGender = d.gender; mixSel = {}; d.parts.forEach(function(k){ if(PART[k]) mixSel[PART[k].slot]=k; });
+        syncGenderSeg(); renderMix();
+        var ma=document.getElementById("mix-actor"); if(ma) ma.scrollIntoView({behavior:"smooth", block:"nearest"});
+      });
+      grid.appendChild(card);
+    });
+  }
+  function addDiscovery(){
+    var parts = mixParts(); if(!parts.length) return;
+    discoveries.unshift({ parts: parts.slice(), gender: mixGender, name: mixNameOf(parts) });
+    renderDiscovery();
+  }
+
+  function syncGenderSeg(){
+    var g = document.getElementById("mix-seg"); if(!g) return;
+    Array.prototype.forEach.call(g.querySelectorAll("button"), function(x){ var on=x.dataset.g===mixGender; x.classList.toggle("is-active",on); x.setAttribute("aria-pressed",on?"true":"false"); });
+  }
+  /* 카탈로그 → 조합대 보내기 (직업=교체 / 파츠·보상=얹기) */
+  function sendToMixer(parts, gender, replace){
+    buildMixerEnsure();
+    if(replace) mixSel = {};
+    if(gender) mixGender = gender;
+    (parts||[]).forEach(function(k){ if(PART[k]) mixSel[PART[k].slot] = k; });
+    syncGenderSeg(); renderMix(); gotoView("mix");
+    var ma=document.getElementById("mix-actor"); if(ma) ma.scrollIntoView({behavior:"smooth", block:"nearest"});
+  }
+
+  function initMixer(){
+    buildMixerEnsure();
+    var g = document.getElementById("mix-seg");
+    if(g) Array.prototype.forEach.call(g.querySelectorAll("button"), function(b){
+      b.addEventListener("click", function(){ mixGender = b.dataset.g; syncGenderSeg(); renderMix(); });
+    });
+    Array.prototype.forEach.call(document.querySelectorAll(".mix-randoms .mchip"), function(b){
+      b.addEventListener("click", function(){ applyPreset(b.dataset.preset); });
+    });
+    var bind = function(id, fn){ var el=document.getElementById(id); if(el) el.addEventListener("click", fn); };
+    bind("mix-one", changeOne);
+    bind("mix-aura", function(){ rerollSlot("aura"); });
+    bind("mix-weapon", function(){ rerollSlot("mainHand"); });
+    bind("mix-clear", clearMix);
+    bind("disc-add", addDiscovery);
+    bind("disc-clear", function(){ discoveries = []; renderDiscovery(); });
+    mixSel = { head:"hornhelm", chest:"chainmail", mainHand:"runeblade", offHand:null, back:null, accessory:null, aura:"stardust" };
+    renderMix(); renderDiscovery();
+  }
 
   /* ===================== [탭4] 전투 플레이그라운드 ===================== */
   var board   = document.getElementById("board");
@@ -1768,7 +2414,21 @@ body{
     { id:"quiver",      kr:"가벼운 활시위",    kind:"사격 강화", part:"quiver",      ally:"archer",  sig:"shoot", desc:"화살통이 채워져 사격이 가뿐." },
     { id:"pauldrons",   kr:"전열의 결의",      kind:"전열 강화", part:"pauldrons",   ally:"knight",  sig:"block", desc:"어깨갑옷으로 전열을 굳힌다." },
     { id:"amulet",      kr:"빛 머금은 목걸이", kind:"장신구",    part:"amulet",      ally:"priest",  desc:"은은히 빛나는 목걸이." },
-    { id:"banner",      kr:"공방의 깃발",      kind:"등 장비",   part:"banner",      ally:"knight",  desc:"등에 공방 문장 깃발을 단다." }
+    { id:"banner",      kr:"공방의 깃발",      kind:"등 장비",   part:"banner",      ally:"knight",  desc:"등에 공방 문장 깃발을 단다." },
+
+    /* ===== [06] 보상 후보 확장 (신규 파츠 활용, +12) ===== */
+    { id:"stardust",    kr:"별가루 병",        kind:"오라",      part:"stardust",    ally:"mage",    sig:"cast",  desc:"머리 위로 별가루가 흩날린다." },
+    { id:"crown",       kr:"작은 왕관",        kind:"머리 장식", part:"crown",       ally:"knight",  desc:"작은 금관이 위엄을 더한다." },
+    { id:"lantern",     kr:"오래된 랜턴",      kind:"보조 도구", part:"lantern",     ally:"priest",  desc:"손에 든 등불이 길을 밝힌다." },
+    { id:"charmstrings",kr:"부적끈",           kind:"등 장비",   part:"charmstrings",ally:"mage",    desc:"등 뒤로 부적끈이 늘어진다." },
+    { id:"runeblade",   kr:"룬검",             kind:"무기",      part:"runeblade",   ally:"warrior", desc:"룬빛이 깃든 검을 쥔다." },
+    { id:"flowercrown", kr:"꽃관",             kind:"머리 장식", part:"flowercrown", ally:"priest",  desc:"들꽃으로 엮은 관." },
+    { id:"poisonmist",  kr:"독안개 향낭",      kind:"오라",      part:"poisonmist",  ally:"archer",  desc:"발밑에 옅은 독안개가 깔린다." },
+    { id:"apron",       kr:"공방 앞치마",      kind:"몸통",      part:"apron",       ally:"warrior", desc:"든든한 공방 앞치마." },
+    { id:"feathercape", kr:"깃털 망토",        kind:"등 장비",   part:"feathercape", ally:"archer",  desc:"가벼운 깃털 망토를 두른다." },
+    { id:"chalice",     kr:"성배",             kind:"보조 도구", part:"chalice",     ally:"priest",  desc:"치유의 성배를 든다." },
+    { id:"crystalorb",  kr:"수정구",           kind:"보조 도구", part:"crystalorb",  ally:"mage",    sig:"cast",  desc:"손 안에서 수정구가 빛난다." },
+    { id:"windswirl",   kr:"바람결",           kind:"오라",      part:"windswirl",   ally:"mage",    sig:"cast",  desc:"주위로 바람결이 감돈다." }
   ];
 
   var DG_ALLY = { warrior:{side:"ally",row:2,col:1}, knight:{side:"ally",row:2,col:0},
@@ -1933,6 +2593,10 @@ body{
   placeBoard();
   wireFormation();
   initLoop();
+  wireJobFilters();
+  wirePartsNav();
+  renderRewardCatalog();
+  initMixer();
 })();
 
 /* =========================================================================
@@ -2015,6 +2679,55 @@ body{
    • 박자            : 적 처치 → 360ms → CLEAR 배너 → 980ms(읽힘) → 보상 카드 등장. NEXT/다시 원정으로 끊김 없이.
    • 3×3 무대감 유지  : setOverlay(false)로 격자 마커 숨김 · 발끝/원근/겹침 그대로 · 보상 파츠는 아군별로 분산돼 안 뭉갬.
    • 다음 후보        : Auto Battler Sample · Unicorn-Overlord식 조건 전투 Seed · Dungeon Board Loot Loop 03 · Reward Catalog 강화.
+
+   ── 06 추가: PARTS VARIETY PACK 01 / JOB LOOK PRESET EXPANSION ────────────
+   • 성격            : 게임 시스템이 아니라 "재료 창고" 확장. 정식 룰/밸런스/저장/성장 없음.
+   • 핵심 발견(재확인): 캐릭터 개성은 새 얼굴이 아니라 "파츠 조합"에서 나온다 → 얼굴/바디/헤어/기본복 동결 유지.
+   • 신규 파츠 32 → 총 65. 슬롯별 분포: head 10 · chest 9 · mainHand 15 · offHand 7 · back 8 · accessory 8 · aura 8.
+                        (PART = {kr, slot, z, svg, new06}. DEFS 16색 그라디언트 그대로, 신규 그라디언트 없음.)
+   • 신규 직업 프리셋 12 → 직업 25 + 기본 2 + 몬스터 2 (= TYPES 29).
+                        성기사·음유시인·숲술사·역병의사·룬기사·수도승·망령술사·기계공·별점술사·광전사·서리마녀·야수조련사.
+                        전부 "기존 바디 + parts[] 조합"(새 몸체 아님), sig는 기존 5종, usage 기존값(+Dungeon Board Loop).
+   • 보상 풀 10 → 22 (신규 파츠 활용). 선택 시 reskin·글로우·토스트·누적 미리보기 = 05B 그대로.
+   • UI            : 신규 파츠/직업에 new06 플래그 + "06" 칩. 파츠 탭 슬롯별 개수 자동 표시. 박물관 4탭/05B 루프 불변.
+   • 3×3 유지 / 9×9 보류.
+
+   ── 07 후보(보류): DIRECTIONAL FACING LAB ────────────────────────────────
+   • front/back/left/right(4방향)는 별도 Lab에서 실험 — 06에서는 구현하지 않음.
+   • 06은 "정면 SD 피규어 + 3×3 원근 + 파츠 합성" 기준 파츠 다양화에 집중(본체 흔들림 방지).
+   • 4방향 구현 시: 파츠 앵커 / 무기 손 위치 / 등 장비 / 오라 방향을 방향별 별도 규칙으로 재정의 필요.
+   • 다음 후보: Directional Facing Lab · Auto Battler Sample · Unicorn-Overlord식 조건 전투 Seed ·
+               Reward Catalog 강화 · Job Look Preset Catalog 02.
+
+   ── 06B 추가: WORKSHOP CATALOG BINDER 01 ─────────────────────────────────
+   • 성격            : 새 콘텐츠/시스템 추가 아님. 늘어난 재료(파츠65/직업25/보상22)를 "보고·고르고·비교·조합"하는 탐색 UI.
+   • 직업 카탈로그   : 필터 = 시그니처(melee/shoot/cast/heal/block/all) · usage(행렬RPG/오토배틀러/퍼즐RPG/formation-shift-lab/Dungeon Board Loop/all) ·
+                        06 신규만 토글. 카드 = 실루엣 키워드(검+방패/큰 무기/오라/주문형/치유형/원거리/등 장비/장신구/근접) + 파츠 수.
+                        스포트라이트 = "핵심 파츠"(전체 직업 사용 빈도가 낮은 = 그 직업을 구분시키는 파츠 상위 2개) 표시.
+   • 파츠 카탈로그   : 슬롯 바로가기(scrollIntoView) · 06 신규만 토글 · 카드에 slot/z/key + "사용 직업 수" ·
+                        카드 클릭 → 상단 큰 미리보기(previewParts + 사용 직업 목록). 슬롯별 개수/필터 카운트 표시.
+   • 보상 카탈로그   : 던전 루프 탭 하단 "보상 카드 풀"(수장고). 카드 = 이름/종류/대상 아군/붙는 파츠/한 줄 설명 + 미리보기 actor.
+                        05B 루프와 "동일한 REWARDS 데이터" 사용(단일 출처).
+   • Look Mixer      : 6번째 탭 "조합대". 성별(남/여) + 7슬롯 각 1개 선택(없음 포함) → previewParts 미리보기 +
+                        랜덤 조합 + 전체 비우기 + recipe 텍스트(gender:f / parts:[...]).
+   • 저장 없는 이유  : recipe는 "눈으로 보고 코드로 옮기는" 참고 출력. 영구 상태/브라우저 보관을 두지 않는 건
+                        본체 불변 원칙(외부 자원·브라우저 보관 0)을 지켜 노트북 이식 때 깔끔하게 떼어 가기 위함.
+   • 불변            : 03R 미감/3×3/05B 루프/코어·어댑터 API 전부 유지. 데이터/엔진 변경 없음(UI 레이어만 추가).
+   • 다음 후보: Auto Battler Sample · Directional Facing Lab · Job Look Preset Catalog 02 · Reward Catalog 강화 · 개인 공방 노트북 이식.
+
+   ── 06C 추가: LOOK MIXER JOY POLISH / RECIPE DISCOVERY BINDER ─────────────
+   • 성격            : 조합대를 "장난감 + 발견 도구"로. 새 콘텐츠/시스템 없음. 직업 외형·보상·아바타 후보를 발굴하는 R&D 도구.
+   • 손맛            : 슬롯 잠금(잠금 슬롯은 랜덤/변경에서 유지) · 랜덤 프리셋 6(완전/전사형/마법형/지원형/보상형/이상한) ·
+                        한 파츠만 바꾸기 · 오라만 · 무기만 · 전체 비우기(잠금 유지).
+   • 직업 후보 카드   : 임시 이름(파츠 기반 자동) · 실루엣 태그 · 추천 역할 · 추천 sig(+대안: runeblade=melee/cast) · 추천 usage · 파츠 수.
+   • 실루엣 키워드   : mainHand 큰 무기 / shield 방어형 / aura 오라 / back 등 장비 / accessory 장신구 /
+                        robe·ritualrobe 주문형 / bow 원거리 / halo·blessing·chalice 성스러움 / poison·mask·longcoat 수상한 의식감 (태그, 판정 아님).
+   • recipe 출력     : 2종 — 짧은(gender:f / parts:[...]) + META 프리셋 초안({kr,en,role,team,sig,gender,parts,usage}). 선택 가능한 readonly textarea(클립보드 API 미사용).
+   • 발견 목록       : 이번 세션 메모리 배열만(JS) · 최대 표시 8 · 카드 = 미리보기+이름+recipe · 카드 클릭 시 그 조합을 조합대로 다시 불러옴 · 새로고침하면 사라짐.
+   • 카탈로그 연결   : 직업 스포트라이트 "조합대로 보내기"(parts 교체) · 파츠 미리보기 "조합대에서 써보기"(얹기) · 보상 카탈로그 "조합대에 얹기" → gotoView("mix").
+   • 보관 미사용 이유: 발견/잠금/임시 조합은 "이번 화면에서 비교"용. 브라우저 보관을 두지 않아 노트북 이식 때 깔끔히 떼어가고 본체 불변(외부자원·보관 0) 유지.
+   • 불변            : 데이터(파츠65/직업25/보상22)·엔진·03R 미감·3×3·05B 루프·06B 바인더 전부 유지. UI 레이어만 강화.
+   • 다음 후보: Auto Battler Sample · Directional Facing Lab · Job Look Preset Catalog 02 · Reward Catalog 강화 · 개인 공방 노트북 이식.
    ========================================================================= */
 </script>
 </body>
