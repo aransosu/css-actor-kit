@@ -682,6 +682,8 @@ body{
 .aln-btn.aln-big{ font-size:12px; background:linear-gradient(180deg, rgba(108,198,216,.13), var(--panel-2)); border-color:#3f7e88; }
 .aln-btn.aln-reset{ background:var(--panel); color:var(--muted); min-width:64px; font-size:12px; }
 .aln-btn[disabled]{ opacity:.4; pointer-events:none; }
+/* [정렬·폰] 빠른 탭이 '더블탭 확대'로 가로채이는 것 차단 — 이 영역만. 페이지 전체 확대/접근성은 유지 */
+.aln-panel, .aln-pad, .aln-padrow, .aln-btn, .aln-slots, .aln-slot, .aln-opt, .aln-toggle{ touch-action: manipulation; }
 
 .aln-listbtns{ display:flex; gap:7px; flex-wrap:wrap; }
 .aln-listbtns .btn{ flex:1 1 auto; }
