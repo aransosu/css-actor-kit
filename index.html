@@ -24,7 +24,7 @@
     [4] Parts Data / Parts Slots ... <script> SLOTS + PART(33)
     [5] Job Set Data ............... <script> META(직업13+기본2+몬스터2)
     [7] ActorKit Core API .......... <script> IIFE 엔진(공개 API 불변)
-    [8] Museum UI (JS) ............. <script> 박물관 4탭 배선
+    [8] Museum UI (JS) ............. <script> 박물관 7탭 배선(진열대 포함)
     [9] Combat Playground .......... <script> 전투 플레이그라운드 배선
     [10] Future Extraction Notes ... <script> 맨 끝 주석(이식 체크리스트)
 
@@ -522,7 +522,8 @@ body{
 /* =========================================================================
    [구역 8B] WORKSHOP CATALOG BINDER (CSS) — 06B
    ========================================================================= */
-.tab{ font-size:11.5px; padding:10px 4px; }            /* 탭 6개 폭 맞춤 */
+.tabs{ gap:4px; }                                       /* 탭 7개 폭 (07: 진열대 추가) */
+.tab{ font-size:11px; padding:10px 3px; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 
 /* 카탈로그 필터 바 */
 .cat-filters{ display:flex; flex-direction:column; gap:7px; margin:2px 0 12px; }
@@ -627,16 +628,195 @@ body{
 
 .spot-to-mix, .pp-to-mix{ margin-top:4px; }
 .rc-to-mix{ margin-top:4px; width:100%; font-size:9.5px; padding:6px 6px; }
+
+/* =========================================================================
+   [구역 8D] PART ALIGNMENT DEBUG CONSOLE (CSS) — 06D
+   조합대 내부 정렬 디버그: 슬롯 타깃 · 방향 패드 · 앵커 가이드 · 조정값 목록.
+   화면 임시 transform 만 — 실제 PART 미수정, 브라우저 보관 없음(메모리 전용).
+   ========================================================================= */
+.aln-panel{ border:1px solid var(--line-2); border-radius:14px; padding:12px; margin-bottom:14px;
+  background:linear-gradient(180deg, rgba(108,198,216,.05), var(--panel-2)); }
+.aln-panel.is-armed{ border-color:var(--ally); box-shadow:inset 0 0 0 1px rgba(108,198,216,.22); }
+.aln-head{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
+.aln-toggle{ flex:0 0 auto; font:800 11px/1 var(--font-body); color:var(--muted); background:var(--panel-2);
+  border:1px solid var(--line-2); padding:9px 15px; border-radius:999px; cursor:pointer; min-height:40px;
+  transition:background .14s, color .14s, border-color .14s; }
+.aln-toggle.is-on{ color:#06222a; background:linear-gradient(180deg,#a7dde7,var(--ally)); border-color:var(--ally); }
+.aln-toggle:focus-visible{ outline:2px solid var(--ally); outline-offset:2px; }
+
+.aln-body{ margin-top:11px; display:flex; flex-direction:column; gap:11px; }
+.aln-note{ font-size:10.5px; color:var(--gold-dim); line-height:1.45; }
+.aln-note b{ color:var(--ally); font-weight:700; }
+
+.aln-slots{ display:flex; gap:6px; overflow-x:auto; padding-bottom:3px; -webkit-overflow-scrolling:touch; }
+.aln-slot{ flex:0 0 auto; display:flex; flex-direction:column; align-items:flex-start; gap:3px; cursor:pointer;
+  font-family:inherit; background:var(--panel-2); border:1px solid var(--line-2); border-radius:11px; padding:7px 10px; min-width:62px; }
+.aln-slot-k{ font:700 11px/1 var(--font-body); color:var(--ink); }
+.aln-slot-v{ font-size:9px; color:var(--gold-dim); max-width:88px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.aln-slot.is-empty .aln-slot-v{ color:var(--faint); }
+.aln-slot.is-on{ border-color:var(--ally); background:linear-gradient(180deg, rgba(108,198,216,.16), var(--panel-2)); }
+.aln-slot.is-on .aln-slot-k{ color:#a7dde7; }
+
+.aln-readout{ font-size:11px; color:var(--muted); display:flex; align-items:center; gap:8px; flex-wrap:wrap;
+  background:#15101f; border:1px solid var(--line-2); border-radius:10px; padding:9px 11px; }
+.aln-ro-slot{ font-weight:800; color:var(--gold); }
+.aln-readout b{ color:var(--ink); }
+.aln-ro-dxy{ color:var(--ally); font-weight:800; }
+.aln-ro-tag{ font-size:9.5px; color:var(--faint); border:1px solid var(--line-2); border-radius:999px; padding:2px 8px; }
+.aln-ro-tag.is-listed{ color:#06222a; background:var(--ally); border-color:var(--ally); font-weight:700; }
+.aln-ro-empty{ color:var(--faint); }
+
+.aln-opts{ display:flex; gap:7px; flex-wrap:wrap; }
+.aln-opt{ font:700 10px/1 var(--font-body); color:var(--muted); background:var(--panel-2); border:1px solid var(--line-2);
+  padding:7px 12px; border-radius:999px; cursor:pointer; min-height:34px; }
+.aln-opt.is-on{ color:#06222a; background:linear-gradient(180deg,#bce2ea,var(--ally)); border-color:var(--ally); font-weight:800; }
+
+.aln-pad{ display:flex; flex-direction:column; align-items:center; gap:7px; }
+.aln-padrow{ display:flex; gap:7px; justify-content:center; flex-wrap:wrap; }
+.aln-btn{ font:800 14px/1 var(--font-body); color:var(--ink); background:var(--panel-2); border:1px solid var(--line-2);
+  border-radius:11px; cursor:pointer; min-width:54px; min-height:48px; padding:0 14px;
+  transition:background .12s, border-color .12s, transform .06s; }
+.aln-btn:hover{ border-color:var(--ally); }
+.aln-btn:active{ transform:translateY(1px); }
+.aln-btn:focus-visible{ outline:2px solid var(--ally); outline-offset:2px; }
+.aln-btn.aln-big{ font-size:12px; background:linear-gradient(180deg, rgba(108,198,216,.13), var(--panel-2)); border-color:#3f7e88; }
+.aln-btn.aln-reset{ background:var(--panel); color:var(--muted); min-width:64px; font-size:12px; }
+.aln-btn[disabled]{ opacity:.4; pointer-events:none; }
+
+.aln-listbtns{ display:flex; gap:7px; flex-wrap:wrap; }
+.aln-listbtns .btn{ flex:1 1 auto; }
+.aln-out{ display:flex; flex-direction:column; gap:7px; }
+.aln-out .grp-label small{ color:var(--gold-dim); font-weight:600; }
+
+.ak-aln-guides{ pointer-events:none; }
+@media (prefers-reduced-motion: reduce){ .aln-btn{ transition:none; } .aln-btn:active{ transform:none; } }
+/* =========================================================================
+   [구역 07] MUSEUM SHELF SYSTEM (CSS) — 진열대/전시장 인덱스 · 이식 가이드
+   기존 03R 토큰만 사용 · 새 폰트/외부자원 0 · 카드/뱃지/칩 패턴 재사용
+   ========================================================================= */
+.shelf-intro{ margin:2px 0 11px; }
+.shelf-id{ font:600 12px/1.55 var(--font-body); color:var(--muted); max-width:44ch; }
+.shelf-id b{ color:var(--gold); font-weight:800; }
+
+.shelf-stats{ display:flex; flex-wrap:wrap; gap:6px; margin:0 0 10px; }
+.shelf-stat{ font:700 10px/1 var(--font-mono); letter-spacing:.03em; color:var(--muted);
+  background:var(--panel-2); border:1px solid var(--line-2); border-radius:7px; padding:6px 9px; }
+.shelf-stat b{ color:var(--ink); font-weight:800; }
+.shelf-stat--active b{ color:#cdebaa; }
+.shelf-stat--partial b{ color:var(--gold); }
+.shelf-stat--planned b{ color:var(--muted); }
+
+.shelf-legend-k{ font:700 8.5px/1.3 var(--font-mono); letter-spacing:.12em; color:var(--faint); margin:4px 1px 4px; }
+.shelf-legend{ display:flex; flex-wrap:wrap; gap:4px; margin:0 0 12px; }
+.shelf-legend .tagk{ font:700 8.5px/1 var(--font-mono); letter-spacing:.04em; color:var(--gold-dim);
+  background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:4px 6px; }
+
+.shelf-filter{ display:flex; gap:5px; flex-wrap:wrap; margin:0 0 13px; }
+.shelf-fbtn{ appearance:none; cursor:pointer; font:700 10.5px/1 var(--font-body); color:var(--muted);
+  background:var(--panel-2); border:1px solid var(--line-2); border-radius:999px; padding:7px 13px;
+  transition:color .15s, background .15s, border-color .15s; }
+.shelf-fbtn:hover{ border-color:var(--gold-dim); }
+.shelf-fbtn:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
+.shelf-fbtn.is-on{ color:#1c1526; background:linear-gradient(180deg,#f3e6bf,var(--gold)); border-color:var(--gold); font-weight:800; }
+
+.shelf-grid{ display:flex; flex-direction:column; gap:11px; }
+.shelf-card{ background:linear-gradient(var(--panel),var(--panel-2)); border:1px solid var(--line);
+  border-radius:15px; padding:12px 12px 13px; }
+.shelf-card.is-hidden{ display:none; }
+.shelf-card[data-status="PLANNED"]{ border-style:dashed; opacity:.93; }
+.shelf-card-head{ display:flex; align-items:baseline; gap:9px; }
+.shelf-num{ font:800 12px/1 var(--font-mono); color:var(--gold-dim); flex:0 0 auto; }
+.shelf-name{ font:800 18px/1.12 var(--font-display); color:var(--ink); flex:1 1 auto; }
+.badge--active{ border-color:#5a7a3a; color:#cdebaa; }
+.badge--partial{ border-color:#7a5230; color:#f0d98a; }
+.badge--planned{ border-color:var(--line-2); color:var(--muted); }
+.shelf-rows{ margin-top:9px; display:flex; flex-direction:column; gap:5px; }
+.shelf-row{ display:flex; gap:8px; align-items:baseline; }
+.shelf-k{ flex:0 0 60px; font:700 9px/1.4 var(--font-mono); letter-spacing:.05em; color:var(--gold-dim); text-transform:uppercase; }
+.shelf-v{ flex:1 1 auto; font:500 11.5px/1.45 var(--font-body); color:var(--ink); }
+.shelf-v.proj{ color:#bfb6d6; }
+.shelf-tags{ display:flex; flex-wrap:wrap; gap:4px; margin-top:9px; }
+.shelf-tag{ font:700 8.5px/1 var(--font-mono); letter-spacing:.03em; color:var(--gold-dim);
+  background:var(--panel); border:1px solid var(--line-2); border-radius:6px; padding:4px 7px; }
+.shelf-import{ margin-top:10px; background:rgba(231,200,115,.06); border:1px solid var(--line-2);
+  border-left:3px solid var(--gold-dim); border-radius:9px; padding:8px 10px; }
+.shelf-import-k{ display:block; font:700 8px/1 var(--font-mono); letter-spacing:.12em; color:var(--gold-dim); margin-bottom:4px; }
+.shelf-import-t{ font:600 11px/1.45 var(--font-mono); color:var(--ink); }
+.shelf-foot{ margin-top:11px; display:flex; align-items:center; gap:9px; flex-wrap:wrap; }
+.shelf-go{ flex:0 0 auto; }
+.shelf-loc{ font:600 10px/1.35 var(--font-body); color:var(--muted); }
+.shelf-soon{ font:700 9.5px/1 var(--font-mono); letter-spacing:.05em; color:var(--faint);
+  border:1px dashed var(--line-2); border-radius:7px; padding:7px 10px; }
+/* =========================================================================
+   [구역 08] SMALL SCALE SHOWCASE (CSS) — 진열대 04 초소형 전장형 쇼케이스
+   기존 03R 액터를 M/S/XS 크기로 전시. 새 바디 0 · 좌표 미수정 · 외부자원 0.
+   쇼케이스 액터는 bob 정지 + 작은 크기 가독성용 드롭섀도(showcase 한정).
+   ========================================================================= */
+.ss-wrap{ margin-top:22px; border-top:1px solid var(--line); padding-top:16px; }
+.ss-head{ display:flex; align-items:baseline; gap:9px; flex-wrap:wrap; }
+.ss-eyebrow{ font:800 9px/1 var(--font-mono); letter-spacing:.14em; color:var(--gold-dim); }
+.ss-title{ font:800 19px/1.1 var(--font-display); color:var(--ink); }
+.ss-lede{ margin:7px 1px 13px; font:600 11.5px/1.5 var(--font-body); color:var(--muted); max-width:44ch; }
+.ss-lede b{ color:var(--gold); font-weight:800; }
+
+/* 크기 범례 */
+.ss-sizes{ display:flex; flex-wrap:wrap; gap:6px; margin:0 0 14px; }
+.ss-size{ font:700 10px/1.3 var(--font-mono); color:var(--muted); background:var(--panel-2);
+  border:1px solid var(--line-2); border-radius:8px; padding:6px 9px; }
+.ss-size b{ color:var(--gold); }
+
+/* 패널 */
+.ss-panel{ margin:0 0 16px; }
+.ss-panel-head{ display:flex; align-items:baseline; gap:8px; margin:0 1px 3px; }
+.ss-panel-k{ font:800 11px/1 var(--font-mono); color:var(--gold-dim); }
+.ss-panel-name{ font:800 14px/1.15 var(--font-display); color:var(--ink); }
+.ss-panel-desc{ margin:0 1px 9px; font:500 11px/1.45 var(--font-body); color:var(--muted); }
+
+/* 미니 액터 프레임 (M/S/XS) */
+.ss-row{ display:flex; flex-wrap:wrap; gap:9px; align-items:flex-end; }
+.ss-compare-row{ display:flex; align-items:flex-end; gap:10px; padding:9px; margin-bottom:9px;
+  background:linear-gradient(var(--panel),var(--panel-2)); border:1px solid var(--line); border-radius:13px; }
+.ss-compare-name{ flex:0 0 54px; font:800 12px/1.2 var(--font-display); color:var(--ink); align-self:center; }
+.ss-mini{ display:flex; flex-direction:column; align-items:center; gap:4px; }
+.ss-stage{ position:relative; border-radius:10px; overflow:hidden;
+  background: radial-gradient(120% 84% at 50% 24%, #2b2542 0%, #181428 76%, transparent 100%);
+  box-shadow: inset 0 1px 4px rgba(0,0,0,.5); }
+.ss-fig{ position:absolute; left:50%; bottom:3px; transform:translateX(-50%); }
+.ss-fig .ak-body{ filter: drop-shadow(0 1px 1px rgba(0,0,0,.6)); }   /* 작은 크기 가독성 보조 */
+.ss-wrap .ak-bob{ animation:none; }                                  /* 쇼케이스는 정적 전시 */
+.ss-cap{ font:600 9px/1.15 var(--font-mono); color:var(--muted); text-align:center; max-width:88px; }
+.ss-size-tag{ font:800 7.5px/1 var(--font-mono); letter-spacing:.06em; color:var(--gold-dim); }
+.ss-mini-col{ display:flex; flex-direction:column; align-items:center; gap:3px; }
+
+.ss-mini--m  .ss-stage{ width:86px; height:108px; }   .ss-mini--m  .ss-fig .ak-actor{ width:72px; }
+.ss-mini--s  .ss-stage{ width:62px; height:80px; }     .ss-mini--s  .ss-fig .ak-actor{ width:52px; }
+.ss-mini--xs .ss-stage{ width:46px; height:58px; }     .ss-mini--xs .ss-fig .ak-actor{ width:36px; }
+
+/* 3×3 미니 전장 (정적 전시 · ActorGridAdapter 미사용) */
+.ss-board{ display:grid; grid-template-columns:repeat(3,1fr); gap:7px; max-width:300px;
+  background:linear-gradient(var(--panel),var(--panel-2)); border:1px solid var(--line-2); border-radius:13px; padding:11px; }
+.ss-cell{ position:relative; height:78px; border:1px dashed var(--line); border-radius:9px; overflow:hidden;
+  background: radial-gradient(120% 90% at 50% 18%, #241f3a 0%, #15112400 80%); display:flex; align-items:flex-end; justify-content:center; }
+.ss-cell.is-empty{ opacity:.5; }
+.ss-cell .ss-fig{ bottom:4px; }
+.ss-cell .ss-fig .ak-actor{ width:48px; }
+.ss-board-cap{ margin:7px 1px 0; font:600 10px/1.4 var(--font-mono); color:var(--faint); }
+
+/* 메모 */
+.ss-note{ margin-top:8px; font:600 10.5px/1.45 var(--font-body); color:var(--muted);
+  background:rgba(231,200,115,.06); border:1px solid var(--line-2); border-left:3px solid var(--gold-dim);
+  border-radius:9px; padding:8px 10px; }
+@media (prefers-reduced-motion: reduce){ .ss-wrap .ak-base, .ss-wrap .ak-halo, .ss-wrap .ak-rune{ animation:none !important; } }
 </style>
 </head>
 <body>
 <div class="app">
 
   <header class="hd">
-    <div class="eyebrow">R&D MASTER CANVAS · 06C LOOK MIXER JOY POLISH</div>
-    <h1 class="title">CSS ACTOR KIT 06C</h1>
-    <p class="lede">03R 기반 · 기본 바디/얼굴/미감 고정. 조합대를 <b>장난감 + 발견 도구</b>로 — 슬롯 잠금·랜덤 프리셋·직업 후보 카드·recipe 출력·세션 발견 목록(저장 없음).</p>
-    <div class="spec">직업 25 + 기본 2 + 몬스터 2 · 파츠 65 / 슬롯 7 · 보상 풀 22 · 조합대(잠금·프리셋6·발견목록) · 외부자원 0 · 단일 index.html</div>
+    <div class="eyebrow">R&amp;D MASTER CANVAS · 07 MUSEUM SHELF / VARIANT SHOWCASE</div>
+    <h1 class="title">CSS ACTOR KIT 07 · CSS 박물관</h1>
+    <p class="lede">03R 기반 · 기본 바디/얼굴/미감 고정. 완성 게임이 아니라 <b>여러 R&amp;D 게임이 가져다 쓰는 자산 전시장</b> — 진열대 번호로 골라 이식하는 저장소 + 전시관 + 이식 가이드.</p>
+    <div class="spec">진열대 12 (ACTIVE 6 · PARTIAL 2 · PLANNED 4) · 직업 31 + 기본 2 + 몬스터 2 · 파츠 95 / 슬롯 7 · 보상 풀 34 · 외부자원 0 · 단일 index.html</div>
   </header>
 
   <nav class="tabs" role="tablist" aria-label="화면 전환">
@@ -646,6 +826,7 @@ body{
     <button class="tab"           data-view="play"  role="tab" aria-selected="false">전투</button>
     <button class="tab"           data-view="loop"  role="tab" aria-selected="false">던전 루프</button>
     <button class="tab"           data-view="mix"   role="tab" aria-selected="false">조합대</button>
+    <button class="tab"           data-view="shelf" role="tab" aria-selected="false">진열대</button>
   </nav>
 
   <!-- ===================== [탭1] 기본 바디 ===================== -->
@@ -832,6 +1013,53 @@ body{
       <div class="mix-side"><div class="mix-candidate" id="mix-candidate"></div></div>
     </div>
 
+    <!-- [06D] 파츠 정렬 디버그 콘솔 — 화면 임시 오프셋 수집(실제 PART 미수정·보관 없음) -->
+    <div class="aln-panel" id="aln-panel">
+      <div class="aln-head">
+        <div class="grp-label">파츠 정렬 디버그 · 06D <small class="mono">PART OFFSET COLLECTOR</small></div>
+        <button type="button" class="aln-toggle" id="aln-mode" role="switch" aria-checked="false">정렬 모드 OFF</button>
+      </div>
+      <div class="aln-body" id="aln-body" hidden>
+        <p class="aln-note mono">실제 파츠는 안 고쳐 — 화면에서만 임시로 옮겨보고 좌표를 모아 복사해(저장 없음). 단위 = <b>피규어 좌표</b>(파츠 SVG와 동일). 작은 1 · 큰 4.</p>
+
+        <div class="aln-slots" id="aln-slots" role="group" aria-label="정렬할 슬롯 선택"></div>
+        <div class="aln-readout" id="aln-readout"></div>
+
+        <div class="aln-opts">
+          <button type="button" class="aln-opt is-on" id="aln-guide" aria-pressed="true">앵커 가이드</button>
+          <button type="button" class="aln-opt is-on" id="aln-hl" aria-pressed="true">선택 파츠 강조</button>
+        </div>
+
+        <div class="aln-pad" id="aln-pad">
+          <div class="aln-padrow"><button type="button" class="aln-btn" data-dx="0" data-dy="-1" aria-label="위로 1">↑</button></div>
+          <div class="aln-padrow">
+            <button type="button" class="aln-btn" data-dx="-1" data-dy="0" aria-label="왼쪽으로 1">←</button>
+            <button type="button" class="aln-btn aln-reset" id="aln-center">초기화</button>
+            <button type="button" class="aln-btn" data-dx="1" data-dy="0" aria-label="오른쪽으로 1">→</button>
+          </div>
+          <div class="aln-padrow"><button type="button" class="aln-btn" data-dx="0" data-dy="1" aria-label="아래로 1">↓</button></div>
+          <div class="aln-padrow aln-bigrow">
+            <button type="button" class="aln-btn aln-big" data-dx="0" data-dy="-4">크게 ↑</button>
+            <button type="button" class="aln-btn aln-big" data-dx="0" data-dy="4">크게 ↓</button>
+            <button type="button" class="aln-btn aln-big" data-dx="-4" data-dy="0">크게 ←</button>
+            <button type="button" class="aln-btn aln-big" data-dx="4" data-dy="0">크게 →</button>
+          </div>
+        </div>
+
+        <div class="aln-listbtns">
+          <button type="button" class="btn btn--combo" id="aln-commit">목록에 추가 / 갱신</button>
+          <button type="button" class="btn btn--ghost" id="aln-clearcur">현재 파츠 초기화</button>
+          <button type="button" class="btn btn--ghost" id="aln-clearall">전체 초기화</button>
+        </div>
+
+        <div class="aln-out">
+          <div class="grp-label">조정값 목록 · <span id="aln-count">0</span>개 <small class="mono">(선택 복사 → 유키에게)</small></div>
+          <textarea class="mix-code" id="aln-list" readonly rows="6" aria-label="조정값 목록 PART_OFFSET_CANDIDATES"></textarea>
+          <textarea class="mix-code" id="aln-json" readonly rows="5" aria-label="조정값 JSON"></textarea>
+        </div>
+      </div>
+    </div>
+
     <div class="mix-randoms">
       <span class="fbar-k mono">랜덤</span>
       <button type="button" class="mchip" data-preset="full">완전</button>
@@ -869,9 +1097,15 @@ body{
     <p class="hint mono">슬롯 잠금 후 랜덤/한 파츠 변경 · recipe는 화면 확인용(저장 없음) · 발견 목록은 새로고침하면 사라져.</p>
   </section>
 
+  <!-- ===================== [탭7] 진열대 (07 Museum Shelf / Variant Showcase) ===================== -->
+  <section class="view view--shelf" id="view-shelf">
+    <div id="shelf-root"></div>
+    <div id="ss-showcase"></div>
+  </section>
+
   <footer class="ft">
     <div class="mono">window.ActorKit · ActorGridAdapter · spawn(type[, gender]) · 공개 API 불변 · 외부 의존성 0 · 스토리지 0</div>
-    <div class="mono faint">CSS Actor Kit 06C · Look Mixer Joy Polish / Recipe Discovery Binder · 나라의 공방</div>
+    <div class="mono faint">CSS Actor Kit 07 · Museum Shelf / Variant Showcase Index · 나라의 공방</div>
   </footer>
 </div>
 
@@ -1246,7 +1480,144 @@ body{
     shadow:     { kr:"그림자 오라", slot:"aura", z:6, new06:true, svg:
       '<g class="ak-rune"><ellipse cx="60" cy="142" rx="30" ry="9" fill="#2a2440" opacity="0.7"/><path d="M44 130 q-4 -14 4 -22 M76 130 q4 -14 -4 -22" fill="none" stroke="#4a3f6a" stroke-width="3" stroke-linecap="round" opacity="0.7"/></g>' },
     blessing:   { kr:"축복 원", slot:"aura", z:6, new06:true, svg:
-      '<g class="ak-rune"><circle cx="60" cy="80" r="34" fill="none" stroke="#f4e3b0" stroke-width="2" opacity="0.5"/><circle cx="60" cy="80" r="26" fill="none" stroke="#f4e3b0" stroke-width="1.4" opacity="0.4"/></g>' }
+      '<g class="ak-rune"><circle cx="60" cy="80" r="34" fill="none" stroke="#f4e3b0" stroke-width="2" opacity="0.5"/><circle cx="60" cy="80" r="26" fill="none" stroke="#f4e3b0" stroke-width="1.4" opacity="0.4"/></g>' },
+
+    /* ===== [06E] PARTS VARIETY PACK 02 — 신규 파츠 30 (new06) · 실루엣 확장 / 좌표 보정 없음 ===== */
+    /* head (+5) — 머리중심(60,44) r24 · 머리꼭대기(60,16) */
+    priestcap:  { kr:"사제관", slot:"head", z:76, new06:true, svg:
+      '<path d="M46 40 q14 -36 28 0 q-14 6 -28 0 z" fill="url(#cream__ID__)" stroke="#3a2f44" stroke-width="2.2"/>'+
+      '<path d="M60 12 l0 26" stroke="#caa84a" stroke-width="1.4" opacity="0.6"/>'+
+      '<path d="M60 18 l0 9 M55.5 22 l9 0" stroke="url(#gold__ID__)" stroke-width="1.8"/>' },
+    eyepatch:   { kr:"안대", slot:"head", z:78, new06:true, svg:
+      '<path d="M40 40 q9 8 21 6" fill="none" stroke="#2e2740" stroke-width="2"/>'+
+      '<ellipse cx="51" cy="46" rx="7" ry="6" fill="#2e2740" stroke="#1c1830" stroke-width="1.4"/>'+
+      '<path d="M46 43 l10 5" stroke="#4a4360" stroke-width="1" opacity="0.6"/>' },
+    rabbithood: { kr:"토끼귀 후드", slot:"head", z:72, new06:true, svg:
+      '<path d="M34 50 q0 -32 26 -33 q26 1 26 33 q-13 -11 -26 -11 q-13 0 -26 11 z" fill="url(#cream__ID__)" stroke="#3a2f44" stroke-width="2.4"/>'+
+      '<path d="M44 20 q-6 -22 2 -24 q8 4 6 24 z" fill="url(#cream__ID__)" stroke="#3a2f44" stroke-width="2"/>'+
+      '<path d="M76 20 q6 -22 -2 -24 q-8 4 -6 24 z" fill="url(#cream__ID__)" stroke="#3a2f44" stroke-width="2"/>'+
+      '<path d="M45 18 q-2 -14 1 -16 q3 3 2 16 z" fill="#e89aae"/><path d="M75 18 q2 -14 -1 -16 q-3 3 -2 16 z" fill="#e89aae"/>' },
+    skullmask:  { kr:"해골 가면", slot:"head", z:78, new06:true, svg:
+      '<path d="M42 42 q18 -10 36 0 q-1 12 -7 16 q-2 4 -2 8 l-16 0 q0 -4 -2 -8 q-6 -4 -9 -16 z" fill="#e8e2d0" stroke="#3a2f44" stroke-width="2"/>'+
+      '<ellipse cx="51" cy="46" rx="4.5" ry="5" fill="#2e2740"/><ellipse cx="69" cy="46" rx="4.5" ry="5" fill="#2e2740"/>'+
+      '<path d="M58 52 l2 -4 2 4 z" fill="#2e2740"/>'+
+      '<path d="M54 60 h12 M56 58 v4 M60 58 v4 M64 58 v4" stroke="#3a2f44" stroke-width="1"/>' },
+    noblehat:   { kr:"귀족 모자", slot:"head", z:77, new06:true, svg:
+      '<path d="M30 38 q30 8 60 0 q-6 -8 -16 -9 q-2 -7 -14 -7 q-12 0 -14 7 q-10 1 -16 9 z" fill="url(#wine__ID__)" stroke="#3a2f44" stroke-width="2.2"/>'+
+      '<path d="M44 26 q-12 -8 -22 -2 q14 0 22 6 z" fill="#f0e6c0" stroke="#caa84a" stroke-width="1.4"/>'+
+      '<rect x="46" y="30" width="28" height="3" rx="1.5" fill="url(#gold__ID__)"/>' },
+
+    /* chest (+5) — 어깨(34·86,72) · 허리(60,104) */
+    travelcoat: { kr:"여행 코트", slot:"chest", z:53, new06:true, svg:
+      '<path d="M42 70 C42 60 78 60 78 70 L84 134 72 136 69 96 60 100 51 96 48 136 36 134 Z" fill="url(#wood__ID__)" stroke="#46331f" stroke-width="2.4"/>'+
+      '<path d="M52 64 l8 8 8 -8" fill="#5a3a22" stroke="#46331f" stroke-width="1.6"/>'+
+      '<circle cx="60" cy="84" r="1.6" fill="#d8b06a"/><circle cx="60" cy="94" r="1.6" fill="#d8b06a"/><circle cx="60" cy="104" r="1.6" fill="#d8b06a"/>' },
+    mediccoat:  { kr:"의사복", slot:"chest", z:53, new06:true, svg:
+      '<path d="M42 70 C42 60 78 60 78 70 L82 132 70 134 68 96 60 99 52 96 50 134 38 132 Z" fill="url(#cream__ID__)" stroke="#3a2f44" stroke-width="2.2"/>'+
+      '<rect x="48" y="100" width="24" height="5" rx="1" fill="#7d2e38"/>'+
+      '<path d="M60 78 l0 10 M55 83 l10 0" stroke="#c0504a" stroke-width="2"/>' },
+    furvest:    { kr:"털 조끼", slot:"chest", z:54, new06:true, svg:
+      '<path d="M44 74 q16 -8 32 0 l-3 30 q-13 6 -26 0 z" fill="#8a6a44" stroke="#46331f" stroke-width="2.2"/>'+
+      '<path d="M60 74 l0 28" stroke="#46331f" stroke-width="1.4" opacity="0.6"/>'+
+      '<g fill="#efe6d2" stroke="#c8bca0" stroke-width="0.8"><ellipse cx="46" cy="73" rx="5" ry="4"/><ellipse cx="60" cy="71" rx="5" ry="4"/><ellipse cx="74" cy="73" rx="5" ry="4"/></g>' },
+    battlegown: { kr:"전투 드레스", slot:"chest", z:52, new06:true, svg:
+      '<path d="M44 70 C44 62 76 62 76 70 L72 96 88 140 32 140 48 96 Z" fill="url(#wine__ID__)" stroke="#3a2f44" stroke-width="2.4"/>'+
+      '<path d="M48 96 L72 96" stroke="#5a1f28" stroke-width="1.6"/>'+
+      '<path d="M44 72 q16 -8 32 0" fill="none" stroke="url(#gold__ID__)" stroke-width="2"/>'+
+      '<path d="M60 100 l-10 38 M60 100 l10 38" fill="none" stroke="#5a1f28" stroke-width="1" opacity="0.5"/>' },
+    shrinewear: { kr:"성소복", slot:"chest", z:52, new06:true, svg:
+      '<path d="M44 70 C44 62 76 62 76 70 L74 96 60 100 46 96 Z" fill="url(#cream__ID__)" stroke="#3a2f44" stroke-width="2.2"/>'+
+      '<path d="M46 96 L74 96 L86 140 34 140 Z" fill="#b83a44" stroke="#7d2e38" stroke-width="2.4"/>'+
+      '<path d="M54 64 l6 8 6 -8" fill="none" stroke="#c0504a" stroke-width="2"/>'+
+      '<path d="M50 100 v40 M60 100 v40 M70 100 v40" stroke="#8d2d36" stroke-width="1" opacity="0.5"/>' },
+
+    /* mainHand (+5) — 오른손 85,104 */
+    fan:        { kr:"부채", slot:"mainHand", z:82, new06:true, svg:
+      '<path d="M85 104 L66 64 a44 44 0 0 1 38 0 z" fill="url(#cream__ID__)" stroke="#3a2f44" stroke-width="2"/>'+
+      '<g stroke="#b86a72" stroke-width="1.2"><line x1="85" y1="104" x2="72" y2="70"/><line x1="85" y1="104" x2="85" y2="64"/><line x1="85" y1="104" x2="98" y2="70"/></g>'+
+      '<circle cx="85" cy="104" r="3" fill="url(#gold__ID__)" stroke="#3a2f44" stroke-width="1.2"/>' },
+    bellstaff:  { kr:"종홀", slot:"mainHand", z:82, new06:true, svg:
+      '<line x1="85" y1="116" x2="88" y2="44" stroke="#46331f" stroke-width="5"/>'+
+      '<line x1="85" y1="116" x2="88" y2="44" stroke="url(#wood__ID__)" stroke-width="3"/>'+
+      '<path d="M80 44 q8 -12 16 0 q0 6 -2 8 l-12 0 q-2 -2 -2 -8 z" fill="url(#gold__ID__)" stroke="#3a2f44" stroke-width="1.8"/>'+
+      '<circle cx="88" cy="54" r="2" fill="#b0863a"/>' },
+    brush:      { kr:"큰 붓", slot:"mainHand", z:82, new06:true, svg:
+      '<rect x="83" y="50" width="5" height="52" rx="2.5" fill="url(#wood__ID__)" stroke="#46331f" stroke-width="2"/>'+
+      '<rect x="82" y="100" width="7" height="4" fill="#caa84a"/>'+
+      '<path d="M82.5 104 q3 16 3 20 q0 -4 3 -20 z" fill="#2e2740" stroke="#1c1830" stroke-width="1.2"/>' },
+    gearblade:  { kr:"톱니검", slot:"mainHand", z:82, new06:true, svg:
+      '<line x1="85" y1="100" x2="100" y2="56" stroke="#3a2f44" stroke-width="9"/>'+
+      '<line x1="85" y1="100" x2="100" y2="56" stroke="url(#steel__ID__)" stroke-width="5"/>'+
+      '<path d="M88 96 l3 -8 3 8 z M92 86 l3 -8 3 8 z" fill="#7a8398"/>'+
+      '<rect x="78" y="96" width="18" height="6" rx="3" transform="rotate(-71 87 99)" fill="url(#gold__ID__)" stroke="#3a2f44" stroke-width="1.6"/>'+
+      '<circle cx="85" cy="104" r="4" fill="none" stroke="#646e8c" stroke-width="2"/><circle cx="85" cy="104" r="2" fill="url(#steel__ID__)"/>' },
+    torch:      { kr:"횃불", slot:"mainHand", z:82, new06:true, svg:
+      '<rect x="83" y="68" width="5" height="40" rx="2" fill="url(#wood__ID__)" stroke="#46331f" stroke-width="2"/>'+
+      '<rect x="80" y="62" width="11" height="8" rx="2" fill="#5a3a22" stroke="#46331f" stroke-width="1.6"/>'+
+      '<path d="M85 62 q-7 -10 -1 -20 q2 6 5 7 q-1 -8 3 -13 q5 9 4 18 q4 -3 4 -9 q5 12 -3 22 q-8 4 -16 -5 z" fill="#f0a23a" stroke="#d97a28" stroke-width="1.2"/>'+
+      '<path d="M84 50 q-2 -6 1 -10 q3 5 2 11 z" fill="#f5d878"/>' },
+
+    /* offHand (+4) — 왼손 35,104 */
+    doll:       { kr:"인형", slot:"offHand", z:84, new06:true, svg:
+      '<circle cx="34" cy="92" r="6" fill="url(#cream__ID__)" stroke="#46331f" stroke-width="1.6"/>'+
+      '<path d="M28 100 q6 -4 12 0 l-1 12 -10 0 z" fill="#7d2e38" stroke="#5a1f28" stroke-width="1.4"/>'+
+      '<path d="M29 102 l-4 6 M39 102 l4 6" stroke="#7d2e38" stroke-width="2" stroke-linecap="round"/>'+
+      '<circle cx="31.5" cy="91" r="0.9" fill="#2e2740"/><circle cx="36.5" cy="91" r="0.9" fill="#2e2740"/>' },
+    smallbook:  { kr:"작은 책", slot:"offHand", z:84, new06:true, svg:
+      '<path d="M26 98 l9 -2 9 2 0 14 -9 -2 -9 2 z" fill="url(#wine__ID__)" stroke="#5a1f28" stroke-width="1.8"/>'+
+      '<path d="M35 96 l0 16" stroke="#caa84a" stroke-width="1.4"/>'+
+      '<path d="M29 102 h5 M29 106 h5 M37 102 h5 M37 106 h5" stroke="#f0e6c0" stroke-width="1" opacity="0.8"/>' },
+    candlestick:{ kr:"촛대", slot:"offHand", z:84, new06:true, svg:
+      '<path d="M30 110 q5 3 10 0 z" fill="url(#gold__ID__)" stroke="#3a2f44" stroke-width="1.4"/>'+
+      '<rect x="33" y="96" width="4" height="14" fill="url(#gold__ID__)"/>'+
+      '<rect x="32" y="90" width="6" height="7" rx="1" fill="#efe6cb" stroke="#caa84a" stroke-width="1"/>'+
+      '<path d="M35 90 q-3 -5 0 -9 q3 4 0 9 z" fill="#f0a23a"/><path d="M35 84 q-1.5 -2 0 -4 q1.5 2 0 4 z" fill="#f5d878"/>' },
+    mirror:     { kr:"거울", slot:"offHand", z:84, new06:true, svg:
+      '<ellipse cx="34" cy="94" rx="8" ry="10" fill="url(#steel__ID__)" stroke="url(#gold__ID__)" stroke-width="2.4"/>'+
+      '<ellipse cx="31" cy="90" rx="3" ry="4" fill="#fff" opacity="0.6"/>'+
+      '<rect x="32" y="104" width="4" height="10" rx="2" fill="url(#gold__ID__)" stroke="#3a2f44" stroke-width="1.2"/>' },
+
+    /* back (+4) — 몸체 뒤 (z<50) */
+    schoolbag:  { kr:"책가방", slot:"back", z:14, new06:true, svg:
+      '<rect x="44" y="66" width="32" height="30" rx="5" fill="#8a5a32" stroke="#46331f" stroke-width="2.4"/>'+
+      '<path d="M44 66 h32 v10 q-16 6 -32 0 z" fill="#7a4a28" stroke="#46331f" stroke-width="2"/>'+
+      '<rect x="56" y="74" width="8" height="5" rx="1.5" fill="url(#gold__ID__)"/>'+
+      '<rect x="50" y="58" width="6" height="10" rx="3" fill="#6a3f22"/><rect x="64" y="58" width="6" height="10" rx="3" fill="#6a3f22"/>' },
+    bigribbon:  { kr:"거대 리본", slot:"back", z:13, new06:true, svg:
+      '<path d="M60 76 q-26 -16 -30 0 q4 16 30 4 z" fill="#d96aa0" stroke="#a8447a" stroke-width="2.2"/>'+
+      '<path d="M60 76 q26 -16 30 0 q-4 16 -30 4 z" fill="#d96aa0" stroke="#a8447a" stroke-width="2.2"/>'+
+      '<path d="M56 74 q-8 30 -10 44 l10 -6 z" fill="#c85a90" stroke="#a8447a" stroke-width="1.8"/><path d="M64 74 q8 30 10 44 l-10 -6 z" fill="#c85a90" stroke="#a8447a" stroke-width="1.8"/>'+
+      '<ellipse cx="60" cy="76" rx="6" ry="7" fill="#e07aae" stroke="#a8447a" stroke-width="2"/>' },
+    tail:       { kr:"꼬리", slot:"back", z:13, new06:true, svg:
+      '<path d="M58 100 q-18 8 -22 28 q-2 14 8 18 q-2 -12 4 -20 q6 -10 16 -16 z" fill="#8a6a44" stroke="#46331f" stroke-width="2.2"/>'+
+      '<path d="M44 142 q-3 8 4 12 q4 -2 4 -8 q-4 0 -8 -4 z" fill="#efe6d2" stroke="#c8bca0" stroke-width="1.4"/>' },
+    pennant:    { kr:"작은 깃발", slot:"back", z:14, new06:true, svg:
+      '<line x1="50" y1="56" x2="52" y2="120" stroke="#46331f" stroke-width="3"/>'+
+      '<path d="M52 58 L78 64 L52 72 z" fill="url(#wine__ID__)" stroke="#5a1f28" stroke-width="1.8"/>'+
+      '<circle cx="50" cy="55" r="2.5" fill="url(#gold__ID__)" stroke="#3a2f44" stroke-width="1"/>' },
+
+    /* accessory (+4) */
+    earring:    { kr:"귀걸이", slot:"accessory", z:60, new06:true, svg:
+      '<g fill="url(#gold__ID__)" stroke="#3a2f44" stroke-width="1"><circle cx="38" cy="54" r="2.4"/><circle cx="82" cy="54" r="2.4"/></g>'+
+      '<circle cx="38" cy="60" r="2" fill="#5aa0c8"/><circle cx="82" cy="60" r="2" fill="#5aa0c8"/>' },
+    flowerpin:  { kr:"꽃 장식", slot:"accessory", z:60, new06:true, svg:
+      '<g transform="translate(78 36)"><circle r="3.6" fill="#e58fae"/><circle cx="-4" cy="-2" r="2.6" fill="#f0c24a"/><circle cx="4" cy="-2" r="2.6" fill="#f0c24a"/><circle cx="-3" cy="3" r="2.6" fill="#f0c24a"/><circle cx="3" cy="3" r="2.6" fill="#f0c24a"/><circle r="1.6" fill="#fff"/></g>' },
+    medal:      { kr:"메달", slot:"accessory", z:59, new06:true, svg:
+      '<path d="M55 72 l3 8 4 0 3 -8 z" fill="#c0504a" stroke="#7d2e38" stroke-width="1.2"/>'+
+      '<circle cx="60" cy="86" r="5" fill="url(#gold__ID__)" stroke="#3a2f44" stroke-width="1.4"/>'+
+      '<path d="M60 83 l1.2 2.4 2.6 0.2 -2 1.8 0.6 2.6 -2.4 -1.4 -2.4 1.4 0.6 -2.6 -2 -1.8 2.6 -0.2 z" fill="#b0863a"/>' },
+    rosary:     { kr:"묵주", slot:"accessory", z:58, new06:true, svg:
+      '<path d="M48 70 q12 14 24 0" fill="none" stroke="#5a3a22" stroke-width="1.2"/>'+
+      '<g fill="#7a4f2e"><circle cx="50" cy="73" r="1.6"/><circle cx="54" cy="78" r="1.6"/><circle cx="60" cy="80" r="1.6"/><circle cx="66" cy="78" r="1.6"/><circle cx="70" cy="73" r="1.6"/></g>'+
+      '<path d="M60 80 l0 8 M57 84 l6 0" stroke="url(#gold__ID__)" stroke-width="1.6"/>' },
+
+    /* aura (+3) — 몸체 뒤 발광 (z<50) */
+    icecrystal: { kr:"얼음 결정", slot:"aura", z:6, new06:true, svg:
+      '<g class="ak-rune" fill="#bfe6f0" stroke="#7ab8cc" stroke-width="1" opacity="0.85"><path d="M40 64 l3 6 -3 6 -3 -6 z"/><path d="M84 78 l3.5 7 -3.5 7 -3.5 -7 z"/><path d="M52 110 l2.6 5 -2.6 5 -2.6 -5 z"/><path d="M74 56 l2.4 5 -2.4 5 -2.4 -5 z"/></g>' },
+    moonlight:  { kr:"달빛", slot:"aura", z:6, new06:true, svg:
+      '<g class="ak-rune"><circle cx="60" cy="58" r="30" fill="#dfe6f2" opacity="0.18"/><path d="M78 40 a18 18 0 1 0 4 26 a14 14 0 1 1 -4 -26 z" fill="#eaf0fa" opacity="0.7"/></g>' },
+    leaves:     { kr:"잎사귀", slot:"aura", z:6, new06:true, svg:
+      '<g class="ak-rune" fill="#8abf5a" opacity="0.8"><path d="M40 70 q6 -4 10 2 q-4 6 -10 2 q-2 -2 0 -4 z"/><path d="M82 86 q-6 -4 -10 2 q4 6 10 2 q2 -2 0 -4 z"/><path d="M54 116 q5 -3 9 1 q-3 5 -9 1 z"/><path d="M70 60 q5 3 1 9 q-5 -3 -1 -9 z"/></g>' }
   };
 
   /* =======================================================================
@@ -1287,6 +1658,14 @@ body{
     berserker:  { kr:"광전사",   en:"Berserker",   role:"근접 · 대검",      team:"ally", sig:"melee", gender:"m", new06:true, parts:["hornhelm","leathervest","greatsword","ember"],     usage:["오토배틀러","Dungeon Board Loop"] },
     frostwitch: { kr:"서리마녀", en:"Frost Witch", role:"주문 · 서리",      team:"ally", sig:"cast",  gender:"f", new06:true, parts:["wizardhat","longcoat","crystalorb","windswirl"],    usage:["행렬RPG","퍼즐RPG"] },
     beastmaster:{ kr:"야수조련사",en:"Beastmaster", role:"원거리 · 야수",    team:"ally", sig:"shoot", gender:"m", new06:true, parts:["beasthood","leathervest","shortbow"],              usage:["formation-shift-lab","오토배틀러"] },
+
+    /* ===== [06E] JOB LOOK PRESET — 신규 외형 프리셋 6 (new06, 기존 바디 + 06/06E 파츠 조합) ===== */
+    pilgrim:    { kr:"순례자",   en:"Pilgrim",      role:"치유 · 종홀",   team:"ally", sig:"heal",  gender:"m", new06:true, parts:["priestcap","travelcoat","bellstaff"],            usage:["행렬RPG","Dungeon Board Loop"] },
+    gravekeeper:{ kr:"묘지기",   en:"Gravekeeper",  role:"주문 · 낫",     team:"ally", sig:"cast",  gender:"m", new06:true, parts:["skullmask","longcoat","scythe","shadow"],        usage:["퍼즐RPG","Dungeon Board Loop"] },
+    puppeteer:  { kr:"인형술사", en:"Puppeteer",    role:"주문 · 인형",   team:"ally", sig:"cast",  gender:"f", new06:true, parts:["mask","ritualrobe","doll","windswirl"],         usage:["퍼즐RPG","오토배틀러"] },
+    lamplighter:{ kr:"점등지기", en:"Lamplighter",  role:"치유 · 등불",   team:"ally", sig:"heal",  gender:"m", new06:true, parts:["hood","travelcoat","torch","lantern"],          usage:["행렬RPG","Dungeon Board Loop"] },
+    shrinekeeper:{kr:"성소지기", en:"Shrinekeeper", role:"치유 · 종홀",   team:"ally", sig:"heal",  gender:"f", new06:true, parts:["flowercrown","shrinewear","bellstaff","blessing"], usage:["행렬RPG","오토배틀러"] },
+    nobleduelist:{kr:"귀족검사", en:"Noble Duelist",role:"근접 · 쌍검",   team:"ally", sig:"melee", gender:"m", new06:true, parts:["noblehat","leathervest","twinblade","medal"],    usage:["오토배틀러","행렬RPG"] },
 
     goblin:    { kr:"고블린", en:"Goblin",      role:"몬스터 · 단검", team:"enemy", sig:"melee", gender:"m", fig:true },
     brute:     { kr:"오우거", en:"Brute",       role:"몬스터 · 곤봉", team:"enemy", sig:"melee", gender:"m", fig:true }
@@ -1750,7 +2129,8 @@ body{
     parts: document.getElementById("view-parts"),
     play:  document.getElementById("view-play"),
     loop:  document.getElementById("view-loop"),
-    mix:   document.getElementById("view-mix")
+    mix:   document.getElementById("view-mix"),
+    shelf: document.getElementById("view-shelf")
   };
   tabs.forEach(function(t){
     t.addEventListener("click", function(){
@@ -2085,7 +2465,10 @@ body{
   function renderMix(){
     var parts = mixParts();
     var st = document.getElementById("mix-actor");
-    if(st){ st.innerHTML=""; var a = AK.previewParts(parts, mixGender); a.style.setProperty("--dir",1); st.appendChild(a); }
+    if(st){
+      if(alnMode){ alnRenderInto(st, parts); }
+      else { st.innerHTML=""; var a = AK.previewParts(parts, mixGender); a.style.setProperty("--dir",1); st.appendChild(a); }
+    }
 
     var sig = mixSigOf(parts), alt = mixSigAltOf(parts, sig);
     var tags = mixTags(parts), role = mixRoleOf(parts, sig), usage = mixUsageOf(sig), name = mixNameOf(parts);
@@ -2112,6 +2495,7 @@ body{
       var lk = document.querySelector('.mix-lock[data-s="'+s+'"]');
       if(lk){ lk.classList.toggle("is-on", !!mixLock[s]); lk.textContent = mixLock[s]?"잠김":"잠금"; lk.setAttribute("aria-pressed", mixLock[s]?"true":"false"); }
     });
+    alnSync();
   }
 
   var _mixerBuilt = false;
@@ -2225,7 +2609,164 @@ body{
     bind("disc-add", addDiscovery);
     bind("disc-clear", function(){ discoveries = []; renderDiscovery(); });
     mixSel = { head:"hornhelm", chest:"chainmail", mainHand:"runeblade", offHand:null, back:null, accessory:null, aura:"stardust" };
-    renderMix(); renderDiscovery();
+    renderMix(); renderDiscovery(); initAlign();
+  }
+
+  /* ===================== [06D] PART ALIGNMENT DEBUG CONSOLE — Batch Offset Collector =====================
+     실제 PART 데이터는 절대 미수정. 조합대 미리보기에만 임시 transform 적용, 좌표는 메모리 객체로만 수집.
+     코어 미접촉: AK._internal.wrapFig + AK.PART + AK.BODY 만 사용해 정렬 전용 미리보기를 따로 합성한다.
+     단위 = 피규어 좌표(파츠 SVG와 동일 좌표계, viewBox 120x160). 작은 1 · 큰 4. 브라우저 보관 없음.
+     정식 반영은 다음 단계(06E Part Offset Apply Pass). 분리 가능한 얇은 레이어. */
+  var alnMode = false, alnSlot = "head", alnGuides = true, alnHL = true;
+  var alnLiveDx = 0, alnLiveDy = 0;     // 현재 슬롯 파츠의 작업 오프셋(미커밋)
+  var alnOffsets = {};                  // 커밋된 목록 { partKey:{dx,dy} }
+  var ALN_SMALL = 1, ALN_BIG = 4;       // 이동 단위(피규어 좌표) — HTML data-dx/dy 와 일치
+
+  function alnCurPart(){ return mixSel[alnSlot] || null; }
+  function alnNZ(o){ return !!(o && ((o.dx||0)!==0 || (o.dy||0)!==0)); }
+  function alnLoadLive(){ var o = alnOffsets[alnCurPart()]; alnLiveDx = o?o.dx:0; alnLiveDy = o?o.dy:0; }
+  function alnCommitLive(){
+    var k = alnCurPart(); if(!k) return;
+    if(alnLiveDx===0 && alnLiveDy===0) delete alnOffsets[k];   // 0,0 은 목록에서 제외
+    else alnOffsets[k] = { dx:alnLiveDx, dy:alnLiveDy };
+  }
+  /* 화면에 실제 보이는 값(커밋 목록 + 현재 작업값) — "보이는 게 곧 복사값" */
+  function alnMerged(){
+    var m = {};
+    Object.keys(alnOffsets).forEach(function(k){ if(alnNZ(alnOffsets[k])) m[k] = { dx:alnOffsets[k].dx, dy:alnOffsets[k].dy }; });
+    var cur = alnCurPart();
+    if(cur){ if(alnLiveDx||alnLiveDy) m[cur] = { dx:alnLiveDx, dy:alnLiveDy }; else delete m[cur]; }
+    return m;
+  }
+
+  /* 정렬 미리보기 합성: composeInner 로직 재현 + 파츠마다 translate <g>. wrapFig가 DEFS·__ID__ 치환(코어 불변). */
+  function alnSvgForParts(parts, g){
+    var P = AK.PART, BODY = AK.BODY, cur = alnCurPart();
+    var list = (parts||[]).map(function(k){ return { k:k, p:P[k] }; }).filter(function(o){ return o.p; });
+    list.sort(function(a,b){ return (a.p.z||60) - (b.p.z||60); });
+    var back="", front="";
+    list.forEach(function(o){
+      var off = (o.k===cur) ? { dx:alnLiveDx, dy:alnLiveDy } : (alnOffsets[o.k] || { dx:0, dy:0 });
+      var selCls = (o.k===cur) ? " ak-aln-sel" : "";
+      var dim = (alnHL && cur && o.k!==cur) ? ' opacity="0.3"' : "";
+      var grp = '<g class="ak-aln-part'+selCls+'"'+dim+' transform="translate('+(off.dx||0)+' '+(off.dy||0)+')">'+o.p.svg+'</g>';
+      if((o.p.z||60) < 50) back += grp; else front += grp;
+    });
+    var inner = back + (BODY[g==="f"?"f":"m"] || BODY.m) + front;
+    var svg = AK._internal.wrapFig(inner);
+    if(alnGuides) svg = svg.replace("</svg>", alnGuideMarkup() + "</svg>");
+    return svg;
+  }
+  function alnGuideMarkup(){
+    return '<g class="ak-aln-guides" aria-hidden="true" fill="none">'
+      + '<circle cx="60" cy="44" r="24" stroke="#6cc6d8" stroke-width="0.8" stroke-dasharray="3 2" opacity="0.9"/>'  /* 머리 영역 */
+      + '<line x1="55" y1="44" x2="65" y2="44" stroke="#6cc6d8" stroke-width="0.7"/>'                                /* 머리 중심 X */
+      + '<line x1="60" y1="39" x2="60" y2="49" stroke="#6cc6d8" stroke-width="0.7"/>'
+      + '<line x1="53" y1="16" x2="67" y2="16" stroke="#9fe6e0" stroke-width="0.9"/>'                                /* 머리 꼭대기 */
+      + '<line x1="45" y1="50" x2="75" y2="50" stroke="#6cc6d8" stroke-width="0.6" stroke-dasharray="2 2" opacity="0.6"/>'  /* 얼굴선 */
+      + '<circle cx="34" cy="72" r="1.5" fill="#6cc6d8"/><circle cx="86" cy="72" r="1.5" fill="#6cc6d8"/>'           /* 어깨 */
+      + '<circle cx="85" cy="104" r="1.9" fill="#e7c873"/><circle cx="35" cy="104" r="1.9" fill="#e7c873"/>'        /* 주무기손·보조손 */
+      + '<circle cx="60" cy="104" r="1.4" fill="#9fe6e0"/>'                                                          /* 허리 */
+      + '<line x1="40" y1="145" x2="80" y2="145" stroke="#a99fb6" stroke-width="0.8" stroke-dasharray="2 3" opacity="0.8"/>'  /* 발 기준선 */
+      + '</g>';
+  }
+  function alnRenderInto(container, parts){
+    container.innerHTML = "";
+    var actor = document.createElement("div");
+    actor.className = "ak-actor is-ally ak-aln-actor";
+    actor.style.setProperty("--dir", 1);
+    actor.innerHTML =
+      '<div class="ak-shadow"></div>'+
+      '<div class="ak-base ak-base--ally"></div>'+
+      '<div class="ak-bob"><div class="ak-body">'+alnSvgForParts(parts, mixGender)+'</div></div>';
+    container.appendChild(actor);
+  }
+
+  function alnNudge(dx, dy){ if(!alnCurPart()) return; alnLiveDx += dx; alnLiveDy += dy; renderMix(); }
+  function alnCenter(){ alnLiveDx = 0; alnLiveDy = 0; renderMix(); }                              // 현재 작업값 0,0
+  function alnSelectSlot(s){ alnCommitLive(); alnSlot = s; alnLoadLive(); renderMix(); }          // 슬롯 전환 = 작업값 자동 커밋
+  function alnAddUpdate(){ alnCommitLive(); renderMix(); }                                        // 목록에 추가/갱신
+  function alnClearCur(){ var k = alnCurPart(); if(k) delete alnOffsets[k]; alnLiveDx = 0; alnLiveDy = 0; renderMix(); }
+  function alnClearAll(){ alnOffsets = {}; alnLiveDx = 0; alnLiveDy = 0; renderMix(); }
+
+  function alnListText(){
+    var m = alnMerged(), keys = Object.keys(m);
+    if(!keys.length) return "PART_OFFSET_CANDIDATES:\n(아직 조정값 없음 — 방향 버튼으로 파츠를 옮겨봐)";
+    return "PART_OFFSET_CANDIDATES:\n" + keys.map(function(k){ return k+": dx "+m[k].dx+", dy "+m[k].dy; }).join("\n");
+  }
+  function alnJsonText(){
+    var m = alnMerged(), keys = Object.keys(m);
+    if(!keys.length) return "{ }";
+    return "{\n" + keys.map(function(k){ return '  "'+k+'": { dx: '+m[k].dx+', dy: '+m[k].dy+' }'; }).join(",\n") + "\n}";
+  }
+
+  function buildAlnSlots(){
+    var root = document.getElementById("aln-slots"); if(!root) return;
+    root.innerHTML = MIX_SLOTS.map(function(s){
+      return '<button type="button" class="aln-slot" data-s="'+s+'">'
+        + '<span class="aln-slot-k">'+SLOTS[s].kr+'</span>'
+        + '<span class="aln-slot-v mono" data-vs="'+s+'">없음</span></button>';
+    }).join("");
+    Array.prototype.forEach.call(root.querySelectorAll(".aln-slot"), function(b){
+      b.addEventListener("click", function(){ alnSelectSlot(b.dataset.s); });
+    });
+  }
+
+  /* 패널 상태 동기화(미리보기 외 텍스트/버튼). renderMix 끝에서 호출 — 패널 미존재 시 안전 no-op */
+  function alnSync(){
+    var panel = document.getElementById("aln-panel"); if(!panel) return;
+    var modeBtn = document.getElementById("aln-mode");
+    if(modeBtn){ modeBtn.textContent = "정렬 모드 "+(alnMode?"ON":"OFF"); modeBtn.classList.toggle("is-on", alnMode); modeBtn.setAttribute("aria-checked", alnMode?"true":"false"); }
+    var bodyEl = document.getElementById("aln-body");
+    if(bodyEl){ if(alnMode) bodyEl.removeAttribute("hidden"); else bodyEl.setAttribute("hidden",""); }
+    panel.classList.toggle("is-armed", alnMode);
+
+    MIX_SLOTS.forEach(function(s){
+      var v = document.querySelector('.aln-slot-v[data-vs="'+s+'"]'); if(v) v.textContent = mixSel[s] || "없음";
+      var btn = document.querySelector('.aln-slot[data-s="'+s+'"]');
+      if(btn){ btn.classList.toggle("is-on", s===alnSlot); btn.classList.toggle("is-empty", !mixSel[s]); }
+    });
+
+    var ro = document.getElementById("aln-readout");
+    if(ro){
+      var k = alnCurPart();
+      if(!k){ ro.innerHTML = '<span class="aln-ro-slot">'+SLOTS[alnSlot].kr+'</span> · <span class="aln-ro-empty">이 슬롯엔 파츠가 없어 — 아래 슬롯에서 먼저 골라줘</span>'; }
+      else {
+        var c = alnOffsets[k];
+        var tag = alnNZ(c) ? '<span class="aln-ro-tag is-listed">목록 ✓ dx '+c.dx+', dy '+c.dy+'</span>' : '<span class="aln-ro-tag">목록 미등록</span>';
+        ro.innerHTML = '<span class="aln-ro-slot">'+SLOTS[alnSlot].kr+'</span> · <b class="mono">'+k+'</b>'
+          + '<span class="aln-ro-dxy mono">dx '+alnLiveDx+', dy '+alnLiveDy+'</span>' + tag;
+      }
+    }
+
+    var hasPart = !!alnCurPart();
+    Array.prototype.forEach.call(panel.querySelectorAll(".aln-btn"), function(b){ if(hasPart) b.removeAttribute("disabled"); else b.setAttribute("disabled",""); });
+    var cm = document.getElementById("aln-commit"); if(cm){ if(hasPart) cm.removeAttribute("disabled"); else cm.setAttribute("disabled",""); }
+    var cc = document.getElementById("aln-clearcur"); if(cc){ if(hasPart) cc.removeAttribute("disabled"); else cc.setAttribute("disabled",""); }
+
+    var listEl = document.getElementById("aln-list"); if(listEl) listEl.value = alnListText();
+    var jsonEl = document.getElementById("aln-json"); if(jsonEl) jsonEl.value = alnJsonText();
+    var cnt = document.getElementById("aln-count"); if(cnt) cnt.textContent = Object.keys(alnMerged()).length;
+  }
+
+  function initAlign(){
+    buildAlnSlots();
+    var modeBtn = document.getElementById("aln-mode");
+    if(modeBtn) modeBtn.addEventListener("click", function(){ alnMode = !alnMode; if(alnMode) alnLoadLive(); renderMix(); });
+    var pad = document.getElementById("aln-pad");
+    if(pad) Array.prototype.forEach.call(pad.querySelectorAll(".aln-btn"), function(b){
+      if(b.id === "aln-center"){ b.addEventListener("click", alnCenter); return; }
+      var dx = parseInt(b.getAttribute("data-dx")||"0",10), dy = parseInt(b.getAttribute("data-dy")||"0",10);
+      b.addEventListener("click", function(){ alnNudge(dx, dy); });
+    });
+    var bind = function(id, fn){ var el=document.getElementById(id); if(el) el.addEventListener("click", fn); };
+    bind("aln-commit", alnAddUpdate);
+    bind("aln-clearcur", alnClearCur);
+    bind("aln-clearall", alnClearAll);
+    bind("aln-guide", function(){ alnGuides=!alnGuides; var b=document.getElementById("aln-guide"); if(b){ b.classList.toggle("is-on",alnGuides); b.setAttribute("aria-pressed",alnGuides?"true":"false"); } renderMix(); });
+    bind("aln-hl",    function(){ alnHL=!alnHL;       var b=document.getElementById("aln-hl");    if(b){ b.classList.toggle("is-on",alnHL);    b.setAttribute("aria-pressed",alnHL?"true":"false"); }    renderMix(); });
+    alnLoadLive();
+    alnSync();
   }
 
   /* ===================== [탭4] 전투 플레이그라운드 ===================== */
@@ -2428,7 +2969,21 @@ body{
     { id:"feathercape", kr:"깃털 망토",        kind:"등 장비",   part:"feathercape", ally:"archer",  desc:"가벼운 깃털 망토를 두른다." },
     { id:"chalice",     kr:"성배",             kind:"보조 도구", part:"chalice",     ally:"priest",  desc:"치유의 성배를 든다." },
     { id:"crystalorb",  kr:"수정구",           kind:"보조 도구", part:"crystalorb",  ally:"mage",    sig:"cast",  desc:"손 안에서 수정구가 빛난다." },
-    { id:"windswirl",   kr:"바람결",           kind:"오라",      part:"windswirl",   ally:"mage",    sig:"cast",  desc:"주위로 바람결이 감돈다." }
+    { id:"windswirl",   kr:"바람결",           kind:"오라",      part:"windswirl",   ally:"mage",    sig:"cast",  desc:"주위로 바람결이 감돈다." },
+
+    /* ===== [06E] 보상 후보 확장 (신규 파츠 활용, +12) ===== */
+    { id:"bellstaff",   kr:"종홀",             kind:"무기",      part:"bellstaff",   ally:"priest",  sig:"heal",  desc:"맑은 종소리가 치유를 부른다." },
+    { id:"rosary",      kr:"묵주",             kind:"장신구",    part:"rosary",      ally:"priest",  desc:"기도의 묵주를 목에 건다." },
+    { id:"leaves",      kr:"잎사귀 오라",      kind:"오라",      part:"leaves",      ally:"mage",    sig:"cast",  desc:"주위로 잎사귀가 맴돈다." },
+    { id:"icecrystal",  kr:"얼음 결정",        kind:"오라",      part:"icecrystal",  ally:"mage",    sig:"cast",  desc:"차가운 결정이 떠다닌다." },
+    { id:"smallbook",   kr:"작은 책",          kind:"보조 도구", part:"smallbook",   ally:"mage",    sig:"cast",  desc:"손에 든 작은 주문서." },
+    { id:"mirror",      kr:"거울",             kind:"보조 도구", part:"mirror",      ally:"priest",  desc:"빛을 반사하는 손거울." },
+    { id:"bigribbon",   kr:"거대 리본",        kind:"등 장비",   part:"bigribbon",   ally:"dancer",  desc:"등 뒤로 큰 리본이 흔들린다." },
+    { id:"travelcoat",  kr:"여행 코트",        kind:"몸통",      part:"travelcoat",  ally:"hunter",  desc:"먼 길에 든든한 여행 코트." },
+    { id:"moonlight",   kr:"달빛",             kind:"오라",      part:"moonlight",   ally:"priest",  sig:"heal",  desc:"은은한 달빛이 감돈다." },
+    { id:"torch",       kr:"횃불",             kind:"무기",      part:"torch",       ally:"warrior", desc:"타오르는 횃불을 든다." },
+    { id:"medal",       kr:"메달",             kind:"장신구",    part:"medal",       ally:"knight",  desc:"전공을 기리는 메달." },
+    { id:"fan",         kr:"부채",             kind:"무기",      part:"fan",         ally:"dancer",  sig:"cast",  desc:"춤추듯 부채를 펼친다." }
   ];
 
   var DG_ALLY = { warrior:{side:"ally",row:2,col:1}, knight:{side:"ally",row:2,col:0},
@@ -2585,6 +3140,267 @@ body{
     document.getElementById("dg-again").addEventListener("click", resetLoop);
   }
 
+  /* =========================================================================
+     [구역 07] MUSEUM SHELF SYSTEM (JS) — 진열대 데이터 + 렌더 + 상태 필터
+     · 데이터/표시 레이어만 추가. ActorKit·ActorGridAdapter·LootLoop·조합대·
+       정렬 콘솔·03R 피규어 미감은 일절 미접촉.
+     · 확인 위치는 gotoView 로 기존 탭에 연결. PLANNED 진열대는 이동 버튼 없이
+       "예정 · 구현 전"만 표시(쿼터뷰/탑뷰/4방향 등 미구현 안전장치).
+     ========================================================================= */
+  var SHELF_TAGS = ["FRONT_SD","MINI_SD","GRID_3X3","ACTION_FX","REWARD_UI","MIXER_TOOL","ALIGN_TOOL","DIRECTIONAL","QUARTER_VIEW","TOP_VIEW","TOKEN","IMPORT_GUIDE","RND_SEED","PERSONAL_WORKSHOP"];
+
+  var SHELVES = [
+    { n:"01", name:"정면 SD 기본형", status:"ACTIVE", tags:["FRONT_SD","RND_SEED"],
+      assets:"03R 기본 바디·얼굴·헤어·기본복",
+      use:"공통 배우 베이스 · 직업 프리셋의 기본 골격",
+      projects:["행렬RPG","퍼즐RPG","오토배틀러","던전 루프"],
+      goto:"base", loc:"기본 바디 탭",
+      req:"행렬RPG에 진열대 01번 정면 SD 기본형을 배우 베이스로 이식해줘." },
+    { n:"02", name:"정면 SD 직업/파츠형", status:"ACTIVE", tags:["FRONT_SD","RND_SEED"],
+      assets:"PART 95 · 직업 프리셋 31 · 조합대 기반 외형",
+      use:"영웅 직업 외형 · 보상 장착 · 아바타 다양화",
+      projects:["행렬RPG","던전 루프","보상 화면","직업 설계"],
+      goto:"parts", loc:"파츠 탭 · 직업 세트 · 조합대",
+      req:"행렬RPG에 진열대 02번 정면 SD 직업/파츠형을 영웅 외형으로 이식해줘." },
+    { n:"03", name:"정면 SD 액션/피격/FX형", status:"PARTIAL", tags:["ACTION_FX","FRONT_SD"],
+      assets:"근접·원거리·주문·치유·방어 / 피격·죽음·부활·플로팅·이펙트",
+      use:"전투 연출 기본 세트",
+      projects:["행렬RPG 전투","퍼즐RPG 전투","오토배틀러"],
+      goto:"play", loc:"전투 탭(시그니처 연출) · 던전 루프",
+      req:"행렬RPG 전투에 진열대 03번 액션/피격 FX를 이식해줘.",
+      note:"연출은 앱에 살아있음 · 이식용 FX 세트로 분리/정리 필요(PARTIAL)" },
+    { n:"04", name:"초소형 전장형", status:"PARTIAL", tags:["MINI_SD","FRONT_SD"],
+      assets:"Mini actor scale samples · M/S/XS 크기 미리보기 · 작은 전장 가독성 샘플 · 밀집 파티 라인업 · 3×3 미니 전장",
+      use:"행렬RPG · 작은 전장 · 다수 유닛 표시 · 미니맵/토큰 후보",
+      projects:["행렬RPG","다인 전장","미니맵/토큰 후보","3×3 보드"],
+      goto:"shelf", anchor:"ss-showcase", loc:"진열대 탭 아래 · Small Scale Showcase",
+      req:"행렬RPG에 진열대 04번 초소형 전장형 M/S 사이즈를 이식해줘.",
+      note:"M/S/XS 쇼케이스 · 3×3 미니 전장 · 밀집 라인업 추가 · 전용 이식 API는 분리 전(PARTIAL)" },
+    { n:"05", name:"3×3 보드 배치형", status:"ACTIVE", tags:["GRID_3X3"],
+      assets:"ActorGridAdapter · 3×3 grid · cellToSlot · place/move/swap · 원근/겹침/발끝 기준",
+      use:"보드 위 피규어 배치 · 원근감 · 겹침",
+      projects:["행렬RPG","오토배틀러","던전 보드"],
+      goto:"play", loc:"전투 탭 · Formation Adapter Lab",
+      req:"행렬RPG에 진열대 05번 3×3 보드 배치형을 이식해줘." },
+    { n:"06", name:"보상/장착/수확형", status:"ACTIVE", tags:["REWARD_UI"],
+      assets:"05B 던전 루프 보상 카드 · 장착 · 토스트 · 오늘의 수확 · REWARDS 34",
+      use:"전투 후 보상 화면 · 장착 체감 · 로그라이트 선택",
+      projects:["로그라이트 루프","던전 루프","보상 선택 UI"],
+      goto:"loop", loc:"던전 루프 탭",
+      req:"던전 루프에 진열대 06번 보상 장착 연출을 가져와줘." },
+    { n:"07", name:"조합대/레시피 발굴형", status:"ACTIVE", tags:["MIXER_TOOL","PERSONAL_WORKSHOP","IMPORT_GUIDE"],
+      assets:"Look Mixer · 랜덤 조합 · 직업 후보 카드 · recipe 출력 · 발견 목록",
+      use:"직업 후보 · 보상 후보 · 아바타 프리셋 발굴",
+      projects:["개발 도구","개인 공방","직업 설계"],
+      goto:"mix", loc:"조합대 탭",
+      req:"개인 공방에 진열대 07번 조합대/레시피 발굴형을 도구로 이식해줘." },
+    { n:"08", name:"정렬/좌표 수집형", status:"ACTIVE", tags:["ALIGN_TOOL","PERSONAL_WORKSHOP"],
+      assets:"06D Part Alignment Debug Console · dx/dy 오프셋 수집 · 목록 복사",
+      use:"폰에서 직접 파츠 위치 맞추고 좌표 수집",
+      projects:["파츠 감수","좌표 튜닝"],
+      goto:"mix", loc:"조합대 탭 → 정렬 모드 ON",
+      req:"파츠 좌표 튜닝에 진열대 08번 정렬/좌표 수집형을 써줘." },
+    { n:"09", name:"4방향 기본형", status:"PLANNED", tags:["DIRECTIONAL"],
+      assets:"front/back/left/right 방향별 아바타 (예정)",
+      use:"상하좌우 이동 · 좌우 공격 · 방향성 필드",
+      projects:["탑다운 퍼즐RPG","필드 이동 게임"],
+      goto:null, loc:"예정 진열대 · 구현 전",
+      req:"탑다운 퍼즐RPG에 진열대 09번 4방향 기본형을 참고해줘." },
+    { n:"10", name:"쿼터뷰 기본형", status:"PLANNED", tags:["QUARTER_VIEW"],
+      assets:"살짝 비스듬히 보는 전장형 아바타 (예정)",
+      use:"전략 · 오토배틀러 · 쿼터뷰 전장",
+      projects:["오토배틀러","전략형 실험"],
+      goto:null, loc:"예정 진열대 · 구현 전",
+      req:"오토배틀러에 진열대 10번 쿼터뷰 기본형을 참고해줘." },
+    { n:"11", name:"탑뷰 토큰형", status:"PLANNED", tags:["TOP_VIEW","TOKEN"],
+      assets:"위에서 내려보는 간결한 토큰/말 (예정)",
+      use:"맵 · 보드 · 퍼즐 · 탐험",
+      projects:["탑뷰 퍼즐","필드 탐험","맵 이동"],
+      goto:null, loc:"예정 진열대 · 구현 전",
+      req:"퍼즐RPG에 진열대 11번 탑뷰 토큰형을 참고해서 이동말을 만들어줘." },
+    { n:"12", name:"말/심볼/토큰형", status:"PLANNED", tags:["TOKEN"],
+      assets:"기존 '말' 형상 보관 후보 (예정)",
+      use:"정보 가독성이 중요한 보드 게임형 표현",
+      projects:["퍼즐 보드","전술 보드","전투 시뮬"],
+      goto:null, loc:"예정 진열대 · 구현 전",
+      req:"전술 보드에 진열대 12번 말/심볼/토큰형을 참고해줘." }
+  ];
+
+  function shelfBadgeClass(st){ return st==="ACTIVE" ? "badge--active" : st==="PARTIAL" ? "badge--partial" : "badge--planned"; }
+  function shEsc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+  function buildShelf(){
+    var root = document.getElementById("shelf-root");
+    if(!root) return;
+    var nA=0,nP=0,nL=0;
+    SHELVES.forEach(function(s){ if(s.status==="ACTIVE")nA++; else if(s.status==="PARTIAL")nP++; else nL++; });
+
+    var h = "";
+    h += '<div class="shelf-intro"><p class="shelf-id">CSS 박물관은 완성 게임이 아니라 <b>여러 R&amp;D 게임이 가져다 쓰는 자산 전시장</b>입니다. 진열대 번호로 골라 이식하세요 — 자산 저장소 + 전시관 + 이식 가이드.</p></div>';
+
+    h += '<div class="shelf-stats">';
+    h +=   '<span class="shelf-stat">진열대 <b>'+SHELVES.length+'</b></span>';
+    h +=   '<span class="shelf-stat shelf-stat--active">ACTIVE <b>'+nA+'</b></span>';
+    h +=   '<span class="shelf-stat shelf-stat--partial">PARTIAL <b>'+nP+'</b></span>';
+    h +=   '<span class="shelf-stat shelf-stat--planned">PLANNED <b>'+nL+'</b></span>';
+    h +=   '<span class="shelf-stat">자산 태그 <b>'+SHELF_TAGS.length+'</b>종</span>';
+    h += '</div>';
+
+    h += '<div class="shelf-legend-k">자산 계열 태그</div><div class="shelf-legend">';
+    SHELF_TAGS.forEach(function(t){ h += '<span class="tagk">'+t+'</span>'; });
+    h += '</div>';
+
+    h += '<div class="shelf-filter" role="group" aria-label="상태 필터">';
+    ["ALL","ACTIVE","PARTIAL","PLANNED"].forEach(function(f){
+      h += '<button class="shelf-fbtn'+(f==="ALL"?" is-on":"")+'" data-filter="'+f+'" aria-pressed="'+(f==="ALL"?"true":"false")+'">'+f+'</button>';
+    });
+    h += '</div>';
+
+    h += '<div class="shelf-grid" id="shelf-grid">';
+    SHELVES.forEach(function(s){
+      h += '<article class="shelf-card" data-status="'+s.status+'">';
+      h +=   '<div class="shelf-card-head"><span class="shelf-num">진열대 '+s.n+'</span><span class="shelf-name">'+shEsc(s.name)+'</span><span class="badge '+shelfBadgeClass(s.status)+'">'+s.status+'</span></div>';
+      h +=   '<div class="shelf-rows">';
+      h +=     '<div class="shelf-row"><span class="shelf-k">포함 자산</span><span class="shelf-v">'+shEsc(s.assets)+'</span></div>';
+      h +=     '<div class="shelf-row"><span class="shelf-k">이식 용도</span><span class="shelf-v">'+shEsc(s.use)+'</span></div>';
+      h +=     '<div class="shelf-row"><span class="shelf-k">추천</span><span class="shelf-v proj">'+s.projects.map(shEsc).join(" · ")+'</span></div>';
+      if(s.note){ h += '<div class="shelf-row"><span class="shelf-k">비고</span><span class="shelf-v">'+shEsc(s.note)+'</span></div>'; }
+      h +=   '</div>';
+      h +=   '<div class="shelf-tags">';
+      s.tags.forEach(function(t){ h += '<span class="shelf-tag">'+shEsc(t)+'</span>'; });
+      h +=   '</div>';
+      h +=   '<div class="shelf-import"><span class="shelf-import-k">이식 요청 예시</span><span class="shelf-import-t">\u201C'+shEsc(s.req)+'\u201D</span></div>';
+      h +=   '<div class="shelf-foot">';
+      if(s.goto){ h += '<button class="btn btn--ghost shelf-go" data-goto="'+s.goto+'"'+(s.anchor?' data-anchor="'+s.anchor+'"':'')+'>확인하러 가기 →</button><span class="shelf-loc">'+shEsc(s.loc)+'</span>'; }
+      else      { h += '<span class="shelf-soon">PLANNED · 구현 전</span><span class="shelf-loc">'+shEsc(s.loc)+'</span>'; }
+      h +=   '</div>';
+      h += '</article>';
+    });
+    h += '</div>';
+
+    root.innerHTML = h;
+
+    root.querySelectorAll(".shelf-go").forEach(function(b){
+      b.addEventListener("click", function(){
+        if(b.dataset.goto) gotoView(b.dataset.goto);
+        var anc = b.dataset.anchor ? document.getElementById(b.dataset.anchor) : null;
+        if(anc && anc.scrollIntoView){ anc.scrollIntoView({ behavior: REDUCED ? "auto" : "smooth", block: "start" }); }
+        else if(window.scrollTo){ window.scrollTo(0,0); }
+      });
+    });
+    var fbtns = root.querySelectorAll(".shelf-fbtn");
+    var cards = root.querySelectorAll(".shelf-card");
+    fbtns.forEach(function(b){
+      b.addEventListener("click", function(){
+        var f = b.dataset.filter;
+        fbtns.forEach(function(x){ var on=x===b; x.classList.toggle("is-on",on); x.setAttribute("aria-pressed",on?"true":"false"); });
+        cards.forEach(function(c){ c.classList.toggle("is-hidden", !(f==="ALL" || c.dataset.status===f)); });
+      });
+    });
+  }
+
+  /* =========================================================================
+     [구역 08] SMALL SCALE SHOWCASE (JS) — 진열대 04 활성화
+     · 기존 previewParts() 출력을 mini frame 으로 감싸 M/S/XS 전시. 새 공개 API 0.
+     · ActorKit/ActorGridAdapter/PART 좌표/정렬 콘솔 미접촉. 3×3은 정적 전시(라이브 그리드 미사용).
+     ========================================================================= */
+  var SS = {
+    sizes: [
+      { k:"m",  kr:"M",  px:72, use:"전장용(조금 작게)" },
+      { k:"s",  kr:"S",  px:52, use:"3×3 / 다인 전장용" },
+      { k:"xs", kr:"XS", px:36, use:"미니맵 / 토큰 후보" }
+    ],
+    compare:  ["warrior","archer","priest","mage","paladin"],
+    distinct: ["warrior","knight","archer","hunter","mage","summoner","priest","paladin","berserker","gravekeeper","necromancer","frostwitch"],
+    board:    ["warrior","knight","paladin", null,"archer","mage", "priest",null,null],
+    lineup:   ["warrior","archer","mage","priest","paladin","knight","hunter","berserker","gravekeeper"],
+    tokens:   ["warrior","archer","mage","knight","priest","paladin"]
+  };
+
+  function ssMini(type, size, withCap){
+    var m = META[type];
+    var frame = document.createElement("div"); frame.className = "ss-mini ss-mini--" + size;
+    var stage = document.createElement("div"); stage.className = "ss-stage";
+    var fig = document.createElement("div"); fig.className = "ss-fig";
+    fig.appendChild(AK.previewParts(m.parts, m.gender));
+    stage.appendChild(fig); frame.appendChild(stage);
+    if(withCap){ var cap = document.createElement("div"); cap.className = "ss-cap"; cap.textContent = m.kr; frame.appendChild(cap); }
+    return frame;
+  }
+
+  function ssPanel(letter, name, desc){
+    var p = document.createElement("div"); p.className = "ss-panel";
+    p.innerHTML = '<div class="ss-panel-head"><span class="ss-panel-k">'+letter+'</span><span class="ss-panel-name">'+name+'</span></div><div class="ss-panel-desc">'+desc+'</div>';
+    return p;
+  }
+
+  function buildSmallScaleShowcase(){
+    var root = document.getElementById("ss-showcase");
+    if(!root) return;
+    root.innerHTML = "";
+    var wrap = document.createElement("div"); wrap.className = "ss-wrap";
+
+    var intro = '<div class="ss-head"><span class="ss-eyebrow">SHELF 04</span><span class="ss-title">Small Scale Showcase · 초소형 전장형</span></div>';
+    intro += '<p class="ss-lede">기존 정면 SD 배우를 <b>작은 전장 크기</b>로 본 전시 — 새 바디가 아니라 크기 변형. 행렬RPG / 다인 전장 / 미니맵에 어느 크기까지 읽히는지 폰에서 판단용.</p>';
+    intro += '<div class="ss-sizes">';
+    SS.sizes.forEach(function(z){ intro += '<span class="ss-size"><b>'+z.kr+'</b> ~'+z.px+'px · '+z.use+'</span>'; });
+    intro += '</div>';
+    wrap.innerHTML = intro;
+
+    /* A. 크기 비교 */
+    var pA = ssPanel("A","크기 비교","같은 직업을 M / S / XS 로 — 어느 크기까지 얼굴·무기·오라가 읽히는지 확인.");
+    SS.compare.forEach(function(type){
+      var rowEl = document.createElement("div"); rowEl.className = "ss-compare-row";
+      var nm = document.createElement("div"); nm.className = "ss-compare-name"; nm.textContent = META[type].kr; rowEl.appendChild(nm);
+      SS.sizes.forEach(function(z){
+        var box = document.createElement("div"); box.className = "ss-mini-col";
+        box.appendChild(ssMini(type, z.k, false));
+        var tag = document.createElement("div"); tag.className = "ss-size-tag"; tag.textContent = z.kr;
+        box.appendChild(tag);
+        rowEl.appendChild(box);
+      });
+      pA.appendChild(rowEl);
+    });
+    wrap.appendChild(pA);
+
+    /* B. 직업 구분 (S) */
+    var pB = ssPanel("B","직업 구분 (S)","S 크기에서 직업 실루엣이 서로 구분되는지 — "+SS.distinct.length+"개 직업.");
+    var rowB = document.createElement("div"); rowB.className = "ss-row";
+    SS.distinct.forEach(function(type){ rowB.appendChild(ssMini(type, "s", true)); });
+    pB.appendChild(rowB); wrap.appendChild(pB);
+
+    /* C. 3×3 미니 전장 (정적 · 라이브 그리드 미사용) */
+    var pC = ssPanel("C","3×3 미니 전장","작은 배우를 3×3 보드에 올린 정적 샘플(전열/중열/후열). 행렬RPG 이식 감각 확인용 — 라이브 그리드/전투 룰 없음.");
+    var board = document.createElement("div"); board.className = "ss-board";
+    SS.board.forEach(function(type){
+      var cell = document.createElement("div"); cell.className = "ss-cell" + (type ? "" : " is-empty");
+      if(type){ var fig = document.createElement("div"); fig.className = "ss-fig"; fig.appendChild(AK.previewParts(META[type].parts, META[type].gender)); cell.appendChild(fig); }
+      board.appendChild(cell);
+    });
+    pC.appendChild(board);
+    var filled = SS.board.filter(function(x){ return !!x; }).length;
+    var bcap = document.createElement("div"); bcap.className = "ss-board-cap";
+    bcap.textContent = "정적 전시 · " + filled + "유닛 / 9칸 · ActorGridAdapter 미사용(라이브 3×3은 진열대 05 참고).";
+    pC.appendChild(bcap); wrap.appendChild(pC);
+
+    /* D. 밀집 파티 라인업 (S) */
+    var pD = ssPanel("D","밀집 파티 라인업 (S)",SS.lineup.length+"명이 한 화면에 있을 때 가독성 — 전시 전용, 게임 로직 없음.");
+    var rowD = document.createElement("div"); rowD.className = "ss-row";
+    SS.lineup.forEach(function(type){ rowD.appendChild(ssMini(type, "s", false)); });
+    pD.appendChild(rowD); wrap.appendChild(pD);
+
+    /* E. XS 토큰 후보 */
+    var pE = ssPanel("E","XS 토큰 후보","XS 크기 직업 "+SS.tokens.length+"개 — 미니맵/토큰으로 쓸 수 있는지 확인.");
+    var rowE = document.createElement("div"); rowE.className = "ss-row";
+    SS.tokens.forEach(function(type){ rowE.appendChild(ssMini(type, "xs", true)); });
+    pE.appendChild(rowE);
+    var enote = document.createElement("div"); enote.className = "ss-note";
+    enote.textContent = "XS는 토큰/미니맵 후보 크기 — 얼굴 디테일은 묻힌다. 정식 전투 표현은 M/S 권장.";
+    pE.appendChild(enote); wrap.appendChild(pE);
+
+    root.appendChild(wrap);
+  }
+
   /* ----- 초기 빌드 ----- */
   buildBase();
   buildJobs();
@@ -2597,6 +3413,8 @@ body{
   wirePartsNav();
   renderRewardCatalog();
   initMixer();
+  buildShelf();
+  buildSmallScaleShowcase();
 })();
 
 /* =========================================================================
@@ -2728,6 +3546,89 @@ body{
    • 보관 미사용 이유: 발견/잠금/임시 조합은 "이번 화면에서 비교"용. 브라우저 보관을 두지 않아 노트북 이식 때 깔끔히 떼어가고 본체 불변(외부자원·보관 0) 유지.
    • 불변            : 데이터(파츠65/직업25/보상22)·엔진·03R 미감·3×3·05B 루프·06B 바인더 전부 유지. UI 레이어만 강화.
    • 다음 후보: Auto Battler Sample · Directional Facing Lab · Job Look Preset Catalog 02 · Reward Catalog 강화 · 개인 공방 노트북 이식.
+
+   ── 06D 추가: PART ALIGNMENT DEBUG CONSOLE / BATCH OFFSET COLLECTOR ───────
+   • 성격            : 파츠를 "고치는" 작업이 아니라, 폰에서 나라가 직접 정답 좌표를 "수집"하는 디버그 도구.
+                        실제 PART 좌표/모양은 일절 미수정(예: wizardhat 얼굴 가림도 손대지 않음). 정식 반영은 06F(06E에서 재료만 더 쌓음).
+   • 위치            : 조합대(Look Mixer) 안. "정렬 모드" 토글 ON → 7슬롯(head/chest/mainHand/offHand/back/accessory/aura)
+                        중 대상 선택 → 방향 버튼으로 임시 오프셋 → 목록에 추가/갱신 → 다음 파츠 → 마지막에 목록 복사.
+   • 조정 방식       : dx/dy 임시 오프셋만(scale/rotate 미구현 — 1차 목표는 dx/dy). 작은 1 / 큰 4(피규어 좌표).
+                        값은 파츠 SVG와 동일한 viewBox 0~120/0~160 좌표계 → 06F에서 PART에 그대로 적용 가능.
+   • 렌더 방식       : 코어 미접촉. AK._internal.wrapFig + AK.PART + AK.BODY 로 정렬 전용 미리보기를 따로 합성 —
+                        파츠마다 <g transform="translate(dx dy)"> 로 감싸고 wrapFig가 DEFS·__ID__ 치환. composeInner/wrapFig 원본 불변.
+   • 가이드/강조     : 앵커 가이드(머리영역 r24·머리중심·머리꼭대기·얼굴선·어깨·주무기손·보조손·허리·발 기준선) SVG 기준선,
+                        선택 파츠 외 0.3 흐림 강조, readout(현재 슬롯·파츠 key·dx/dy·목록 등록여부). 가이드/강조 각각 토글.
+   • 목록            : alnOffsets{partKey:{dx,dy}} 메모리 객체. 추가/갱신=현재 작업값 커밋(같은 key 갱신, 0/0 제외),
+                        슬롯 전환 시 자동 커밋(작업 유실 방지), "현재 파츠 초기화"·"전체 초기화". 출력 = PART_OFFSET_CANDIDATES 텍스트 + JSON,
+                        둘 다 선택 가능한 readonly textarea(클립보드 API·브라우저 보관 미사용). "보이는 값=복사값"(merged).
+   • 저장 없는 이유  : 좌표 수집은 "이번 화면에서 찍어 유키에게 넘기는" 일회성 — 새로고침하면 사라져도 됨. 본체 불변(외부자원·보관 0) 유지.
+   • 불변            : 데이터(파츠65/직업25/보상22)·엔진·03R 미감·3×3·05B 루프·06B~06C 조합대 전부 유지. 정렬 레이어만 추가(분리 가능).
+   • 다음 후보: 06F Part Offset Apply Pass · Auto Battler Sample · Directional Facing Lab · 개인 공방 노트북 이식.
+
+   ── 06E 추가: PARTS VARIETY PACK 02 / SILHOUETTE EXPANSION ───────────────
+   • 성격            : "고치기"가 아니라 "재료(파츠) 더 쌓기". 실제 PART 좌표/모양은 일절 미수정 —
+                        신규 파츠도 앵커에 "대충 맞는" 정도로만 배치(정밀 보정은 06F Offset Apply).
+   • 신규 파츠 +30   : head+5(priestcap·eyepatch·rabbithood·skullmask·noblehat) ·
+                        chest+5(travelcoat·mediccoat·furvest·battlegown·shrinewear) ·
+                        mainHand+5(fan·bellstaff·brush·gearblade·torch) ·
+                        offHand+4(doll·smallbook·candlestick·mirror) ·
+                        back+4(schoolbag·bigribbon·tail·pennant) ·
+                        accessory+4(earring·flowerpin·medal·rosary) · aura+3(icecrystal·moonlight·leaves).
+   • 신규 직업 +6    : pilgrim 순례자 · gravekeeper 묘지기 · puppeteer 인형술사 ·
+                        lamplighter 점등지기 · shrinekeeper 성소지기 · nobleduelist 귀족검사
+                        (전부 기존 바디 + parts[] 조합, sig는 기존 5종, new06:true).
+   • 신규 보상 +12   : bellstaff·rosary·leaves·icecrystal·smallbook·mirror·bigribbon·
+                        travelcoat·moonlight·torch·medal·fan (reskin 구조 유지, 던전 루프 불변).
+   • 숫자            : PART 65→95 · 직업 25→31 · TYPES 29→35 · REWARDS 22→34 · SLOTS 7 유지.
+   • 06D 정렬 연동   : 신규 파츠 전부 정렬 콘솔이 자동 지원(슬롯 칩·미리보기·오프셋 수집) —
+                        정렬 콘솔 JS/HTML/CSS 무수정. 주말에 기존+신규 좌표 한 번에 수집 가능.
+   • 그라데이션      : 기존 DEFS 16색만 사용, 신규 그라디언트 0. new06:true 로 카탈로그 자동 연동.
+   • 불변            : 03R 미감 · 3×3 · 05B/06B/06C/06D 루프 · 코어/어댑터 API · 외부자원·보관 0 전부 유지.
+                        변경은 추가 위주(PART/META/REWARDS/Notes만), 코어·어댑터·LootLoop·정렬 콘솔 미접촉.
+   • 다음            : 06F Part Offset Apply Pass(나라 수집 좌표 일괄 반영) · Auto Battler Sample · Directional Facing Lab.
+
+   ── 07 추가: MUSEUM SHELF SYSTEM / VARIANT SHOWCASE INDEX ─────────────────
+   • 정체성          : CSS 박물관은 "완성 게임"이 아니라, 여러 R&D 게임이 가져다 쓰는 리소스 전시장이다.
+                        = 자산 저장소 + 전시관 + 이식 가이드. 진열대 번호로 골라 이식하는 구조.
+   • 진열대 번호 체계 : 01~12 진열대를 카드로 전시. 각 카드 = 번호·이름·상태·포함자산·이식용도·추천프로젝트·태그·확인위치·이식요청문장.
+                        01 정면SD기본형 / 02 정면SD직업·파츠형 / 03 액션·피격·FX형 / 04 초소형전장형 /
+                        05 3×3보드배치형 / 06 보상·장착·수확형 / 07 조합대·레시피발굴형 / 08 정렬·좌표수집형 /
+                        09 4방향기본형 / 10 쿼터뷰기본형 / 11 탑뷰토큰형 / 12 말·심볼·토큰형.
+   • 상태            : ACTIVE 6(01,02,05,06,07,08) · PARTIAL 1(03) · PLANNED 5(04,09,10,11,12). 합 12.
+                        ACTIVE=지금 바로 볼 수 있음 / PARTIAL=있으나 이식용 정리·확장 필요 / PLANNED=예정.
+   • 확인 위치 연결   : ACTIVE/PARTIAL 카드는 gotoView 로 기존 탭 이동(base·parts·play·loop·mix). 05=전투 탭 Formation Adapter Lab,
+                        08=조합대 → 정렬 모드 ON. PLANNED 카드는 이동 버튼 없이 "예정 · 구현 전"만(미구현 안전장치).
+   • 자산 계열 태그   : 14종 — FRONT_SD·MINI_SD·GRID_3X3·ACTION_FX·REWARD_UI·MIXER_TOOL·ALIGN_TOOL·DIRECTIONAL·
+                        QUARTER_VIEW·TOP_VIEW·TOKEN·IMPORT_GUIDE·RND_SEED·PERSONAL_WORKSHOP. 상단 범례 + 카드별 태그.
+   • 이식 요청 문장   : 카드마다 "렌에게 이렇게 요청" 예시 1줄. 예) "행렬RPG에 진열대 05번 3×3 보드 배치형을 이식해줘.",
+                        "던전 루프에 진열대 06번 보상 장착 연출을 가져와줘.", "퍼즐RPG에 진열대 11번 탑뷰 토큰형을 참고해서 이동말을 만들어줘."
+   • 요약·필터        : 진열대 탭 상단에 요약(전체12·ACTIVE6·PARTIAL1·PLANNED5·태그14) + 상태별 필터(ALL/ACTIVE/PARTIAL/PLANNED).
+   • 추가 방식        : SHELVES 데이터(12) + buildShelf() 렌더만 추가. 새 탭 "진열대"(7번째) + #view-shelf + views.shelf 등록.
+                        헤더/푸터 카피는 07·박물관 정체성으로 갱신(앱 카피, 03R 피규어 미감 아님).
+   • 불변            : 신규 파츠/직업 0 · 쿼터뷰/탑뷰/4방향 실구현 0(예정 카드만) · 3×3 유지 · 좌표 미수정 ·
+                        코어/어댑터/LootLoop/조합대/정렬 콘솔 미접촉 · 외부자원·보관 0 · 단일 HTML.
+   • 다음 후보        : 08 Small Scale Variant Pack · 09 Directional Facing Lab 01 · Quarter View Lab ·
+                        Top View Token Lab · Horse/Token Shape Import · 개인 공방 노트북 이식.
+
+   ── 08 추가: SMALL SCALE VARIANT PACK / SHELF 04 ACTIVATION ──────────────
+   • 목적            : 07에서 PLANNED였던 진열대 04(초소형 전장형)을 실제로 볼 수 있는 쇼케이스로 활성화.
+                        게임이 아니라 행렬RPG/다인 전장/미니맵/작은 보드에 이식 가능한 "작은 배우 표현" 확인용.
+   • 핵심 방식        : 새 바디 0. 기존 03R 정면 SD 배우(previewParts 출력)를 mini frame 으로 감싸 크기만 변형.
+                        새 공개 API 0 — ssMini(type,size)·ssPanel·buildSmallScaleShowcase 내부 헬퍼 + CSS 클래스만.
+   • 크기 단계        : M ~72px(전장용) · S ~52px(3×3/다인 전장) · XS ~36px(미니맵/토큰 후보). 3단계.
+   • 쇼케이스 패널    : A 크기 비교(같은 직업 M/S/XS) · B 직업 구분(S, 12직업) · C 3×3 미니 전장(정적 6유닛) ·
+                        D 밀집 파티 라인업(S, 9명) · E XS 토큰 후보(6직업). 진열대 탭 하단 섹션(#ss-showcase).
+   • 샘플 배우        : 비교 warrior·archer·priest·mage·paladin / 구분·라인업·토큰은 다양한 실루엣 직업 혼합.
+                        모두 기존 META 직업 키. 쇼케이스 액터는 bob 정지 + 드롭섀도(작은 크기 가독성).
+   • 3×3 미니 전장    : 정적 CSS 그리드 전시(ActorGridAdapter 미사용 → 라이브 그리드 미접촉). 9×9/전투 룰 없음.
+                        라이브 3×3 배치는 진열대 05(Formation Adapter Lab) 그대로 유지.
+   • 04 상태 변경     : SHELVES 04 PLANNED → PARTIAL(쇼케이스는 생겼으나 전용 이식 API 미분리).
+                        요약 카운트: ACTIVE 6 · PARTIAL 2(03,04) · PLANNED 4(09,10,11,12). 합 12.
+                        진열대 04 "확인하러 가기" = 같은 탭 내 #ss-showcase 로 스크롤(reduced-motion 시 즉시).
+   • 불변            : 신규 파츠/직업 0 · 좌표 미수정 · 06F 미반영 · 쿼터뷰/탑뷰/4방향 미구현 · 9×9 미구현 ·
+                        코어/어댑터/LootLoop/정렬 콘솔/03R 미감 미접촉 · 외부자원·보관 0 · 단일 HTML.
+   • 다음 후보        : 09 Directional Facing Lab 01 · Quarter View Lab · Top View Token Lab ·
+                        Horse/Token Shape Import · 06F Part Offset Apply Pass(나라 좌표 수집 후).
    ========================================================================= */
 </script>
 </body>
