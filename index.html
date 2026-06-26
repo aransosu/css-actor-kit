@@ -809,6 +809,684 @@ body{
   background:rgba(231,200,115,.06); border:1px solid var(--line-2); border-left:3px solid var(--gold-dim);
   border-radius:9px; padding:8px 10px; }
 @media (prefers-reduced-motion: reduce){ .ss-wrap .ak-base, .ss-wrap .ak-halo, .ss-wrap .ak-rune{ animation:none !important; } }
+/* =========================================================================
+   [구역 09] DIRECTIONAL FACING SHOWCASE (CSS) — 진열대 09 4방향 기본형
+   front = 기존 정면 배우(미접촉) · back/left/right = 09 전용 간단 실루엣.
+   right = left 미러(scaleX-1). 새 바디/좌표/공개 API 변경 0 · 외부자원 0.
+   ========================================================================= */
+.dir-wrap{ margin-top:22px; border-top:1px solid var(--line); padding-top:16px; }
+.dir-head{ display:flex; align-items:baseline; gap:9px; flex-wrap:wrap; }
+.dir-eyebrow{ font:800 9px/1 var(--font-mono); letter-spacing:.14em; color:var(--gold-dim); }
+.dir-title{ font:800 19px/1.1 var(--font-display); color:var(--ink); }
+.dir-lede{ margin:7px 1px 14px; font:600 11.5px/1.5 var(--font-body); color:var(--muted); max-width:44ch; }
+.dir-lede b{ color:var(--gold); font-weight:800; }
+
+.dir-panel{ margin:0 0 16px; }
+.dir-panel-head{ display:flex; align-items:baseline; gap:8px; margin:0 1px 3px; }
+.dir-panel-k{ font:800 11px/1 var(--font-mono); color:var(--gold-dim); }
+.dir-panel-name{ font:800 14px/1.15 var(--font-display); color:var(--ink); }
+.dir-panel-desc{ margin:0 1px 9px; font:500 11px/1.45 var(--font-body); color:var(--muted); }
+
+.dir-grp{ margin-bottom:11px; padding:10px; background:linear-gradient(var(--panel),var(--panel-2)); border:1px solid var(--line); border-radius:13px; }
+.dir-grp-name{ font:800 12px/1.2 var(--font-display); color:var(--ink); margin:0 2px 7px; }
+.dir-row{ display:flex; flex-wrap:wrap; gap:9px; align-items:flex-end; }
+
+.dir-cell{ display:flex; flex-direction:column; align-items:center; gap:4px; }
+.dir-stage{ position:relative; border-radius:10px; overflow:hidden;
+  background: radial-gradient(120% 84% at 50% 24%, #2b2542 0%, #181428 76%, transparent 100%);
+  box-shadow: inset 0 1px 4px rgba(0,0,0,.5); }
+.dir-fig{ position:absolute; left:50%; bottom:3px; transform:translateX(-50%); line-height:0; }
+.dir-fig--mir{ transform:translateX(-50%) scaleX(-1); }   /* right = left 미러 */
+.dir-fig svg, .dir-fig .ak-actor{ display:block; }
+.dir-fig .ak-body{ filter: drop-shadow(0 1px 1px rgba(0,0,0,.55)); }
+.dir-wrap .ak-bob{ animation:none; }                       /* 쇼케이스는 정적 전시 */
+.dir-dirtag{ font:800 8px/1 var(--font-mono); letter-spacing:.08em; color:var(--gold-dim); text-transform:uppercase; }
+
+.dir-cell--m .dir-stage{ width:80px; height:106px; } .dir-cell--m .dir-fig svg{ width:70px; } .dir-cell--m .dir-fig .ak-actor{ width:70px; }
+.dir-cell--s .dir-stage{ width:58px; height:78px; }   .dir-cell--s .dir-fig svg{ width:50px; } .dir-cell--s .dir-fig .ak-actor{ width:50px; }
+
+.dir-note{ margin-top:8px; font:600 10.5px/1.5 var(--font-body); color:var(--muted);
+  background:rgba(231,200,115,.06); border:1px solid var(--line-2); border-left:3px solid var(--gold-dim);
+  border-radius:9px; padding:9px 11px; }
+.dir-note b{ color:var(--gold); font-weight:800; }
+.dir-note ul{ margin:5px 0 0; padding-left:17px; } .dir-note li{ margin:2px 0; }
+@media (prefers-reduced-motion: reduce){ .dir-wrap .ak-base, .dir-wrap .ak-halo, .dir-wrap .ak-rune{ animation:none !important; } }
+/* =========================================================================
+   [구역 10] QUARTER VIEW SHOWCASE (CSS) — 진열대 10 쿼터뷰 기본형
+   front = 기존 정면 배우(미접촉) · quarter-right/left = 10 전용 비스듬 실루엣.
+   quarter-left = quarter-right 미러(scaleX-1). 새 바디/좌표/공개 API 변경 0.
+   ========================================================================= */
+.qv-wrap{ margin-top:22px; border-top:1px solid var(--line); padding-top:16px; }
+.qv-head{ display:flex; align-items:baseline; gap:9px; flex-wrap:wrap; }
+.qv-eyebrow{ font:800 9px/1 var(--font-mono); letter-spacing:.14em; color:var(--gold-dim); }
+.qv-title{ font:800 19px/1.1 var(--font-display); color:var(--ink); }
+.qv-lede{ margin:7px 1px 14px; font:600 11.5px/1.5 var(--font-body); color:var(--muted); max-width:44ch; }
+.qv-lede b{ color:var(--gold); font-weight:800; }
+
+.qv-panel{ margin:0 0 16px; }
+.qv-panel-head{ display:flex; align-items:baseline; gap:8px; margin:0 1px 3px; }
+.qv-panel-k{ font:800 11px/1 var(--font-mono); color:var(--gold-dim); }
+.qv-panel-name{ font:800 14px/1.15 var(--font-display); color:var(--ink); }
+.qv-panel-desc{ margin:0 1px 9px; font:500 11px/1.45 var(--font-body); color:var(--muted); }
+
+.qv-grp{ margin-bottom:11px; padding:10px; background:linear-gradient(var(--panel),var(--panel-2)); border:1px solid var(--line); border-radius:13px; }
+.qv-grp-name{ font:800 12px/1.2 var(--font-display); color:var(--ink); margin:0 2px 7px; }
+.qv-row{ display:flex; flex-wrap:wrap; gap:9px; align-items:flex-end; }
+.qv-field{ display:flex; flex-direction:column; gap:8px; padding:11px; max-width:300px;
+  background:linear-gradient(var(--panel),var(--panel-2)); border:1px solid var(--line-2); border-radius:13px; }
+.qv-field-row{ display:flex; gap:9px; justify-content:center; }
+.qv-field-cap{ margin:7px 1px 0; font:600 10px/1.4 var(--font-mono); color:var(--faint); }
+
+.qv-cell{ display:flex; flex-direction:column; align-items:center; gap:4px; }
+.qv-stage{ position:relative; border-radius:10px; overflow:hidden;
+  background: radial-gradient(120% 84% at 50% 24%, #2b2542 0%, #181428 76%, transparent 100%);
+  box-shadow: inset 0 1px 4px rgba(0,0,0,.5); }
+.qv-fig{ position:absolute; left:50%; bottom:3px; transform:translateX(-50%); line-height:0; }
+.qv-fig--mir{ transform:translateX(-50%) scaleX(-1); }   /* quarter-left = quarter-right 미러 */
+.qv-fig svg, .qv-fig .ak-actor{ display:block; }
+.qv-fig .ak-body{ filter: drop-shadow(0 1px 1px rgba(0,0,0,.55)); }
+.qv-wrap .ak-bob{ animation:none; }                        /* 쇼케이스는 정적 전시 */
+.qv-dirtag{ font:800 8px/1 var(--font-mono); letter-spacing:.06em; color:var(--gold-dim); text-transform:uppercase; }
+
+.qv-cell--m .qv-stage{ width:80px; height:106px; } .qv-cell--m .qv-fig svg{ width:70px; } .qv-cell--m .qv-fig .ak-actor{ width:70px; }
+.qv-cell--s .qv-stage{ width:58px; height:78px; }   .qv-cell--s .qv-fig svg{ width:50px; } .qv-cell--s .qv-fig .ak-actor{ width:50px; }
+
+.qv-note{ margin-top:8px; font:600 10.5px/1.5 var(--font-body); color:var(--muted);
+  background:rgba(231,200,115,.06); border:1px solid var(--line-2); border-left:3px solid var(--gold-dim);
+  border-radius:9px; padding:9px 11px; }
+.qv-note b{ color:var(--gold); font-weight:800; }
+.qv-note ul{ margin:5px 0 0; padding-left:17px; } .qv-note li{ margin:2px 0; }
+@media (prefers-reduced-motion: reduce){ .qv-wrap .ak-base, .qv-wrap .ak-halo, .qv-wrap .ak-rune{ animation:none !important; } }
+/* =========================================================================
+   [구역 11] TOP VIEW TOKEN SHOWCASE (CSS) — 진열대 11 탑뷰 토큰형
+   front = 기존 정면 배우(미접촉) · 토큰 = 11 전용 위에서 내려본 말/마커 SVG.
+   직업 = 링 색 + 북쪽 심볼로 구분. 새 바디/좌표/공개 API 변경 0 · 외부자원 0.
+   ========================================================================= */
+.tv-wrap{ margin-top:22px; border-top:1px solid var(--line); padding-top:16px; }
+.tv-head{ display:flex; align-items:baseline; gap:9px; flex-wrap:wrap; }
+.tv-eyebrow{ font:800 9px/1 var(--font-mono); letter-spacing:.14em; color:var(--gold-dim); }
+.tv-title{ font:800 19px/1.1 var(--font-display); color:var(--ink); }
+.tv-lede{ margin:7px 1px 14px; font:600 11.5px/1.5 var(--font-body); color:var(--muted); max-width:44ch; }
+.tv-lede b{ color:var(--gold); font-weight:800; }
+
+.tv-panel{ margin:0 0 16px; }
+.tv-panel-head{ display:flex; align-items:baseline; gap:8px; margin:0 1px 3px; }
+.tv-panel-k{ font:800 11px/1 var(--font-mono); color:var(--gold-dim); }
+.tv-panel-name{ font:800 14px/1.15 var(--font-display); color:var(--ink); }
+.tv-panel-desc{ margin:0 1px 9px; font:500 11px/1.45 var(--font-body); color:var(--muted); }
+
+.tv-grp{ margin-bottom:11px; padding:10px; background:linear-gradient(var(--panel),var(--panel-2)); border:1px solid var(--line); border-radius:13px; }
+.tv-grp-name{ font:800 12px/1.2 var(--font-display); color:var(--ink); margin:0 2px 7px; }
+.tv-row{ display:flex; flex-wrap:wrap; gap:9px; align-items:flex-end; }
+
+.tv-cell{ display:flex; flex-direction:column; align-items:center; gap:4px; }
+.tv-stage{ position:relative; border-radius:10px; overflow:hidden; display:flex; align-items:center; justify-content:center;
+  background: radial-gradient(120% 90% at 50% 40%, #2b2542 0%, #181428 80%, transparent 100%);
+  box-shadow: inset 0 1px 4px rgba(0,0,0,.5); }
+.tv-fig{ line-height:0; display:flex; align-items:center; justify-content:center; }
+.tv-fig svg, .tv-fig .ak-actor{ display:block; }
+.tv-fig .ak-body{ filter: drop-shadow(0 1px 1px rgba(0,0,0,.55)); }
+.tv-wrap .ak-bob{ animation:none; }                        /* 쇼케이스는 정적 전시 */
+.tv-cap{ font:600 9px/1.15 var(--font-mono); color:var(--muted); text-align:center; max-width:84px; }
+.tv-cap b{ color:var(--gold-dim); }
+
+/* 토큰 셀(정사각, 중앙) */
+.tv-cell--m  .tv-stage{ width:80px; height:80px; } .tv-cell--m  .tv-fig svg{ width:64px; }
+.tv-cell--s  .tv-stage{ width:58px; height:58px; } .tv-cell--s  .tv-fig svg{ width:46px; }
+.tv-cell--xs .tv-stage{ width:42px; height:42px; } .tv-cell--xs .tv-fig svg{ width:30px; }
+/* 정면 비교 셀(세로형, 발 기준) */
+.tv-cell--fig .tv-stage{ display:block; width:64px; height:92px; }
+.tv-cell--fig .tv-fig{ position:absolute; left:50%; bottom:3px; transform:translateX(-50%); }
+.tv-cell--fig .tv-fig .ak-actor{ width:56px; }
+
+/* 5×5 보드/맵 (정적 전시 · 게임 로직 없음) */
+.tv-map{ display:grid; grid-template-columns:repeat(5,1fr); gap:4px; max-width:282px;
+  background:linear-gradient(var(--panel),var(--panel-2)); border:1px solid var(--line-2); border-radius:12px; padding:9px; }
+.tv-mapcell{ aspect-ratio:1 / 1; border:1px solid var(--line); border-radius:6px; display:flex; align-items:center; justify-content:center;
+  background: radial-gradient(120% 120% at 50% 40%, #221d33 0%, #14101f00 82%); }
+.tv-mapcell.is-empty{ opacity:.45; }
+.tv-mapcell svg{ width:34px; display:block; }
+.tv-map-cap{ margin:7px 1px 0; font:600 10px/1.4 var(--font-mono); color:var(--faint); }
+
+.tv-note{ margin-top:8px; font:600 10.5px/1.5 var(--font-body); color:var(--muted);
+  background:rgba(231,200,115,.06); border:1px solid var(--line-2); border-left:3px solid var(--gold-dim);
+  border-radius:9px; padding:9px 11px; }
+.tv-note b{ color:var(--gold); font-weight:800; }
+.tv-note ul{ margin:5px 0 0; padding-left:17px; } .tv-note li{ margin:2px 0; }
+/* =========================================================================
+   [구역 12] PIECE / MARKER SHOWCASE (CSS) — 진열대 12 말/심볼/토큰형
+   보드게임 말/마커 후보(아바타 아님). 11 직업 토큰보다 추상 — 모양+색+심볼로 의미.
+   front = 기존 정면 배우(미접촉) · 토큰 = 11 tvTokenSvg 재사용 · 말 = 12 전용 markerSvg.
+   ========================================================================= */
+.pc-wrap{ margin-top:22px; border-top:1px solid var(--line); padding-top:16px; }
+.pc-head{ display:flex; align-items:baseline; gap:9px; flex-wrap:wrap; }
+.pc-eyebrow{ font:800 9px/1 var(--font-mono); letter-spacing:.14em; color:var(--gold-dim); }
+.pc-title{ font:800 19px/1.1 var(--font-display); color:var(--ink); }
+.pc-lede{ margin:7px 1px 14px; font:600 11.5px/1.5 var(--font-body); color:var(--muted); max-width:44ch; }
+.pc-lede b{ color:var(--gold); font-weight:800; }
+
+.pc-panel{ margin:0 0 16px; }
+.pc-panel-head{ display:flex; align-items:baseline; gap:8px; margin:0 1px 3px; }
+.pc-panel-k{ font:800 11px/1 var(--font-mono); color:var(--gold-dim); }
+.pc-panel-name{ font:800 14px/1.15 var(--font-display); color:var(--ink); }
+.pc-panel-desc{ margin:0 1px 9px; font:500 11px/1.45 var(--font-body); color:var(--muted); }
+
+.pc-grp{ margin-bottom:11px; padding:10px; background:linear-gradient(var(--panel),var(--panel-2)); border:1px solid var(--line); border-radius:13px; }
+.pc-grp-name{ font:800 12px/1.2 var(--font-display); color:var(--ink); margin:0 2px 7px; }
+.pc-row{ display:flex; flex-wrap:wrap; gap:9px; align-items:flex-end; }
+
+.pc-cell{ display:flex; flex-direction:column; align-items:center; gap:4px; }
+.pc-cell--dim{ opacity:.42; }
+.pc-stage{ position:relative; border-radius:10px; overflow:hidden; display:flex; align-items:center; justify-content:center;
+  background: radial-gradient(120% 90% at 50% 42%, #2b2542 0%, #181428 80%, transparent 100%);
+  box-shadow: inset 0 1px 4px rgba(0,0,0,.5); }
+.pc-fig{ line-height:0; display:flex; align-items:center; justify-content:center; }
+.pc-fig svg, .pc-fig .ak-actor{ display:block; }
+.pc-fig .ak-body{ filter: drop-shadow(0 1px 1px rgba(0,0,0,.55)); }
+.pc-wrap .ak-bob{ animation:none; }
+.pc-cap{ font:600 9px/1.18 var(--font-mono); color:var(--muted); text-align:center; max-width:84px; }
+.pc-cap b{ color:var(--gold-dim); }
+
+.pc-cell--m  .pc-stage{ width:80px; height:80px; } .pc-cell--m  .pc-fig svg{ width:64px; }
+.pc-cell--s  .pc-stage{ width:58px; height:58px; } .pc-cell--s  .pc-fig svg{ width:46px; }
+.pc-cell--xs .pc-stage{ width:42px; height:42px; } .pc-cell--xs .pc-fig svg{ width:32px; }
+.pc-cell--fig .pc-stage{ display:block; width:64px; height:92px; }
+.pc-cell--fig .pc-fig{ position:absolute; left:50%; bottom:3px; transform:translateX(-50%); }
+.pc-cell--fig .pc-fig .ak-actor{ width:56px; }
+
+/* 5×5 보드 (정적 전시) */
+.pc-board{ display:grid; grid-template-columns:repeat(5,1fr); gap:4px; max-width:282px;
+  background:linear-gradient(var(--panel),var(--panel-2)); border:1px solid var(--line-2); border-radius:12px; padding:9px; }
+.pc-bcell{ aspect-ratio:1 / 1; border:1px solid var(--line); border-radius:6px; display:flex; align-items:center; justify-content:center;
+  background: radial-gradient(120% 120% at 50% 42%, #221d33 0%, #14101f00 82%); }
+.pc-bcell.is-empty{ opacity:.45; }
+.pc-bcell svg{ width:34px; display:block; }
+.pc-board-cap{ margin:7px 1px 0; font:600 10px/1.4 var(--font-mono); color:var(--faint); }
+
+/* 장르별 이식 예시 */
+.pc-genre{ margin-bottom:9px; padding:9px 10px; background:var(--panel); border:1px solid var(--line); border-radius:11px; }
+.pc-genre-name{ font:800 11px/1 var(--font-mono); letter-spacing:.04em; color:var(--gold-dim); margin-bottom:7px; }
+
+.pc-note{ margin-top:8px; font:600 10.5px/1.5 var(--font-body); color:var(--muted);
+  background:rgba(231,200,115,.06); border:1px solid var(--line-2); border-left:3px solid var(--gold-dim);
+  border-radius:9px; padding:9px 11px; }
+.pc-note b{ color:var(--gold); font-weight:800; }
+.pc-note ul{ margin:5px 0 0; padding-left:17px; } .pc-note li{ margin:2px 0; }
+/* =========================================================================
+   [구역 13] EXPORT / IMPORT READINESS BINDER (CSS) — 진열대 13 반출 바인더
+   12개 진열대를 다른 게임에 이식할 때의 안내 카드(자산 아님 · 텍스트/요청문).
+   준비도 READY/NEEDS_ADAPTER/PROTOTYPE · 복사용 요청문 = readonly textarea(클립보드 API·저장 0).
+   ========================================================================= */
+.eb-wrap{ margin-top:22px; border-top:1px solid var(--line); padding-top:16px; }
+.eb-head{ display:flex; align-items:baseline; gap:9px; flex-wrap:wrap; }
+.eb-eyebrow{ font:800 9px/1 var(--font-mono); letter-spacing:.14em; color:var(--gold-dim); }
+.eb-title{ font:800 19px/1.1 var(--font-display); color:var(--ink); }
+.eb-lede{ margin:7px 1px 13px; font:600 11.5px/1.5 var(--font-body); color:var(--muted); max-width:46ch; }
+.eb-lede b{ color:var(--gold); font-weight:800; }
+
+.eb-jump{ display:inline-flex; align-items:center; gap:6px; margin:0 0 12px; padding:8px 13px; cursor:pointer;
+  font:800 11px/1 var(--font-mono); letter-spacing:.03em; color:var(--bg0);
+  background:linear-gradient(135deg,var(--gold),var(--gold-dim)); border:none; border-radius:999px;
+  box-shadow:0 2px 8px rgba(231,200,115,.25); }
+.eb-jump:focus-visible{ outline:2px solid var(--ink); outline-offset:2px; }
+
+.eb-summary{ padding:12px 13px; margin-bottom:13px; border:1px solid var(--line-2); border-radius:13px;
+  background:linear-gradient(135deg, rgba(231,200,115,.08), var(--panel-2)); }
+.eb-sum-line{ font:700 11.5px/1.5 var(--font-body); color:var(--ink); margin-bottom:8px; }
+.eb-sum-line b{ color:var(--gold); }
+.eb-stats{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:9px; }
+.eb-stat{ font:800 10px/1 var(--font-mono); padding:5px 9px; border-radius:8px; border:1px solid var(--line-2); color:var(--muted); }
+.eb-stat b{ font-size:13px; }
+.eb-stat--ready{ color:var(--heal); border-color:rgba(191,224,160,.4); }
+.eb-stat--adapter{ color:var(--gold); border-color:rgba(231,200,115,.4); }
+.eb-stat--proto{ color:var(--magic); border-color:rgba(159,230,224,.4); }
+.eb-sum-tags{ display:flex; flex-wrap:wrap; gap:4px; }
+.eb-sum-tags .eb-tag{ background:rgba(108,198,216,.08); }
+
+.eb-filter{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px; }
+.eb-fbtn{ font:700 10px/1 var(--font-mono); padding:7px 12px; cursor:pointer; color:var(--muted);
+  background:var(--panel); border:1px solid var(--line-2); border-radius:999px; }
+.eb-fbtn.is-active{ color:var(--bg0); background:var(--ink); border-color:var(--ink); }
+.eb-fbtn:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
+
+.eb-card{ border:1px solid var(--line-2); border-radius:14px; padding:13px 14px; margin-bottom:11px;
+  background:linear-gradient(var(--panel),var(--panel-2)); }
+.eb-card.is-hidden{ display:none; }
+.eb-card-top{ display:flex; align-items:center; gap:7px; flex-wrap:wrap; }
+.eb-n{ font:800 11px/1 var(--font-mono); color:var(--bg0); background:var(--gold-dim); padding:3px 7px; border-radius:7px; }
+.eb-name{ font:800 14.5px/1.15 var(--font-display); color:var(--ink); }
+.eb-badge{ font:800 8px/1 var(--font-mono); padding:3px 7px; border-radius:999px; letter-spacing:.05em; border:1px solid; }
+.eb-badge--active{ color:var(--ally); border-color:rgba(108,198,216,.5); }
+.eb-badge--partial{ color:var(--muted); border-color:var(--line-2); }
+.eb-badge--ready{ color:var(--heal); border-color:rgba(191,224,160,.55); background:rgba(191,224,160,.08); }
+.eb-badge--adapter{ color:var(--gold); border-color:rgba(231,200,115,.55); background:rgba(231,200,115,.08); }
+.eb-badge--proto{ color:var(--magic); border-color:rgba(159,230,224,.5); background:rgba(159,230,224,.07); }
+.eb-prio{ margin-left:auto; font:700 9px/1 var(--font-mono); color:var(--faint); }
+.eb-ready-desc{ margin:6px 1px 0; font:600 9.5px/1.3 var(--font-mono); color:var(--faint); }
+
+.eb-targets{ display:flex; flex-wrap:wrap; gap:4px; margin:9px 0 2px; }
+.eb-tag{ font:700 8.5px/1.3 var(--font-mono); padding:3px 7px; border-radius:6px; color:var(--muted);
+  background:rgba(255,255,255,.03); border:1px solid var(--line); }
+
+.eb-sec{ margin-top:8px; }
+.eb-sec-k{ font:800 8.5px/1 var(--font-mono); letter-spacing:.07em; display:inline-block; margin-bottom:3px; }
+.eb-sec--take .eb-sec-k{ color:var(--heal); }
+.eb-sec--avoid .eb-sec-k{ color:var(--enemy); }
+.eb-list{ margin:0; padding-left:16px; font:500 10.5px/1.5 var(--font-body); color:var(--muted); }
+.eb-list li{ margin:1px 0; }
+.eb-caution{ margin-top:7px; font:600 10px/1.45 var(--font-body); color:var(--muted);
+  border-left:2px solid var(--line-2); padding-left:9px; }
+.eb-caution b{ color:var(--gold-dim); }
+
+.eb-req-wrap{ margin-top:10px; }
+.eb-req-k{ font:800 8.5px/1 var(--font-mono); letter-spacing:.06em; color:var(--gold-dim); margin-bottom:4px; }
+.eb-req{ width:100%; box-sizing:border-box; resize:vertical; min-height:66px; display:block;
+  font:500 10.5px/1.5 var(--font-mono); color:var(--ink); background:#16121f;
+  border:1px solid var(--line-2); border-radius:9px; padding:8px 10px; }
+.eb-req:focus-visible{ outline:2px solid var(--gold-dim); outline-offset:1px; }
+
+.eb-note{ margin-top:6px; font:600 10.5px/1.55 var(--font-body); color:var(--muted);
+  background:rgba(191,85,96,.06); border:1px solid var(--line-2); border-left:3px solid var(--enemy);
+  border-radius:9px; padding:10px 12px; }
+.eb-note b{ color:var(--ink); font-weight:800; }
+.eb-note ul{ margin:5px 0 0; padding-left:17px; } .eb-note li{ margin:2px 0; }
+/* =========================================================================
+   [구역 14] SHELF 04 MINI IMPORT STUB (CSS) — 진열대 04 미니 배우 이식 계약/스텁
+   MiniActorStub = 기존 previewParts 재사용 내부 헬퍼(공개 API 아님). size/team/state/hp 프레임.
+   실제 파일 분리/모듈 export 0 · 요청문 = readonly textarea(클립보드 API 0).
+   ========================================================================= */
+.mi-wrap{ margin-top:22px; border-top:1px solid var(--line); padding-top:16px; }
+.mi-head{ display:flex; align-items:baseline; gap:9px; flex-wrap:wrap; }
+.mi-eyebrow{ font:800 9px/1 var(--font-mono); letter-spacing:.14em; color:var(--gold-dim); }
+.mi-title{ font:800 19px/1.1 var(--font-display); color:var(--ink); }
+.mi-lede{ margin:7px 1px 13px; font:600 11.5px/1.5 var(--font-body); color:var(--muted); max-width:46ch; }
+.mi-lede b{ color:var(--gold); font-weight:800; }
+
+.mi-panel{ margin:0 0 15px; }
+.mi-panel-head{ display:flex; align-items:baseline; gap:8px; margin:0 1px 3px; }
+.mi-panel-k{ font:800 11px/1 var(--font-mono); color:var(--gold-dim); }
+.mi-panel-name{ font:800 14px/1.15 var(--font-display); color:var(--ink); }
+.mi-panel-desc{ margin:0 1px 9px; font:500 11px/1.45 var(--font-body); color:var(--muted); }
+
+/* A 계약 카드 */
+.mi-contract{ padding:11px 13px; border:1px solid var(--line-2); border-radius:13px; background:linear-gradient(var(--panel),var(--panel-2)); }
+.mi-io-h{ font:800 9.5px/1 var(--font-mono); letter-spacing:.08em; color:var(--gold-dim); margin:8px 0 4px; }
+.mi-io-row{ display:flex; gap:8px; align-items:baseline; padding:4px 0; border-bottom:1px dashed var(--line); }
+.mi-io-k{ font:800 11px/1.3 var(--font-mono); color:var(--ink); min-width:62px; }
+.mi-io-req{ font:700 8px/1 var(--font-mono); padding:2px 5px; border-radius:5px; border:1px solid var(--line-2); color:var(--faint); }
+.mi-io-req.is-req{ color:var(--gold); border-color:rgba(231,200,115,.5); }
+.mi-io-d{ font:500 10.5px/1.4 var(--font-body); color:var(--muted); flex:1; }
+.mi-out{ margin:5px 0 0; padding-left:16px; font:500 10.5px/1.55 var(--font-body); color:var(--muted); }
+.mi-out li{ margin:1px 0; } .mi-out code{ font:600 10px var(--font-mono); color:var(--ally); }
+
+/* mini actor 셀 */
+.mi-row{ display:flex; flex-wrap:wrap; gap:10px; align-items:flex-end; }
+.mi-cell{ display:flex; flex-direction:column; align-items:center; gap:4px; }
+.mi-cap{ font:600 9px/1.2 var(--font-mono); color:var(--muted); text-align:center; max-width:80px; }
+.mi-cap b{ color:var(--gold-dim); }
+.mi-wrap .ak-bob{ animation:none; }
+
+.mi-actor{ position:relative; display:inline-flex; flex-direction:column; align-items:center; justify-content:flex-end;
+  border:2px solid var(--line-2); border-radius:10px; padding:4px 3px 0;
+  background: radial-gradient(120% 90% at 50% 30%, #2b2542 0%, #181428 82%, transparent 100%); box-shadow: inset 0 1px 4px rgba(0,0,0,.5); }
+.mi-fig{ line-height:0; }
+.mi-fig .ak-actor{ display:block; }
+.mi-fig .ak-body{ filter: drop-shadow(0 1px 1px rgba(0,0,0,.55)); }
+.mi-actor--m{ width:78px; }  .mi-actor--m .ak-actor{ width:60px; }
+.mi-actor--s{ width:58px; }  .mi-actor--s .ak-actor{ width:44px; }
+.mi-actor--xs{ width:42px; } .mi-actor--xs .ak-actor{ width:30px; }
+.mi-actor--compact{ padding:2px 2px 0; }
+/* team frame */
+.mi-team--ally{ border-color:#6cc6d8; }
+.mi-team--enemy{ border-color:#bf5560; }
+.mi-team--neutral{ border-color:#a99fb6; }
+/* state */
+.mi-state--selected{ box-shadow:0 0 0 2px var(--gold), 0 0 11px rgba(231,200,115,.5); }
+.mi-state--warning{ border-style:dashed; border-color:#e0a83a; }
+.mi-state--damaged .mi-fig{ filter: drop-shadow(0 0 5px rgba(191,85,96,.85)); }
+.mi-state--dead{ opacity:.5; }
+.mi-state--dead .mi-fig{ filter: grayscale(1) brightness(.8); }
+.mi-dead-x{ position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font:800 22px/1 var(--font-display); color:var(--enemy); opacity:.85; pointer-events:none; }
+/* mini hp bar */
+.mi-hp{ width:88%; height:4px; margin:3px 0 4px; border-radius:3px; background:rgba(0,0,0,.5); overflow:hidden; }
+.mi-hp-fill{ height:100%; border-radius:3px; }
+.mi-hp-fill.is-hi{ background:var(--heal); }
+.mi-hp-fill.is-mid{ background:var(--gold); }
+.mi-hp-fill.is-lo{ background:var(--enemy); }
+
+/* E 밀집 보드 (정적) */
+.mi-board{ display:grid; grid-template-columns:repeat(5,1fr); gap:5px; max-width:264px;
+  background:linear-gradient(var(--panel),var(--panel-2)); border:1px solid var(--line-2); border-radius:12px; padding:9px; }
+.mi-bcell{ aspect-ratio:1 / 1; border:1px solid var(--line); border-radius:7px; display:flex; align-items:center; justify-content:center;
+  background: radial-gradient(120% 120% at 50% 40%, #221d33 0%, #14101f00 82%); }
+.mi-bcell.is-empty{ opacity:.4; }
+.mi-board-cap{ margin:7px 1px 0; font:600 10px/1.4 var(--font-mono); color:var(--faint); }
+
+/* F 가져갈 것/말 것 */
+.mi-ledger{ display:flex; flex-wrap:wrap; gap:10px; }
+.mi-col{ flex:1 1 150px; padding:10px 11px; border:1px solid var(--line-2); border-radius:11px; background:var(--panel); }
+.mi-col-k{ font:800 9px/1 var(--font-mono); letter-spacing:.07em; margin-bottom:5px; display:inline-block; }
+.mi-col--take .mi-col-k{ color:var(--heal); }
+.mi-col--avoid .mi-col-k{ color:var(--enemy); }
+.mi-col ul{ margin:0; padding-left:16px; font:500 10.5px/1.5 var(--font-body); color:var(--muted); }
+.mi-col li{ margin:1px 0; }
+
+/* G 복사용 요청문 */
+.mi-req-k{ font:800 8.5px/1 var(--font-mono); letter-spacing:.06em; color:var(--gold-dim); margin-bottom:4px; }
+.mi-req{ width:100%; box-sizing:border-box; resize:vertical; min-height:78px; display:block;
+  font:500 10.5px/1.5 var(--font-mono); color:var(--ink); background:#16121f; border:1px solid var(--line-2); border-radius:9px; padding:8px 10px; }
+.mi-req:focus-visible{ outline:2px solid var(--gold-dim); outline-offset:1px; }
+
+/* 13 반출 카드 04 — Mini Stub 뱃지/링크 */
+.eb-stub{ margin-top:9px; padding:9px 11px; border:1px dashed var(--gold-dim); border-radius:10px; background:rgba(231,200,115,.05); }
+.eb-badge--stub{ color:var(--gold); border-color:var(--gold-dim); background:rgba(231,200,115,.12); }
+.eb-stub-line{ margin-top:5px; font:600 10px/1.45 var(--font-mono); color:var(--muted); }
+.eb-stub-link{ margin-top:8px; font:800 10px/1 var(--font-mono); padding:7px 12px; cursor:pointer; color:var(--bg0); background:var(--gold-dim); border:none; border-radius:999px; }
+.eb-stub-link:focus-visible{ outline:2px solid var(--ink); outline-offset:2px; }
+/* =========================================================================
+   [구역 15] SHELF 12 PIECE IMPORT STUB (CSS) — 진열대 12 말/마커 이식 계약/스텁
+   PieceMarkerStub = 기존 markerSvg 재사용 내부 헬퍼(공개 API 아님). kind/size/team/state/label/value/count.
+   12 Showcase와 같은 시각 문법 공유 · 실제 파일 분리/모듈 export 0 · 요청문 = readonly textarea.
+   ========================================================================= */
+.pm-wrap{ margin-top:22px; border-top:1px solid var(--line); padding-top:16px; }
+.pm-head{ display:flex; align-items:baseline; gap:9px; flex-wrap:wrap; }
+.pm-eyebrow{ font:800 9px/1 var(--font-mono); letter-spacing:.14em; color:var(--gold-dim); }
+.pm-title{ font:800 19px/1.1 var(--font-display); color:var(--ink); }
+.pm-lede{ margin:7px 1px 12px; font:600 11.5px/1.5 var(--font-body); color:var(--muted); max-width:46ch; }
+.pm-lede b{ color:var(--gold); font-weight:800; }
+
+/* 14 vs 15 차이 */
+.pm-diff{ display:flex; flex-wrap:wrap; gap:9px; margin-bottom:14px; }
+.pm-diff-col{ flex:1 1 168px; padding:9px 11px; border:1px solid var(--line-2); border-radius:11px; background:var(--panel); }
+.pm-diff-k{ font:800 9px/1 var(--font-mono); letter-spacing:.05em; margin-bottom:4px; display:inline-block; }
+.pm-diff-col--mini .pm-diff-k{ color:var(--ally); }
+.pm-diff-col--piece .pm-diff-k{ color:var(--gold); }
+.pm-diff-col p{ margin:3px 0 0; font:500 10px/1.45 var(--font-body); color:var(--muted); }
+.pm-diff-col b{ color:var(--ink); font-weight:700; }
+
+.pm-panel{ margin:0 0 15px; }
+.pm-panel-head{ display:flex; align-items:baseline; gap:8px; margin:0 1px 3px; }
+.pm-panel-k{ font:800 11px/1 var(--font-mono); color:var(--gold-dim); }
+.pm-panel-name{ font:800 14px/1.15 var(--font-display); color:var(--ink); }
+.pm-panel-desc{ margin:0 1px 9px; font:500 11px/1.45 var(--font-body); color:var(--muted); }
+
+/* A 계약 카드 */
+.pm-contract{ padding:11px 13px; border:1px solid var(--line-2); border-radius:13px; background:linear-gradient(var(--panel),var(--panel-2)); }
+.pm-io-h{ font:800 9.5px/1 var(--font-mono); letter-spacing:.08em; color:var(--gold-dim); margin:8px 0 4px; }
+.pm-io-row{ display:flex; gap:8px; align-items:baseline; padding:4px 0; border-bottom:1px dashed var(--line); }
+.pm-io-k{ font:800 11px/1.3 var(--font-mono); color:var(--ink); min-width:64px; }
+.pm-io-req{ font:700 8px/1 var(--font-mono); padding:2px 5px; border-radius:5px; border:1px solid var(--line-2); color:var(--faint); }
+.pm-io-req.is-req{ color:var(--gold); border-color:rgba(231,200,115,.5); }
+.pm-io-d{ font:500 10.5px/1.4 var(--font-body); color:var(--muted); flex:1; }
+.pm-out{ margin:5px 0 0; padding-left:16px; font:500 10.5px/1.55 var(--font-body); color:var(--muted); }
+.pm-out li{ margin:1px 0; } .pm-out code{ font:600 10px var(--font-mono); color:var(--ally); }
+
+/* piece 셀 */
+.pm-row{ display:flex; flex-wrap:wrap; gap:9px; align-items:flex-start; }
+.pm-cell{ display:flex; flex-direction:column; align-items:center; gap:4px; }
+.pm-cap{ font:600 9px/1.2 var(--font-mono); color:var(--muted); text-align:center; max-width:82px; }
+.pm-cap b{ color:var(--gold-dim); }
+
+.pm-actor{ position:relative; display:inline-flex; align-items:center; justify-content:center;
+  border:2px solid var(--line-2); border-radius:11px; padding:5px;
+  background: radial-gradient(120% 90% at 50% 36%, #2b2542 0%, #181428 82%, transparent 100%); box-shadow: inset 0 1px 4px rgba(0,0,0,.5); }
+.pm-fig{ line-height:0; }
+.pm-fig svg{ display:block; }
+.pm-actor--m  .pm-fig svg{ width:64px; }
+.pm-actor--s  .pm-fig svg{ width:46px; }
+.pm-actor--xs .pm-fig svg{ width:32px; }
+.pm-actor--outline{ background:transparent; box-shadow:none; }
+.pm-actor--compact{ padding:3px; }
+/* team frame */
+.pm-team--ally{ border-color:#6cc6d8; }
+.pm-team--enemy{ border-color:#bf5560; }
+.pm-team--neutral{ border-color:#a99fb6; }
+.pm-team--object{ border-color:#e7c873; }
+/* state */
+.pm-state--selected{ box-shadow:0 0 0 2px var(--gold), 0 0 11px rgba(231,200,115,.5); }
+.pm-state--active{ box-shadow:0 0 0 2px var(--ally), 0 0 11px rgba(108,198,216,.45); }
+.pm-state--warning{ box-shadow:inset 0 0 0 2px #e0a83a; }
+.pm-state--disabled{ opacity:.42; filter:grayscale(1); }
+.pm-state--cleared{ opacity:.6; }
+.pm-clear-mark{ position:absolute; right:2px; top:2px; font:800 12px/1 var(--font-display); color:var(--heal); }
+/* value/count 배지 */
+.pm-val{ position:absolute; top:-4px; right:-4px; min-width:15px; height:15px; padding:0 3px; border-radius:8px;
+  font:800 9px/15px var(--font-mono); text-align:center; color:var(--bg0); background:var(--gold); }
+.pm-cnt{ position:absolute; bottom:-4px; right:-4px; min-width:15px; height:15px; padding:0 3px; border-radius:8px;
+  font:800 9px/15px var(--font-mono); text-align:center; color:var(--ink); background:var(--panel-2); border:1px solid var(--line-2); }
+
+/* F 보드 프리뷰 */
+.pm-board{ display:grid; grid-template-columns:repeat(5,1fr); gap:5px; max-width:272px;
+  background:linear-gradient(var(--panel),var(--panel-2)); border:1px solid var(--line-2); border-radius:12px; padding:9px; }
+.pm-bcell{ aspect-ratio:1 / 1; border:1px solid var(--line); border-radius:7px; display:flex; align-items:center; justify-content:center;
+  background: radial-gradient(120% 120% at 50% 40%, #221d33 0%, #14101f00 82%); }
+.pm-bcell.is-empty{ opacity:.4; } .pm-bcell svg{ width:34px; display:block; }
+.pm-board-cap{ margin:7px 1px 0; font:600 10px/1.4 var(--font-mono); color:var(--faint); }
+
+/* G 장르 레시피 */
+.pm-genre{ margin-bottom:9px; padding:9px 10px; background:var(--panel); border:1px solid var(--line); border-radius:11px; }
+.pm-genre-name{ font:800 10.5px/1 var(--font-mono); letter-spacing:.04em; color:var(--gold-dim); margin-bottom:7px; }
+
+/* H 가져갈 것/말 것 */
+.pm-ledger{ display:flex; flex-wrap:wrap; gap:10px; }
+.pm-col{ flex:1 1 150px; padding:10px 11px; border:1px solid var(--line-2); border-radius:11px; background:var(--panel); }
+.pm-col-k{ font:800 9px/1 var(--font-mono); letter-spacing:.07em; margin-bottom:5px; display:inline-block; }
+.pm-col--take .pm-col-k{ color:var(--heal); }
+.pm-col--avoid .pm-col-k{ color:var(--enemy); }
+.pm-col ul{ margin:0; padding-left:16px; font:500 10.5px/1.5 var(--font-body); color:var(--muted); } .pm-col li{ margin:1px 0; }
+
+/* I 복사용 요청문 */
+.pm-req-k{ font:800 8.5px/1 var(--font-mono); letter-spacing:.06em; color:var(--gold-dim); margin-bottom:4px; }
+.pm-req{ width:100%; box-sizing:border-box; resize:vertical; min-height:84px; display:block;
+  font:500 10.5px/1.5 var(--font-mono); color:var(--ink); background:#16121f; border:1px solid var(--line-2); border-radius:9px; padding:8px 10px; }
+.pm-req:focus-visible{ outline:2px solid var(--gold-dim); outline-offset:1px; }
+/* =========================================================================
+   [구역 16] SHELF 06 REWARD IMPORT STUB (CSS) — 진열대 06 보상 카드 이식 계약/스텁
+   RewardCardStub = 기존 REWARDS 34 재사용 내부 헬퍼(공개 API 아님). rarity/tone/state 카드.
+   실제 던전 루프/LootLoop/저장 미접촉 · 요청문 = readonly textarea(클립보드 API 0).
+   ========================================================================= */
+.rw-wrap{ margin-top:22px; border-top:1px solid var(--line); padding-top:16px; }
+.rw-head-b{ display:flex; align-items:baseline; gap:9px; flex-wrap:wrap; }
+.rw-eyebrow{ font:800 9px/1 var(--font-mono); letter-spacing:.14em; color:var(--gold-dim); }
+.rw-title-b{ font:800 19px/1.1 var(--font-display); color:var(--ink); }
+.rw-lede{ margin:7px 1px 12px; font:600 11.5px/1.5 var(--font-body); color:var(--muted); max-width:46ch; }
+.rw-lede b{ color:var(--gold); font-weight:800; }
+
+/* 14 / 15 / 16 차이 */
+.rw-diff{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:14px; }
+.rw-diff-col{ flex:1 1 150px; padding:9px 11px; border:1px solid var(--line-2); border-radius:11px; background:var(--panel); }
+.rw-diff-k{ font:800 9px/1 var(--font-mono); letter-spacing:.04em; margin-bottom:4px; display:inline-block; }
+.rw-diff-col--a .rw-diff-k{ color:var(--ally); }
+.rw-diff-col--p .rw-diff-k{ color:var(--magic); }
+.rw-diff-col--r .rw-diff-k{ color:var(--gold); }
+.rw-diff-col p{ margin:3px 0 0; font:500 9.5px/1.4 var(--font-body); color:var(--muted); }
+.rw-diff-col b{ color:var(--ink); font-weight:700; }
+
+.rw-panel{ margin:0 0 15px; }
+.rw-panel-head{ display:flex; align-items:baseline; gap:8px; margin:0 1px 3px; }
+.rw-panel-k{ font:800 11px/1 var(--font-mono); color:var(--gold-dim); }
+.rw-panel-name{ font:800 14px/1.15 var(--font-display); color:var(--ink); }
+.rw-panel-desc{ margin:0 1px 9px; font:500 11px/1.45 var(--font-body); color:var(--muted); }
+
+/* A 계약 카드 */
+.rw-contract{ padding:11px 13px; border:1px solid var(--line-2); border-radius:13px; background:linear-gradient(var(--panel),var(--panel-2)); }
+.rw-io-h{ font:800 9.5px/1 var(--font-mono); letter-spacing:.08em; color:var(--gold-dim); margin:8px 0 4px; }
+.rw-io-row{ display:flex; gap:8px; align-items:baseline; padding:4px 0; border-bottom:1px dashed var(--line); }
+.rw-io-k{ font:800 10.5px/1.3 var(--font-mono); color:var(--ink); min-width:66px; }
+.rw-io-req{ font:700 8px/1 var(--font-mono); padding:2px 5px; border-radius:5px; border:1px solid var(--line-2); color:var(--faint); }
+.rw-io-req.is-req{ color:var(--gold); border-color:rgba(231,200,115,.5); }
+.rw-io-d{ font:500 10px/1.4 var(--font-body); color:var(--muted); flex:1; }
+.rw-out{ margin:5px 0 0; padding-left:16px; font:500 10.5px/1.55 var(--font-body); color:var(--muted); }
+.rw-out li{ margin:1px 0; } .rw-out code{ font:600 10px var(--font-mono); color:var(--ally); }
+
+/* 카드 그리드 */
+.rw-row{ display:flex; flex-wrap:wrap; gap:9px; align-items:stretch; }
+.rw-colwrap{ display:flex; flex-direction:column; gap:4px; align-items:center; }
+.rw-cap{ font:600 9px/1.2 var(--font-mono); color:var(--muted); text-align:center; max-width:140px; } .rw-cap b{ color:var(--gold-dim); }
+
+/* 보상 카드 */
+.rw-card{ position:relative; width:142px; box-sizing:border-box; border:1.5px solid var(--line-2); border-radius:12px; padding:10px;
+  background:linear-gradient(var(--panel),var(--panel-2)); display:flex; flex-direction:column; gap:5px; }
+.rw-card--compact{ width:auto; min-width:128px; flex-direction:row; align-items:center; gap:8px; padding:7px 9px; }
+.rw-card--result{ width:152px; }
+/* rarity */
+.rw-rar--common{ border-color:#5a5470; }
+.rw-rar--rare{ border-color:#6cc6d8; box-shadow:0 0 9px rgba(108,198,216,.16); }
+.rw-rar--epic{ border-color:#9b7fd0; box-shadow:0 0 10px rgba(155,127,208,.2); }
+.rw-rar--legendary{ border-color:#e7c873; box-shadow:0 0 13px rgba(231,200,115,.28); }
+.rw-top{ display:flex; align-items:center; gap:7px; }
+.rw-ico{ width:27px; height:27px; flex:none; border-radius:7px; display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,.05); }
+.rw-ico svg{ width:18px; height:18px; display:block; }
+.rw-cardhead{ flex:1; min-width:0; }
+.rw-title{ font:800 11.5px/1.2 var(--font-display); color:var(--ink); overflow:hidden; text-overflow:ellipsis; }
+.rw-kindtag{ font:700 8px/1.2 var(--font-mono); color:var(--faint); margin-top:1px; }
+.rw-rar-badge{ font:800 7.5px/1 var(--font-mono); padding:2px 5px; border-radius:5px; letter-spacing:.04em; border:1px solid var(--line-2); color:var(--muted); align-self:flex-start; }
+.rw-rar-badge--rare{ color:#6cc6d8; } .rw-rar-badge--epic{ color:#9b7fd0; } .rw-rar-badge--legendary{ color:#e7c873; }
+.rw-tone-strip{ height:3px; border-radius:2px; background:var(--line-2); }
+.rw-tone--attack  .rw-tone-strip, .rw-tone--attack  .rw-ico{ background:rgba(191,85,96,.85); }
+.rw-tone--defense .rw-tone-strip, .rw-tone--defense .rw-ico{ background:rgba(108,155,216,.8); }
+.rw-tone--heal    .rw-tone-strip, .rw-tone--heal    .rw-ico{ background:rgba(191,224,160,.8); }
+.rw-tone--magic   .rw-tone-strip, .rw-tone--magic   .rw-ico{ background:rgba(155,127,208,.8); }
+.rw-tone--utility .rw-tone-strip, .rw-tone--utility .rw-ico{ background:rgba(169,159,182,.7); }
+.rw-tone--danger  .rw-tone-strip, .rw-tone--danger  .rw-ico{ background:rgba(138,130,152,.8); }
+.rw-tone--treasure .rw-tone-strip, .rw-tone--treasure .rw-ico{ background:rgba(231,200,115,.8); }
+.rw-ico svg path, .rw-ico svg line, .rw-ico svg circle, .rw-ico svg rect{ stroke:#15121c; }
+.rw-ico svg [fill]{ fill:#15121c; }
+.rw-desc{ font:500 9.5px/1.4 var(--font-body); color:var(--muted); }
+.rw-card--compact .rw-desc, .rw-card--compact .rw-tone-strip{ display:none; }
+.rw-eff{ font:700 9px/1.35 var(--font-mono); color:var(--heal); }
+/* state */
+.rw-state--focused{ outline:2px solid var(--ally); outline-offset:1px; }
+.rw-state--selected{ box-shadow:0 0 0 2px var(--gold), 0 0 12px rgba(231,200,115,.45); }
+.rw-state--disabled{ opacity:.4; filter:grayscale(.85); }
+.rw-state--taken{ opacity:.72; }
+.rw-state-mark{ position:absolute; top:6px; right:7px; font:800 11px/1 var(--font-display); }
+.rw-val{ position:absolute; top:-5px; right:-5px; min-width:16px; height:16px; padding:0 3px; border-radius:8px; font:800 9px/16px var(--font-mono); text-align:center; color:var(--bg0); background:var(--gold); }
+
+/* F Harvest Summary */
+.rw-harvest{ padding:11px 12px; border:1px solid var(--line-2); border-radius:13px; background:linear-gradient(135deg, rgba(231,200,115,.06), var(--panel-2)); }
+.rw-harvest-h{ font:800 12px/1.2 var(--font-display); color:var(--gold); margin-bottom:8px; }
+.rw-harvest-foot{ margin-top:9px; font:700 10px/1.4 var(--font-mono); color:var(--muted); }
+
+/* H 장르 */
+.rw-genre{ margin-bottom:9px; padding:9px 10px; background:var(--panel); border:1px solid var(--line); border-radius:11px; }
+.rw-genre-name{ font:800 10.5px/1 var(--font-mono); letter-spacing:.04em; color:var(--gold-dim); margin-bottom:3px; }
+.rw-genre-note{ font:500 9.5px/1.35 var(--font-body); color:var(--faint); margin-bottom:7px; }
+
+/* I 가져갈 것/말 것 */
+.rw-ledger{ display:flex; flex-wrap:wrap; gap:10px; }
+.rw-col{ flex:1 1 150px; padding:10px 11px; border:1px solid var(--line-2); border-radius:11px; background:var(--panel); }
+.rw-col-k{ font:800 9px/1 var(--font-mono); letter-spacing:.07em; margin-bottom:5px; display:inline-block; }
+.rw-col--take .rw-col-k{ color:var(--heal); }
+.rw-col--avoid .rw-col-k{ color:var(--enemy); }
+.rw-col ul{ margin:0; padding-left:16px; font:500 10.5px/1.5 var(--font-body); color:var(--muted); } .rw-col li{ margin:1px 0; }
+
+/* E 장착 체감 (before/after 정적) */
+.rw-equip{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.rw-equip-step{ display:flex; flex-direction:column; align-items:center; gap:4px; }
+.rw-equip-fig{ width:72px; height:96px; position:relative; border-radius:10px; overflow:hidden; display:flex; align-items:flex-end; justify-content:center;
+  background:radial-gradient(120% 90% at 50% 30%, #2b2542, #181428 82%); box-shadow:inset 0 1px 4px rgba(0,0,0,.5); }
+.rw-equip-fig .ak-actor{ width:60px; }
+.rw-equip-fig .ak-body{ filter: drop-shadow(0 1px 1px rgba(0,0,0,.55)); }
+.rw-wrap .ak-bob{ animation:none; }
+.rw-equip-arrow{ font:800 17px/1 var(--font-display); color:var(--gold-dim); }
+.rw-equip-lab{ font:600 9px/1.2 var(--font-mono); color:var(--muted); }
+
+/* J 복사용 요청문 */
+.rw-req-k{ font:800 8.5px/1 var(--font-mono); letter-spacing:.06em; color:var(--gold-dim); margin-bottom:4px; }
+.rw-req{ width:100%; box-sizing:border-box; resize:vertical; min-height:84px; display:block;
+  font:500 10.5px/1.5 var(--font-mono); color:var(--ink); background:#16121f; border:1px solid var(--line-2); border-radius:9px; padding:8px 10px; }
+.rw-req:focus-visible{ outline:2px solid var(--gold-dim); outline-offset:1px; }
+/* =========================================================================
+   [구역 17] SHELF 05 GRID IMPORT STUB (CSS) — 진열대 05 3×3 보드 배치 계약/스텁
+   GridAdapterContract.place = 기존 ActorGridAdapter.cellToSlot 그대로 호출(공개 API 미변경).
+   배치 샘플은 14 MiniActorStub 재사용. 실제 9×9/이동/전투 0 · 요청문 = readonly textarea.
+   ========================================================================= */
+.ga-wrap{ margin-top:22px; border-top:1px solid var(--line); padding-top:16px; }
+.ga-head-b{ display:flex; align-items:baseline; gap:9px; flex-wrap:wrap; }
+.ga-eyebrow{ font:800 9px/1 var(--font-mono); letter-spacing:.14em; color:var(--gold-dim); }
+.ga-title-b{ font:800 19px/1.1 var(--font-display); color:var(--ink); }
+.ga-lede{ margin:7px 1px 12px; font:600 11.5px/1.5 var(--font-body); color:var(--muted); max-width:46ch; }
+.ga-lede b{ color:var(--gold); font-weight:800; }
+
+/* 14 / 15 / 16 / 17 차이 (4열) */
+.ga-diff{ display:flex; flex-wrap:wrap; gap:7px; margin-bottom:14px; }
+.ga-diff-col{ flex:1 1 110px; padding:8px 10px; border:1px solid var(--line-2); border-radius:10px; background:var(--panel); }
+.ga-diff-k{ font:800 8.5px/1 var(--font-mono); letter-spacing:.03em; margin-bottom:4px; display:inline-block; }
+.ga-diff-col--a .ga-diff-k{ color:var(--ally); }
+.ga-diff-col--p .ga-diff-k{ color:var(--magic); }
+.ga-diff-col--r .ga-diff-k{ color:var(--gold); }
+.ga-diff-col--g .ga-diff-k{ color:var(--heal); }
+.ga-diff-col p{ margin:3px 0 0; font:500 9.5px/1.4 var(--font-body); color:var(--muted); }
+.ga-diff-col b{ color:var(--ink); font-weight:700; }
+
+.ga-panel{ margin:0 0 15px; }
+.ga-panel-head{ display:flex; align-items:baseline; gap:8px; margin:0 1px 3px; }
+.ga-panel-k{ font:800 11px/1 var(--font-mono); color:var(--gold-dim); }
+.ga-panel-name{ font:800 14px/1.15 var(--font-display); color:var(--ink); }
+.ga-panel-desc{ margin:0 1px 9px; font:500 11px/1.45 var(--font-body); color:var(--muted); }
+
+/* A 계약 카드 */
+.ga-contract{ padding:11px 13px; border:1px solid var(--line-2); border-radius:13px; background:linear-gradient(var(--panel),var(--panel-2)); }
+.ga-io-h{ font:800 9.5px/1 var(--font-mono); letter-spacing:.08em; color:var(--gold-dim); margin:8px 0 4px; }
+.ga-io-row{ display:flex; gap:8px; align-items:baseline; padding:4px 0; border-bottom:1px dashed var(--line); }
+.ga-io-k{ font:800 10.5px/1.3 var(--font-mono); color:var(--ink); min-width:62px; }
+.ga-io-req{ font:700 8px/1 var(--font-mono); padding:2px 5px; border-radius:5px; border:1px solid var(--line-2); color:var(--faint); }
+.ga-io-req.is-req{ color:var(--gold); border-color:rgba(231,200,115,.5); }
+.ga-io-d{ font:500 10px/1.4 var(--font-body); color:var(--muted); flex:1; }
+.ga-out{ margin:5px 0 0; padding-left:16px; font:500 10.5px/1.55 var(--font-body); color:var(--muted); }
+.ga-out li{ margin:1px 0; } .ga-out code{ font:600 10px var(--font-mono); color:var(--ally); }
+
+/* B 3×3 Cell Map */
+.ga-cellmap{ display:grid; grid-template-columns:repeat(3,1fr); gap:5px; max-width:240px; }
+.ga-cellmap-cell{ aspect-ratio:3 / 2; border:1px solid var(--line-2); border-radius:8px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; background:var(--panel); }
+.ga-cellmap-rc{ font:800 11px/1 var(--font-mono); color:var(--ink); }
+.ga-cellmap-tag{ font:700 8px/1 var(--font-mono); color:var(--faint); }
+.ga-cellmap-cell.is-front{ border-color:rgba(231,200,115,.5); } .ga-cellmap-cell.is-front .ga-cellmap-tag{ color:var(--gold-dim); }
+.ga-mapnote{ margin:7px 1px 0; font:600 9.5px/1.4 var(--font-mono); color:var(--faint); }
+
+/* 절대배치 보드 (C 슬롯 / D 배치 / F 깊이) */
+.ga-board{ position:relative; width:248px; height:188px; margin:3px 0 6px; border-radius:12px; overflow:hidden;
+  border:1px solid var(--line-2); background:linear-gradient(180deg, #181430 0%, #221d33 100%); }
+.ga-board::before{ content:""; position:absolute; left:0; right:0; top:50%; height:1px; background:rgba(255,255,255,.07); }
+.ga-slotmark{ position:absolute; transform:translate(-50%,-50%); min-width:30px; height:26px; padding:0 4px; border-radius:7px;
+  border:1px dashed var(--line-2); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1px;
+  background:rgba(255,255,255,.03); font:800 8.5px/1 var(--font-mono); color:var(--muted); }
+.ga-slotmark small{ font:600 6.5px/1 var(--font-mono); color:var(--faint); }
+.ga-slotmark--ally{ border-color:rgba(108,198,216,.55); color:var(--ally); }
+.ga-slotmark--enemy{ border-color:rgba(191,85,96,.55); color:var(--enemy); }
+.ga-place{ position:absolute; transform-origin:bottom center; }
+.ga-wrap .ak-bob{ animation:none; }
+.ga-board-note{ margin:0 1px 0; font:600 9.5px/1.4 var(--font-mono); color:var(--faint); }
+.ga-side-lab{ position:absolute; left:7px; font:800 8px/1 var(--font-mono); letter-spacing:.05em; }
+.ga-side-lab--ally{ bottom:6px; color:var(--ally); } .ga-side-lab--enemy{ top:6px; color:var(--enemy); }
+
+/* E Perspective */
+.ga-persp{ display:flex; flex-wrap:wrap; gap:9px; }
+.ga-persp-col{ flex:1 1 150px; padding:9px 11px; border:1px solid var(--line-2); border-radius:11px; background:var(--panel); }
+.ga-persp-k{ font:800 9px/1 var(--font-mono); margin-bottom:5px; display:inline-block; }
+.ga-persp-col--ally .ga-persp-k{ color:var(--ally); }
+.ga-persp-col--enemy .ga-persp-k{ color:var(--enemy); }
+.ga-persp-col p{ margin:2px 0 0; font:500 10px/1.45 var(--font-body); color:var(--muted); }
+.ga-persp-col b{ color:var(--ink); font-weight:700; }
+
+/* G pseudo-code */
+.ga-code{ width:100%; box-sizing:border-box; resize:vertical; min-height:120px; display:block;
+  font:500 10px/1.55 var(--font-mono); color:var(--heal); background:#12101a; border:1px solid var(--line-2); border-radius:9px; padding:9px 11px; white-space:pre; }
+
+/* H 가져갈 것/말 것 */
+.ga-ledger{ display:flex; flex-wrap:wrap; gap:10px; }
+.ga-col{ flex:1 1 150px; padding:10px 11px; border:1px solid var(--line-2); border-radius:11px; background:var(--panel); }
+.ga-col-k{ font:800 9px/1 var(--font-mono); letter-spacing:.07em; margin-bottom:5px; display:inline-block; }
+.ga-col--take .ga-col-k{ color:var(--heal); }
+.ga-col--avoid .ga-col-k{ color:var(--enemy); }
+.ga-col ul{ margin:0; padding-left:16px; font:500 10.5px/1.5 var(--font-body); color:var(--muted); } .ga-col li{ margin:1px 0; }
+
+/* I 복사용 요청문 */
+.ga-req-k{ font:800 8.5px/1 var(--font-mono); letter-spacing:.06em; color:var(--gold-dim); margin-bottom:4px; }
+.ga-req{ width:100%; box-sizing:border-box; resize:vertical; min-height:84px; display:block;
+  font:500 10.5px/1.5 var(--font-mono); color:var(--ink); background:#16121f; border:1px solid var(--line-2); border-radius:9px; padding:8px 10px; }
+.ga-req:focus-visible{ outline:2px solid var(--gold-dim); outline-offset:1px; }
 </style>
 </head>
 <body>
@@ -818,7 +1496,7 @@ body{
     <div class="eyebrow">R&amp;D MASTER CANVAS · 07 MUSEUM SHELF / VARIANT SHOWCASE</div>
     <h1 class="title">CSS ACTOR KIT 07 · CSS 박물관</h1>
     <p class="lede">03R 기반 · 기본 바디/얼굴/미감 고정. 완성 게임이 아니라 <b>여러 R&amp;D 게임이 가져다 쓰는 자산 전시장</b> — 진열대 번호로 골라 이식하는 저장소 + 전시관 + 이식 가이드.</p>
-    <div class="spec">진열대 12 (ACTIVE 6 · PARTIAL 2 · PLANNED 4) · 직업 31 + 기본 2 + 몬스터 2 · 파츠 95 / 슬롯 7 · 보상 풀 34 · 외부자원 0 · 단일 index.html</div>
+    <div class="spec">진열대 12 (ACTIVE 6 · PARTIAL 6 · PLANNED 0) · 직업 31 + 기본 2 + 몬스터 2 · 파츠 95 / 슬롯 7 · 보상 풀 34 · 외부자원 0 · 단일 index.html</div>
   </header>
 
   <nav class="tabs" role="tablist" aria-label="화면 전환">
@@ -1102,7 +1780,16 @@ body{
   <!-- ===================== [탭7] 진열대 (07 Museum Shelf / Variant Showcase) ===================== -->
   <section class="view view--shelf" id="view-shelf">
     <div id="shelf-root"></div>
+    <div id="export-binder"></div>
+    <div id="mini-import-stub"></div>
+    <div id="piece-import-stub"></div>
+    <div id="reward-import-stub"></div>
+    <div id="grid-import-stub"></div>
     <div id="ss-showcase"></div>
+    <div id="dir-showcase"></div>
+    <div id="qv-showcase"></div>
+    <div id="tv-showcase"></div>
+    <div id="piece-showcase"></div>
   </section>
 
   <footer class="ft">
@@ -3202,30 +3889,34 @@ body{
       projects:["파츠 감수","좌표 튜닝"],
       goto:"mix", loc:"조합대 탭 → 정렬 모드 ON",
       req:"파츠 좌표 튜닝에 진열대 08번 정렬/좌표 수집형을 써줘." },
-    { n:"09", name:"4방향 기본형", status:"PLANNED", tags:["DIRECTIONAL"],
-      assets:"front/back/left/right 방향별 아바타 (예정)",
-      use:"상하좌우 이동 · 좌우 공격 · 방향성 필드",
-      projects:["탑다운 퍼즐RPG","필드 이동 게임"],
-      goto:null, loc:"예정 진열대 · 구현 전",
-      req:"탑다운 퍼즐RPG에 진열대 09번 4방향 기본형을 참고해줘." },
-    { n:"10", name:"쿼터뷰 기본형", status:"PLANNED", tags:["QUARTER_VIEW"],
-      assets:"살짝 비스듬히 보는 전장형 아바타 (예정)",
-      use:"전략 · 오토배틀러 · 쿼터뷰 전장",
-      projects:["오토배틀러","전략형 실험"],
-      goto:null, loc:"예정 진열대 · 구현 전",
-      req:"오토배틀러에 진열대 10번 쿼터뷰 기본형을 참고해줘." },
-    { n:"11", name:"탑뷰 토큰형", status:"PLANNED", tags:["TOP_VIEW","TOKEN"],
-      assets:"위에서 내려보는 간결한 토큰/말 (예정)",
-      use:"맵 · 보드 · 퍼즐 · 탐험",
-      projects:["탑뷰 퍼즐","필드 탐험","맵 이동"],
-      goto:null, loc:"예정 진열대 · 구현 전",
-      req:"퍼즐RPG에 진열대 11번 탑뷰 토큰형을 참고해서 이동말을 만들어줘." },
-    { n:"12", name:"말/심볼/토큰형", status:"PLANNED", tags:["TOKEN"],
-      assets:"기존 '말' 형상 보관 후보 (예정)",
-      use:"정보 가독성이 중요한 보드 게임형 표현",
-      projects:["퍼즐 보드","전술 보드","전투 시뮬"],
-      goto:null, loc:"예정 진열대 · 구현 전",
-      req:"전술 보드에 진열대 12번 말/심볼/토큰형을 참고해줘." }
+    { n:"09", name:"4방향 기본형", status:"PARTIAL", tags:["DIRECTIONAL","FRONT_SD"],
+      assets:"front/back/left/right 정지 포즈 후보 · 직업 4방향 샘플 · 좌우 미러 · S 크기 방향",
+      use:"필드 이동/탑다운 방향 표현 후보 · 작은 전장 방향성",
+      projects:["탑다운 퍼즐RPG","필드 이동 게임","행렬RPG"],
+      goto:"shelf", anchor:"dir-showcase", loc:"진열대 탭 아래 · Directional Facing Showcase",
+      req:"탑다운 퍼즐RPG에 진열대 09번 4방향 정지 포즈 후보를 가져와줘.",
+      note:"front/back/left/right 정지 포즈만 · 이동/공격/필드 이식 API는 분리 전(PARTIAL)" },
+    { n:"10", name:"쿼터뷰 기본형", status:"PARTIAL", tags:["QUARTER_VIEW","FRONT_SD"],
+      assets:"front 대비 쿼터뷰 후보 · quarter-right/left · 직업 쿼터뷰 샘플 · 전장 배치 감각 · M/S 크기",
+      use:"오토배틀러/전략형 쿼터뷰 표현 후보 · 비스듬한 전장 배치",
+      projects:["오토배틀러","전략형 실험","행렬RPG"],
+      goto:"shelf", anchor:"qv-showcase", loc:"진열대 탭 아래 · Quarter View Showcase",
+      req:"오토배틀러에 진열대 10번 쿼터뷰 후보(quarter-right/left)를 가져와줘.",
+      note:"쿼터뷰 정지 포즈 후보만 · 쿼터뷰 게임/이동/공격/이식 API는 분리 전(PARTIAL)" },
+    { n:"11", name:"탑뷰 토큰형", status:"PARTIAL", tags:["TOP_VIEW","TOKEN"],
+      assets:"위에서 내려본 토큰/말 후보 · 정면 SD 대비 · 직업 토큰 10 · 보드/맵 배치 · 토큰 크기 3단계 · 팀/적 구분",
+      use:"미니맵 · 보드 · 퍼즐 · 탐험 맵 유닛 마커 후보",
+      projects:["탑뷰 퍼즐","필드 탐험","맵 이동","보드 게임"],
+      goto:"shelf", anchor:"tv-showcase", loc:"진열대 탭 아래 · Top View Token Showcase",
+      req:"퍼즐RPG에 진열대 11번 탑뷰 토큰형을 가져와서 이동말을 만들어줘.",
+      note:"위에서 내려본 토큰 후보만 · 탑뷰 이동/맵/이식 API는 분리 전(PARTIAL)" },
+    { n:"12", name:"말/심볼/토큰형", status:"PARTIAL", tags:["TOKEN"],
+      assets:"보드게임 말/심볼/마커 후보 · 아바타↔토큰↔말 비교 · 마커 14종 · 보드 배치 · 상태/소속 7 · 크기 3단계 · 장르별 이식",
+      use:"아바타 불필요 화면용 범용 마커 · 퍼즐/전술/보드/맵 상태·목표·적 심볼",
+      projects:["퍼즐 보드","전술 보드","탐험 맵","행렬RPG"],
+      goto:"shelf", anchor:"piece-showcase", loc:"진열대 탭 아래 · Piece / Marker Showcase",
+      req:"전술 보드에 진열대 12번 말/심볼/토큰형을 가져와줘.",
+      note:"보드게임 말/마커 후보만(직업 토큰보다 추상) · 보드게임/이식 API는 분리 전(PARTIAL)" }
   ];
 
   function shelfBadgeClass(st){ return st==="ACTIVE" ? "badge--active" : st==="PARTIAL" ? "badge--partial" : "badge--planned"; }
@@ -3403,6 +4094,1640 @@ body{
     root.appendChild(wrap);
   }
 
+  /* =========================================================================
+     [구역 09] DIRECTIONAL FACING SHOWCASE (JS) — 진열대 09 활성화
+     · front = 기존 previewParts(정면 배우, 미접촉). back/left/right = 09 전용 간단 실루엣.
+     · right = left 미러(CSS). 새 공개 API 0 · PART 좌표/03R 미감 미접촉 · 외부 참조 0.
+     · 방향형은 "후보 자산": 샘플 직업만, 주요 실루엣(무기/망토/오라)만 표현.
+     ========================================================================= */
+  var DIR_SKIN = "#e9c19c", DIR_HAIR = "#6e573d", DIR_LINE = "#3a2f44";
+  var DIRS = ["front","back","left","right"];
+  var DIR_SAMPLE = [
+    { type:"warrior",     cloth:"#8a7a5c" },
+    { type:"archer",      cloth:"#5f7050" },
+    { type:"priest",      cloth:"#d9cfb4" },
+    { type:"mage",        cloth:"#4f4470" },
+    { type:"paladin",     cloth:"#c6cad6" },
+    { type:"gravekeeper", cloth:"#39324f" }
+  ];
+  function dirDesc(type){ for(var i=0;i<DIR_SAMPLE.length;i++){ if(DIR_SAMPLE[i].type===type) return DIR_SAMPLE[i]; } return { type:type, cloth:"#6b5f48" }; }
+  function dirKind(type){
+    var s = META[type] ? META[type].sig : "melee";
+    var map = { melee:{kind:"sword",accent:"#d2d8df"}, shoot:{kind:"bow",accent:"#caa46a"},
+                cast:{kind:"staff",accent:"#9fe6e0"}, heal:{kind:"halo",accent:"#e7c873"}, block:{kind:"shield",accent:"#e7c873"} };
+    return map[s] || map.melee;
+  }
+
+  /* 후면형: 얼굴 없음 — 머리 뒤/등/망토 + sig별 무기 힌트(어깨 위/등) */
+  function dirBackSvg(cloth, kind, accent){
+    var behind = "", over = "";
+    if(kind === "halo") behind += '<circle cx="60" cy="38" r="23" fill="none" stroke="'+accent+'" stroke-width="3" opacity=".9"/>';
+    if(kind === "staff" || kind === "halo"){
+      behind += '<line x1="83" y1="100" x2="83" y2="28" stroke="#7c5c3c" stroke-width="4.5" stroke-linecap="round"/>';
+      if(kind === "staff") behind += '<circle cx="83" cy="26" r="6.5" fill="'+accent+'"/>';
+    }
+    if(kind === "bow"){
+      behind += '<path d="M30 58 Q18 90 30 122" fill="none" stroke="'+accent+'" stroke-width="3.5" stroke-linecap="round"/><line x1="30" y1="58" x2="30" y2="122" stroke="#e8dcc0" stroke-width="1.5" opacity=".8"/>';
+      over += '<rect x="73" y="52" width="9" height="34" rx="3" fill="#5b4a3a" stroke="'+DIR_LINE+'" stroke-width="2"/><path d="M73 52 l4 -7 l5 7 z" fill="'+accent+'"/>';
+    }
+    if(kind === "sword"){
+      over += '<line x1="74" y1="74" x2="92" y2="40" stroke="'+accent+'" stroke-width="4.5" stroke-linecap="round"/><line x1="80" y1="66" x2="69" y2="60" stroke="#7c5c3c" stroke-width="4" stroke-linecap="round"/><circle cx="93" cy="38" r="3.6" fill="#cdb46a"/>';
+    }
+    if(kind === "shield"){
+      over += '<path d="M44 80 q16 -8 32 0 v13 q0 16 -16 22 q-16 -6 -16 -22 z" fill="'+cloth+'" stroke="'+DIR_LINE+'" stroke-width="2.4"/><path d="M60 84 v26 M48 96 h24" stroke="'+accent+'" stroke-width="2.4" opacity=".9"/>';
+    }
+    return '<svg viewBox="0 0 120 160" aria-hidden="true">'
+      + behind
+      + '<ellipse cx="60" cy="150" rx="22" ry="5" fill="#0c0a16" opacity=".5"/>'
+      + '<rect x="47" y="116" width="12" height="32" rx="5" fill="#2c2740" stroke="'+DIR_LINE+'" stroke-width="2"/><rect x="61" y="116" width="12" height="32" rx="5" fill="#2c2740" stroke="'+DIR_LINE+'" stroke-width="2"/>'
+      + '<ellipse cx="53" cy="149" rx="8" ry="4" fill="#1b1730"/><ellipse cx="67" cy="149" rx="8" ry="4" fill="#1b1730"/>'
+      + '<path d="M40 74 q20 -10 40 0 l3 44 q-23 9 -46 0 z" fill="'+cloth+'" stroke="'+DIR_LINE+'" stroke-width="2.6"/>'
+      + '<line x1="60" y1="76" x2="60" y2="116" stroke="'+DIR_LINE+'" stroke-width="1.6" opacity=".5"/>'
+      + '<path d="M40 76 q-7 18 -3 34 l9 -3 l-2 -33 z" fill="'+cloth+'" stroke="'+DIR_LINE+'" stroke-width="2.2"/><path d="M80 76 q7 18 3 34 l-9 -3 l2 -33 z" fill="'+cloth+'" stroke="'+DIR_LINE+'" stroke-width="2.2"/>'
+      + '<circle cx="43" cy="112" r="5.5" fill="'+DIR_SKIN+'" stroke="'+DIR_LINE+'" stroke-width="2"/><circle cx="77" cy="112" r="5.5" fill="'+DIR_SKIN+'" stroke="'+DIR_LINE+'" stroke-width="2"/>'
+      + '<circle cx="60" cy="46" r="23" fill="'+DIR_HAIR+'" stroke="'+DIR_LINE+'" stroke-width="2.6"/>'
+      + '<path d="M40 44 q20 -26 40 0 q-6 -7 -20 -7 q-14 0 -20 7 z" fill="#000" opacity=".15"/>'
+      + '<path d="M48 64 q12 8 24 0 l-2 6 q-10 5 -20 0 z" fill="'+DIR_SKIN+'" stroke="'+DIR_LINE+'" stroke-width="1.6"/>'
+      + over + '</svg>';
+  }
+
+  /* 측면형(왼쪽 봄): 단순 옆모습 — 코 살짝 + 눈 1점 + 앞손 무기 */
+  function dirSideSvg(cloth, kind, accent){
+    var front = "", behind = "";
+    if(kind === "halo") behind += '<circle cx="58" cy="38" r="22" fill="none" stroke="'+accent+'" stroke-width="3" opacity=".9"/>';
+    if(kind === "staff" || kind === "halo"){
+      front += '<line x1="38" y1="120" x2="34" y2="24" stroke="#7c5c3c" stroke-width="4.5" stroke-linecap="round"/>';
+      if(kind === "staff") front += '<circle cx="33" cy="22" r="6.5" fill="'+accent+'"/>';
+    }
+    if(kind === "bow"){
+      front += '<path d="M34 60 Q20 92 34 124" fill="none" stroke="'+accent+'" stroke-width="3.5" stroke-linecap="round"/><line x1="34" y1="60" x2="34" y2="124" stroke="#e8dcc0" stroke-width="1.5" opacity=".85"/><line x1="34" y1="92" x2="14" y2="92" stroke="'+accent+'" stroke-width="2.4"/>';
+    }
+    if(kind === "sword"){
+      front += '<line x1="44" y1="96" x2="16" y2="86" stroke="'+accent+'" stroke-width="4.5" stroke-linecap="round"/><line x1="46" y1="100" x2="42" y2="90" stroke="#7c5c3c" stroke-width="4" stroke-linecap="round"/>';
+    }
+    if(kind === "shield"){
+      front += '<path d="M30 80 q-9 14 0 30 q11 -4 14 -15 q-3 -11 -14 -15 z" fill="'+cloth+'" stroke="'+DIR_LINE+'" stroke-width="2.4"/><path d="M37 86 v18 M30 95 h14" stroke="'+accent+'" stroke-width="2.2" opacity=".9"/>';
+    }
+    return '<svg viewBox="0 0 120 160" aria-hidden="true">'
+      + behind
+      + '<ellipse cx="58" cy="150" rx="20" ry="5" fill="#0c0a16" opacity=".5"/>'
+      + '<rect x="52" y="116" width="12" height="32" rx="5" fill="#2c2740" stroke="'+DIR_LINE+'" stroke-width="2" transform="rotate(-4 58 132)"/><rect x="56" y="116" width="12" height="32" rx="5" fill="#33304d" stroke="'+DIR_LINE+'" stroke-width="2" transform="rotate(7 62 132)"/>'
+      + '<ellipse cx="50" cy="149" rx="9" ry="4" fill="#1b1730"/><ellipse cx="68" cy="149" rx="9" ry="4" fill="#1b1730"/>'
+      + '<path d="M46 74 q12 -8 22 0 l4 44 q-15 7 -30 0 z" fill="'+cloth+'" stroke="'+DIR_LINE+'" stroke-width="2.6"/>'
+      + '<path d="M52 78 q-3 16 0 30 l7 -2 l-1 -29 z" fill="'+cloth+'" stroke="'+DIR_LINE+'" stroke-width="2.2"/>'
+      + '<circle cx="49" cy="112" r="5.5" fill="'+DIR_SKIN+'" stroke="'+DIR_LINE+'" stroke-width="2"/>'
+      + '<circle cx="56" cy="46" r="22" fill="'+DIR_SKIN+'" stroke="'+DIR_LINE+'" stroke-width="2.6"/>'
+      + '<path d="M34 44 q22 -30 44 2 q2 -26 -22 -26 q-22 0 -22 24 z" fill="'+DIR_HAIR+'" stroke="'+DIR_LINE+'" stroke-width="2.2"/>'
+      + '<path d="M36 40 q-4 4 -2 9 l5 -1 z" fill="'+DIR_SKIN+'" stroke="'+DIR_LINE+'" stroke-width="1.4"/>'
+      + '<circle cx="46" cy="44" r="1.8" fill="'+DIR_LINE+'"/>'
+      + front + '</svg>';
+  }
+
+  function dirCell(type, dir, size){
+    var cell = document.createElement("div"); cell.className = "dir-cell dir-cell--" + (size || "m");
+    var stage = document.createElement("div"); stage.className = "dir-stage";
+    var fig = document.createElement("div"); fig.className = "dir-fig" + (dir === "right" ? " dir-fig--mir" : "");
+    if(dir === "front"){
+      fig.appendChild(AK.previewParts(META[type].parts, META[type].gender));
+    } else {
+      var k = dirKind(type), d = dirDesc(type);
+      fig.innerHTML = (dir === "back") ? dirBackSvg(d.cloth, k.kind, k.accent) : dirSideSvg(d.cloth, k.kind, k.accent);
+    }
+    stage.appendChild(fig); cell.appendChild(stage);
+    var tag = document.createElement("div"); tag.className = "dir-dirtag"; tag.textContent = dir;
+    cell.appendChild(tag);
+    return cell;
+  }
+  function dirGroup(type, size){
+    var g = document.createElement("div"); g.className = "dir-grp";
+    var nm = document.createElement("div"); nm.className = "dir-grp-name"; nm.textContent = (META[type] ? META[type].kr : type);
+    g.appendChild(nm);
+    var row = document.createElement("div"); row.className = "dir-row";
+    DIRS.forEach(function(dir){ row.appendChild(dirCell(type, dir, size)); });
+    g.appendChild(row); return g;
+  }
+  function dirPanel(letter, name, desc){
+    var p = document.createElement("div"); p.className = "dir-panel";
+    p.innerHTML = '<div class="dir-panel-head"><span class="dir-panel-k">'+letter+'</span><span class="dir-panel-name">'+name+'</span></div>' + (desc ? '<div class="dir-panel-desc">'+desc+'</div>' : "");
+    return p;
+  }
+
+  function buildDirectionalShowcase(){
+    var root = document.getElementById("dir-showcase");
+    if(!root) return;
+    root.innerHTML = "";
+    var wrap = document.createElement("div"); wrap.className = "dir-wrap";
+    var intro = '<div class="dir-head"><span class="dir-eyebrow">SHELF 09</span><span class="dir-title">Directional Facing Showcase · 4방향 기본형</span></div>';
+    intro += '<p class="dir-lede"><b>front / back / left / right 정지 포즈 후보</b> 전시 — 이동·공격 게임이 아니라 방향 자산의 가능성 확인용. front는 기존 정면 배우, back/left/right는 09 전용 간단 실루엣(right = left 미러).</p>';
+    wrap.innerHTML = intro;
+
+    var pA = dirPanel("A","4방향 기본 비교","기본 배우 1명(전사)을 front/back/left/right로 — 방향 차이가 한눈에 보이는지.");
+    pA.appendChild(dirGroup("warrior")); wrap.appendChild(pA);
+
+    var pB = dirPanel("B","직업 4방향 샘플","무기/망토/오라가 있는 직업도 방향별 실루엣이 버티는지 — "+DIR_SAMPLE.length+"직업.");
+    DIR_SAMPLE.forEach(function(s){ pB.appendChild(dirGroup(s.type)); }); wrap.appendChild(pB);
+
+    var pC = dirPanel("C","좌우 미러 확인","left ↔ right(미러)가 어색하지 않은지 — 무기/방패/몸통 방향만 읽히면 충분(완벽한 공격 포즈 아님).");
+    var rowC = document.createElement("div"); rowC.className = "dir-row";
+    ["warrior","archer","paladin"].forEach(function(t){ ["left","right"].forEach(function(dir){ rowC.appendChild(dirCell(t, dir, "m")); }); });
+    pC.appendChild(rowC); wrap.appendChild(pC);
+
+    var pD = dirPanel("D","작은 사이즈 방향 (S)","행렬RPG/작은 전장에서 방향성이 보이는지 — S 크기 4방향.");
+    pD.appendChild(dirGroup("warrior","s")); pD.appendChild(dirGroup("mage","s")); wrap.appendChild(pD);
+
+    var pE = dirPanel("E","이식 메모","");
+    var note = document.createElement("div"); note.className = "dir-note";
+    note.innerHTML = '<b>방향형 자산 후보 안내</b><ul>'
+      + '<li>필드 이동 게임은 front/back/left/right <b>정지형부터</b> 이식.</li>'
+      + '<li>좌우 <b>공격 모션</b>은 다음 단계(Directional Action Lab 02).</li>'
+      + '<li>쿼터뷰/탑뷰는 <b>별도 진열대</b>(10·11).</li>'
+      + '<li>현재 09 = 방향형 <b>정지 포즈 후보</b> — front만 실제 배우, 나머지는 후보 실루엣.</li></ul>';
+    pE.appendChild(note); wrap.appendChild(pE);
+
+    root.appendChild(wrap);
+  }
+
+  /* =========================================================================
+     [구역 10] QUARTER VIEW SHOWCASE (JS) — 진열대 10 활성화
+     · front = 기존 previewParts(정면 배우, 미접촉). quarter-right/left = 10 전용 비스듬 실루엣.
+     · quarter-left = quarter-right 미러(CSS). DIR_SKIN/DIR_HAIR/DIR_LINE·dirKind 재사용.
+     · 새 공개 API 0 · PART 좌표/03R 미감/정면 렌더/08·09 쇼케이스 미접촉 · 외부 참조 0.
+     ========================================================================= */
+  var QV_VIEWS = ["front","quarter-right","quarter-left"];
+  var QV_SAMPLE = [
+    { type:"warrior",     cloth:"#8a7a5c" },
+    { type:"archer",      cloth:"#5f7050" },
+    { type:"priest",      cloth:"#d9cfb4" },
+    { type:"mage",        cloth:"#4f4470" },
+    { type:"paladin",     cloth:"#c6cad6" },
+    { type:"gravekeeper", cloth:"#39324f" }
+  ];
+  function qvDesc(type){ for(var i=0;i<QV_SAMPLE.length;i++){ if(QV_SAMPLE[i].type===type) return QV_SAMPLE[i]; } return { type:type, cloth:"#6b5f48" }; }
+
+  /* 쿼터뷰(오른쪽-앞을 봄): 비스듬 몸통 + 깊이 그림자 + 앞쪽 어깨/무기 + 단순 얼굴 */
+  function qvActorSvg(cloth, kind, accent){
+    var fwd = "", behind = "";
+    if(kind === "halo") behind += '<circle cx="58" cy="40" r="22" fill="none" stroke="'+accent+'" stroke-width="3" opacity=".9"/>';
+    if(kind === "staff" || kind === "halo"){
+      fwd += '<line x1="84" y1="120" x2="93" y2="30" stroke="#7c5c3c" stroke-width="4.5" stroke-linecap="round"/>';
+      if(kind === "staff") fwd += '<circle cx="94" cy="28" r="6.5" fill="'+accent+'"/>';
+    }
+    if(kind === "bow"){
+      fwd += '<path d="M86 56 Q100 90 86 124" fill="none" stroke="'+accent+'" stroke-width="3.5" stroke-linecap="round"/><line x1="86" y1="56" x2="86" y2="124" stroke="#e8dcc0" stroke-width="1.5" opacity=".85"/>';
+    }
+    if(kind === "sword"){
+      fwd += '<line x1="80" y1="98" x2="104" y2="82" stroke="'+accent+'" stroke-width="4.5" stroke-linecap="round"/><line x1="78" y1="102" x2="85" y2="92" stroke="#7c5c3c" stroke-width="4" stroke-linecap="round"/>';
+    }
+    if(kind === "shield"){
+      fwd += '<path d="M78 80 q15 -6 23 6 q3 16 -7 25 q-15 -4 -18 -16 q0 -11 2 -15 z" fill="'+cloth+'" stroke="'+DIR_LINE+'" stroke-width="2.4"/><path d="M89 86 v21 M78 97 h22" stroke="'+accent+'" stroke-width="2.2" opacity=".9"/>';
+    }
+    return '<svg viewBox="0 0 120 160" aria-hidden="true">'
+      + behind
+      + '<ellipse cx="64" cy="151" rx="27" ry="6.5" fill="#0c0a16" opacity=".5"/>'                                              // 깊이 그림자(오른쪽-앞)
+      + '<rect x="43" y="118" width="11" height="30" rx="5" fill="#2c2740" stroke="'+DIR_LINE+'" stroke-width="2" transform="rotate(-3 48 132)"/>'   // 먼 다리(뒤-왼)
+      + '<rect x="60" y="120" width="12" height="30" rx="5" fill="#34314f" stroke="'+DIR_LINE+'" stroke-width="2" transform="rotate(5 66 134)"/>'    // 앞 다리(앞-오른)
+      + '<ellipse cx="48" cy="149" rx="8" ry="4" fill="#1b1730"/><ellipse cx="67" cy="150" rx="9.5" ry="4.2" fill="#1b1730"/>'
+      + '<path d="M42 74 q22 -11 38 1 l5 44 q-25 9 -47 0 z" fill="'+cloth+'" stroke="'+DIR_LINE+'" stroke-width="2.6"/>'          // 비스듬 몸통(오른쪽 더 큼)
+      + '<line x1="58" y1="76" x2="62" y2="116" stroke="'+DIR_LINE+'" stroke-width="1.4" opacity=".4"/>'                         // 살짝 옆 중심선
+      + '<path d="M40 76 q-6 16 -2 31 l8 -2 l-2 -30 z" fill="'+cloth+'" stroke="'+DIR_LINE+'" stroke-width="2.2" opacity=".96"/>' // 먼 팔(뒤)
+      + '<path d="M80 76 q10 16 6 34 l-10 -2 l1 -33 z" fill="'+cloth+'" stroke="'+DIR_LINE+'" stroke-width="2.2"/>'               // 앞 팔(앞)
+      + '<circle cx="43" cy="110" r="5" fill="'+DIR_SKIN+'" stroke="'+DIR_LINE+'" stroke-width="1.8"/>'                          // 먼 손
+      + '<circle cx="80" cy="110" r="5.5" fill="'+DIR_SKIN+'" stroke="'+DIR_LINE+'" stroke-width="2"/>'                          // 앞 손
+      + '<circle cx="58" cy="46" r="22" fill="'+DIR_SKIN+'" stroke="'+DIR_LINE+'" stroke-width="2.6"/>'                          // 머리(살짝 오른쪽)
+      + '<path d="M36 46 q4 -28 26 -27 q20 1 22 16 q-10 -10 -24 -9 q-18 1 -22 20 z" fill="'+DIR_HAIR+'" stroke="'+DIR_LINE+'" stroke-width="2.2"/>' // 머리카락(위+먼쪽)
+      + '<circle cx="63" cy="46" r="2" fill="'+DIR_LINE+'"/><circle cx="53" cy="47" r="1.5" fill="'+DIR_LINE+'" opacity=".75"/>' // 단순 두 눈(오른쪽 치우침)
+      + fwd + '</svg>';
+  }
+
+  function qvCell(type, view, size){
+    var cell = document.createElement("div"); cell.className = "qv-cell qv-cell--" + (size || "m");
+    var stage = document.createElement("div"); stage.className = "qv-stage";
+    var fig = document.createElement("div"); fig.className = "qv-fig" + (view === "quarter-left" ? " qv-fig--mir" : "");
+    if(view === "front"){
+      fig.appendChild(AK.previewParts(META[type].parts, META[type].gender));
+    } else {
+      var k = dirKind(type), d = qvDesc(type);
+      fig.innerHTML = qvActorSvg(d.cloth, k.kind, k.accent);   // quarter-right; left는 미러 클래스로 처리
+    }
+    stage.appendChild(fig); cell.appendChild(stage);
+    var tag = document.createElement("div"); tag.className = "qv-dirtag"; tag.textContent = (view === "quarter-right" ? "Q-RIGHT" : view === "quarter-left" ? "Q-LEFT" : "front");
+    cell.appendChild(tag);
+    return cell;
+  }
+  function qvGroup(type, size){
+    var g = document.createElement("div"); g.className = "qv-grp";
+    var nm = document.createElement("div"); nm.className = "qv-grp-name"; nm.textContent = (META[type] ? META[type].kr : type);
+    g.appendChild(nm);
+    var row = document.createElement("div"); row.className = "qv-row";
+    QV_VIEWS.forEach(function(view){ row.appendChild(qvCell(type, view, size)); });
+    g.appendChild(row); return g;
+  }
+  function qvPanel(letter, name, desc){
+    var p = document.createElement("div"); p.className = "qv-panel";
+    p.innerHTML = '<div class="qv-panel-head"><span class="qv-panel-k">'+letter+'</span><span class="qv-panel-name">'+name+'</span></div>' + (desc ? '<div class="qv-panel-desc">'+desc+'</div>' : "");
+    return p;
+  }
+
+  function buildQuarterViewShowcase(){
+    var root = document.getElementById("qv-showcase");
+    if(!root) return;
+    root.innerHTML = "";
+    var wrap = document.createElement("div"); wrap.className = "qv-wrap";
+    var intro = '<div class="qv-head"><span class="qv-eyebrow">SHELF 10</span><span class="qv-title">Quarter View Showcase · 쿼터뷰 기본형</span></div>';
+    intro += '<p class="qv-lede"><b>살짝 비스듬히 보는 전장형 후보</b> 전시 — 쿼터뷰 게임이 아니라 오토배틀러/전략형에 쓸 수 있을지 가능성 확인용. front는 기존 정면 배우, quarter-right/left는 10 전용 후보(left = right 미러).</p>';
+    wrap.innerHTML = intro;
+
+    var pA = qvPanel("A","정면 vs 쿼터뷰 비교","전사 1명을 front / quarter-right / quarter-left로 — 정면 SD와 쿼터뷰 후보의 차이가 보이는지.");
+    pA.appendChild(qvGroup("warrior")); wrap.appendChild(pA);
+
+    var pB = qvPanel("B","직업 쿼터뷰 샘플","검/활/지팡이/방패/오라/묘지기 실루엣이 쿼터뷰에서도 버티는지 — "+QV_SAMPLE.length+"직업.");
+    QV_SAMPLE.forEach(function(s){ pB.appendChild(qvGroup(s.type)); }); wrap.appendChild(pB);
+
+    var pC = qvPanel("C","쿼터뷰 전장 배치 감각","작은 배우를 비스듬히 2열로 올린 정적 전시 — 오토배틀러/전략형 배치 느낌(ActorGridAdapter 미사용·전투/이동 없음).");
+    var field = document.createElement("div"); field.className = "qv-field";
+    var fieldJobs = ["warrior","paladin","archer","mage","priest","gravekeeper"];
+    var r1 = document.createElement("div"); r1.className = "qv-field-row";
+    var r2 = document.createElement("div"); r2.className = "qv-field-row";
+    fieldJobs.forEach(function(t, idx){ (idx < 3 ? r1 : r2).appendChild(qvCell(t, "quarter-right", "s")); });
+    field.appendChild(r1); field.appendChild(r2); pC.appendChild(field);
+    var fcap = document.createElement("div"); fcap.className = "qv-field-cap"; fcap.textContent = "정적 전시 · 6유닛 2열 · 라이브 3×3은 진열대 05 참고.";
+    pC.appendChild(fcap); wrap.appendChild(pC);
+
+    var pD = qvPanel("D","크기 비교 (M/S)","쿼터뷰가 작은 전장에서도 읽히는지 — M/S 크기(08의 크기 감각과 연결).");
+    var rowD = document.createElement("div"); rowD.className = "qv-row";
+    rowD.appendChild(qvCell("warrior","quarter-right","m")); rowD.appendChild(qvCell("warrior","quarter-right","s"));
+    rowD.appendChild(qvCell("mage","quarter-right","m"));    rowD.appendChild(qvCell("mage","quarter-right","s"));
+    pD.appendChild(rowD); wrap.appendChild(pD);
+
+    var pE = qvPanel("E","이식 메모","");
+    var note = document.createElement("div"); note.className = "qv-note";
+    note.innerHTML = '<b>쿼터뷰 자산 후보 안내</b><ul>'
+      + '<li>오토배틀러/전략형은 진열대 10번 <b>쿼터뷰 후보</b>를 참고해 이식.</li>'
+      + '<li>정식 <b>이동/공격 모션</b>은 다음 단계(Quarter View Action Lab 02).</li>'
+      + '<li>탑뷰는 <b>별도 진열대</b>(11).</li>'
+      + '<li>현재 10 = 쿼터뷰 <b>정지 포즈 후보</b> — front만 실제 배우, quarter는 후보 실루엣.</li></ul>';
+    pE.appendChild(note); wrap.appendChild(pE);
+
+    root.appendChild(wrap);
+  }
+
+  /* =========================================================================
+     [구역 11] TOP VIEW TOKEN SHOWCASE (JS) — 진열대 11 활성화
+     · front = 기존 previewParts(정면 배우, 미접촉). 토큰 = 11 전용 위에서 내려본 말/마커.
+     · 직업 = 링 색 + 북쪽 심볼. DIR_SKIN/DIR_LINE 재사용. 새 공개 API 0 · 좌표/정면 렌더 미접촉.
+     ========================================================================= */
+  var TV_SAMPLE = [
+    { type:"warrior",     ring:"#bf5560", sym:"sword",   accent:"#e6bcc0" },
+    { type:"archer",      ring:"#7d9456", sym:"bow",     accent:"#d2e2a6" },
+    { type:"priest",      ring:"#e7c873", sym:"cross",   accent:"#f4e8c4" },
+    { type:"mage",        ring:"#9b7fd0", sym:"star",    accent:"#dccaf2" },
+    { type:"paladin",     ring:"#e7c873", sym:"shield",  accent:"#f4e8c4" },
+    { type:"gravekeeper", ring:"#8a8298", sym:"grave",   accent:"#d3cdda" },
+    { type:"berserker",   ring:"#a8444f", sym:"horn",    accent:"#e6acb1" },
+    { type:"frostwitch",  ring:"#7fc6e0", sym:"ice",     accent:"#d2f0fa" },
+    { type:"necromancer", ring:"#6f6685", sym:"skull",   accent:"#d3cdda" },
+    { type:"puppeteer",   ring:"#c08aa6", sym:"diamond", accent:"#eecbde" }
+  ];
+  var TV_SIZES = [
+    { k:"m",  kr:"T-M",  px:64, use:"전술 보드" },
+    { k:"s",  kr:"T-S",  px:46, use:"미니맵/작은 보드" },
+    { k:"xs", kr:"T-XS", px:30, use:"UI 마커/목록" }
+  ];
+  var TV_TEAMS = [
+    { k:"ally",  kr:"ALLY",  ring:"#6cc6d8" },
+    { k:"enemy", kr:"ENEMY", ring:"#bf5560" },
+    { k:"elite", kr:"ELITE", ring:"#e7c873", elite:true }
+  ];
+  var TV_MAP = [
+    "warrior", null, null, "archer", null,
+    null, null, "mage", null, null,
+    null, "priest", null, null, "paladin",
+    null, null, null, "necromancer", null,
+    "frostwitch", null, "berserker", null, null
+  ];
+  function tvDesc(type){ for(var i=0;i<TV_SAMPLE.length;i++){ if(TV_SAMPLE[i].type===type) return TV_SAMPLE[i]; } return { type:type, ring:"#8a8298", sym:"diamond", accent:"#cfc9d6" }; }
+
+  /* 북쪽(정면) 심볼 — 직업 구분용 작은 기호 */
+  function tvSymbol(sym, a){
+    switch(sym){
+      case "sword":  return '<line x1="50" y1="34" x2="50" y2="12" stroke="'+a+'" stroke-width="3.5" stroke-linecap="round"/><line x1="44" y1="20" x2="56" y2="20" stroke="'+a+'" stroke-width="3" stroke-linecap="round"/>';
+      case "bow":    return '<path d="M41 13 Q57 23 41 33" fill="none" stroke="'+a+'" stroke-width="3" stroke-linecap="round"/><line x1="41" y1="13" x2="41" y2="33" stroke="#e8dcc0" stroke-width="1.4"/>';
+      case "cross":  return '<line x1="50" y1="11" x2="50" y2="31" stroke="'+a+'" stroke-width="3.6" stroke-linecap="round"/><line x1="42" y1="18" x2="58" y2="18" stroke="'+a+'" stroke-width="3.6" stroke-linecap="round"/>';
+      case "star":   return '<path d="M50 11 l2.6 7.5 l8 .4 l-6.2 5 l2.2 7.7 l-6.6 -4.4 l-6.6 4.4 l2.2 -7.7 l-6.2 -5 l8 -.4 z" fill="'+a+'"/>';
+      case "shield": return '<path d="M50 11 q8 3 11 5 v7 q0 8 -11 12 q-11 -4 -11 -12 v-7 q3 -2 11 -5 z" fill="none" stroke="'+a+'" stroke-width="3"/>';
+      case "grave":  return '<path d="M43 32 v-11 q0 -8 7 -8 q7 0 7 8 v11 z" fill="none" stroke="'+a+'" stroke-width="3"/><line x1="50" y1="18" x2="50" y2="27" stroke="'+a+'" stroke-width="2"/><line x1="46" y1="21" x2="54" y2="21" stroke="'+a+'" stroke-width="2"/>';
+      case "horn":   return '<path d="M45 30 q-5 -13 3 -18" fill="none" stroke="'+a+'" stroke-width="3" stroke-linecap="round"/><path d="M55 30 q5 -13 -3 -18" fill="none" stroke="'+a+'" stroke-width="3" stroke-linecap="round"/>';
+      case "ice":    return '<g stroke="'+a+'" stroke-width="2.6" stroke-linecap="round"><line x1="50" y1="10" x2="50" y2="34"/><line x1="40" y1="16" x2="60" y2="28"/><line x1="60" y1="16" x2="40" y2="28"/></g>';
+      case "skull":  return '<circle cx="50" cy="22" r="9" fill="#e6e0ea" stroke="'+a+'" stroke-width="1.5"/><circle cx="46.5" cy="21" r="2" fill="#1c1830"/><circle cx="53.5" cy="21" r="2" fill="#1c1830"/><rect x="47" y="28" width="6" height="4" rx="1" fill="#e6e0ea"/>';
+      default:       return '<path d="M50 11 l10 12 l-10 12 l-10 -12 z" fill="none" stroke="'+a+'" stroke-width="3"/>';  // diamond
+    }
+  }
+
+  /* 위에서 내려본 토큰: 그림자 + 베이스 디스크(팀/직업 링) + 어깨/머리 + 북쪽 심볼 */
+  function tvTokenSvg(ring, sym, accent, elite){
+    return '<svg viewBox="0 0 100 100" aria-hidden="true">'
+      + '<ellipse cx="50" cy="61" rx="40" ry="28" fill="#0c0a16" opacity=".32"/>'
+      + '<ellipse cx="50" cy="54" rx="38" ry="27" fill="#1b1830" stroke="'+ring+'" stroke-width="4.5"/>'
+      + (elite ? '<ellipse cx="50" cy="54" rx="33" ry="23.5" fill="none" stroke="'+ring+'" stroke-width="2" opacity=".85"/>' : '')
+      + '<ellipse cx="50" cy="52" rx="29" ry="20" fill="none" stroke="'+ring+'" stroke-width="1.4" opacity=".4"/>'
+      + '<ellipse cx="50" cy="50" rx="15" ry="12" fill="#3a3252" stroke="'+DIR_LINE+'" stroke-width="2"/>'
+      + '<circle cx="50" cy="46" r="8.5" fill="'+DIR_SKIN+'" stroke="'+DIR_LINE+'" stroke-width="2"/>'
+      + tvSymbol(sym, accent)
+      + '</svg>';
+  }
+
+  function tvTokenCell(type, size, ringOverride, elite, cap){
+    var d = tvDesc(type);
+    var cell = document.createElement("div"); cell.className = "tv-cell tv-cell--" + (size || "m");
+    var stage = document.createElement("div"); stage.className = "tv-stage";
+    var fig = document.createElement("div"); fig.className = "tv-fig";
+    fig.innerHTML = tvTokenSvg(ringOverride || d.ring, d.sym, d.accent, elite);
+    stage.appendChild(fig); cell.appendChild(stage);
+    var c = document.createElement("div"); c.className = "tv-cap"; c.innerHTML = cap || (META[type] ? META[type].kr : type);
+    cell.appendChild(c);
+    return cell;
+  }
+  function tvFrontCell(type){
+    var cell = document.createElement("div"); cell.className = "tv-cell tv-cell--m tv-cell--fig";
+    var stage = document.createElement("div"); stage.className = "tv-stage";
+    var fig = document.createElement("div"); fig.className = "tv-fig";
+    fig.appendChild(AK.previewParts(META[type].parts, META[type].gender));
+    stage.appendChild(fig); cell.appendChild(stage);
+    var c = document.createElement("div"); c.className = "tv-cap"; c.textContent = "정면 SD";
+    cell.appendChild(c);
+    return cell;
+  }
+  function tvGroup(type){
+    var g = document.createElement("div"); g.className = "tv-grp";
+    var nm = document.createElement("div"); nm.className = "tv-grp-name"; nm.textContent = (META[type] ? META[type].kr : type);
+    g.appendChild(nm);
+    var row = document.createElement("div"); row.className = "tv-row";
+    row.appendChild(tvFrontCell(type));
+    row.appendChild(tvTokenCell(type, "m", null, false, "탑뷰 토큰"));
+    g.appendChild(row); return g;
+  }
+  function tvPanel(letter, name, desc){
+    var p = document.createElement("div"); p.className = "tv-panel";
+    p.innerHTML = '<div class="tv-panel-head"><span class="tv-panel-k">'+letter+'</span><span class="tv-panel-name">'+name+'</span></div>' + (desc ? '<div class="tv-panel-desc">'+desc+'</div>' : "");
+    return p;
+  }
+
+  function buildTopViewShowcase(){
+    var root = document.getElementById("tv-showcase");
+    if(!root) return;
+    root.innerHTML = "";
+    var wrap = document.createElement("div"); wrap.className = "tv-wrap";
+    var intro = '<div class="tv-head"><span class="tv-eyebrow">SHELF 11</span><span class="tv-title">Top View Token Showcase · 탑뷰 토큰형</span></div>';
+    intro += '<p class="tv-lede"><b>위에서 내려본 토큰/말 후보</b> 전시 — 탑뷰 게임이 아니라 미니맵/보드/퍼즐/탐험에 쓸 말 마커의 가능성 확인용. 정면 SD는 기존 배우, 토큰은 11 전용 후보(링 색 + 심볼로 직업 구분).</p>';
+    wrap.innerHTML = intro;
+
+    var pA = tvPanel("A","정면 SD vs 탑뷰 토큰","‘캐릭터’와 ‘토큰/말’의 차이가 한눈에 보이는지 — 전사·궁수·사제.");
+    ["warrior","archer","priest"].forEach(function(t){ pA.appendChild(tvGroup(t)); }); wrap.appendChild(pA);
+
+    var pB = tvPanel("B","직업 토큰 샘플","작은 토큰에서도 직업 차이가 최소한 읽히는지 — "+TV_SAMPLE.length+"직업(링 색 + 심볼).");
+    var rowB = document.createElement("div"); rowB.className = "tv-row";
+    TV_SAMPLE.forEach(function(s){ rowB.appendChild(tvTokenCell(s.type, "m")); });
+    pB.appendChild(rowB); wrap.appendChild(pB);
+
+    var pC = tvPanel("C","보드/맵 배치 감각","토큰을 5×5 맵에 올린 정적 전시 — 미니맵/보드에서 읽히는지(이동/스왑/전투 로직 없음).");
+    var map = document.createElement("div"); map.className = "tv-map";
+    TV_MAP.forEach(function(t){
+      var mc = document.createElement("div"); mc.className = "tv-mapcell" + (t ? "" : " is-empty");
+      if(t){ var d = tvDesc(t); mc.innerHTML = tvTokenSvg(d.ring, d.sym, d.accent, false); }
+      map.appendChild(mc);
+    });
+    pC.appendChild(map);
+    var mapFilled = TV_MAP.filter(function(x){ return !!x; }).length;
+    var mcap = document.createElement("div"); mcap.className = "tv-map-cap"; mcap.textContent = "정적 전시 · " + mapFilled + "유닛 / 25칸(5×5) · 라이브 보드 아님(이동/전투 없음).";
+    pC.appendChild(mcap); wrap.appendChild(pC);
+
+    var pD = tvPanel("D","토큰 크기 비교","토큰은 어느 크기까지 읽히는지 — 3단계.");
+    var rowD = document.createElement("div"); rowD.className = "tv-row";
+    TV_SIZES.forEach(function(z){ rowD.appendChild(tvTokenCell("warrior", z.k, null, false, "<b>"+z.kr+"</b> · "+z.use)); });
+    pD.appendChild(rowD); wrap.appendChild(pD);
+
+    var pE = tvPanel("E","팀/적 구분","같은 직업 토큰을 소속 링으로 구분(전투 아님) — 보드에서 아군/적/정예 표시 가능한지.");
+    var rowE = document.createElement("div"); rowE.className = "tv-row";
+    TV_TEAMS.forEach(function(tm){ rowE.appendChild(tvTokenCell("paladin", "m", tm.ring, !!tm.elite, "<b>"+tm.kr+"</b>")); });
+    pE.appendChild(rowE); wrap.appendChild(pE);
+
+    var pF = tvPanel("F","이식 메모","");
+    var note = document.createElement("div"); note.className = "tv-note";
+    note.innerHTML = '<b>탑뷰 토큰 자산 후보 안내</b><ul>'
+      + '<li>미니맵/보드/탐험형은 진열대 11번 <b>탑뷰 토큰</b>을 참고해 이식.</li>'
+      + '<li>정식 <b>이동/탐험 시스템</b>은 다음 단계(Top View Movement Lab 02).</li>'
+      + '<li>쿼터뷰는 <b>별도 진열대</b>(10).</li>'
+      + '<li>현재 11 = 탑뷰 <b>토큰 후보</b> — 정면만 실제 배우, 토큰은 후보 마커.</li></ul>';
+    pF.appendChild(note); wrap.appendChild(pF);
+
+    root.appendChild(wrap);
+  }
+
+  /* =========================================================================
+     [구역 12] PIECE / MARKER SHOWCASE (JS) — 진열대 12 활성화 (마지막 PLANNED)
+     · "말" = 보드게임 piece/marker(동물 아님). 11 직업 토큰보다 추상 — 모양+색+심볼로 의미.
+     · front = 기존 previewParts(미접촉). 토큰 = 11 tvTokenSvg 재사용. 말 = 12 전용 markerSvg.
+     · 새 공개 API 0 · PART 좌표/정면 렌더/08~11 쇼케이스 미접촉 · 외부 참조/복붙 0.
+     ========================================================================= */
+  var MARKER_SAMPLE = [
+    { key:"pawn",    kr:"기본 말", base:"pawn",   glyph:"",         color:"#a99fb6" },
+    { key:"attack",  kr:"공격",   base:"disc",   glyph:"sword",    color:"#bf5560" },
+    { key:"defense", kr:"방어",   base:"shield", glyph:"",         color:"#6c9bd8" },
+    { key:"ranged",  kr:"원거리", base:"disc",   glyph:"bow",      color:"#9bbf56" },
+    { key:"heal",    kr:"회복",   base:"disc",   glyph:"cross",    color:"#bfe0a0" },
+    { key:"magic",   kr:"마법",   base:"disc",   glyph:"star",     color:"#9b7fd0" },
+    { key:"danger",  kr:"위험",   base:"disc",   glyph:"skull",    color:"#8a8298" },
+    { key:"boss",    kr:"보스",   base:"disc",   glyph:"crown",    color:"#e7c873", ring2:true },
+    { key:"goal",    kr:"목표",   base:"flag",   glyph:"",         color:"#e7c873" },
+    { key:"camp",    kr:"쉼터",   base:"disc",   glyph:"camp",     color:"#d08a5a" },
+    { key:"reward",  kr:"보상",   base:"chest",  glyph:"",         color:"#e7c873" },
+    { key:"door",    kr:"문",     base:"portal", glyph:"",         color:"#7fc6e0" },
+    { key:"trap",    kr:"함정",   base:"tri",    glyph:"trap",     color:"#c79a40" },
+    { key:"unknown", kr:"미확인", base:"disc",   glyph:"question", color:"#a99fb6" }
+  ];
+  var PIECE_SIZES = [
+    { k:"m",  kr:"P-M",  use:"전술 보드" },
+    { k:"s",  kr:"P-S",  use:"퍼즐/작은 보드" },
+    { k:"xs", kr:"P-XS", use:"UI 마커/목록/미니맵" }
+  ];
+  var PIECE_STATES = [
+    { k:"ally",     kr:"ALLY",     ring:"#6cc6d8" },
+    { k:"enemy",    kr:"ENEMY",    ring:"#bf5560" },
+    { k:"elite",    kr:"ELITE",    ring:"#e7c873", ring2:true },
+    { k:"boss",     kr:"BOSS",     ring:"#bf5560", ring2:true },
+    { k:"selected", kr:"SELECTED", ring:"#f3ecda", dash:true },
+    { k:"disabled", kr:"DISABLED", ring:"#4b4068", dim:true },
+    { k:"warning",  kr:"WARNING",  ring:"#e0a83a" }
+  ];
+  var PIECE_GENRES = [
+    { name:"퍼즐 게임",  keys:["goal","door","trap","reward"] },
+    { name:"전술 보드",  keys:["attack","defense","boss","danger"] },
+    { name:"탐험 맵",    keys:["camp","reward","danger","unknown"] },
+    { name:"행렬RPG",    keys:["attack","heal","danger"] }
+  ];
+  var PIECE_BOARD = [
+    "goal", null, null, "danger", null,
+    null, "trap", null, null, "reward",
+    null, null, "attack", null, null,
+    "camp", null, null, "door", null,
+    null, "unknown", null, null, null
+  ];
+  function markerByKey(key){ for(var i=0;i<MARKER_SAMPLE.length;i++){ if(MARKER_SAMPLE[i].key===key) return MARKER_SAMPLE[i]; } return MARKER_SAMPLE[0]; }
+
+  function pieceBase(base, fill, stroke){
+    switch(base){
+      case "shield": return '<path d="M50 22 q18 5 24 10 v17 q0 20 -24 29 q-24 -9 -24 -29 v-17 q6 -5 24 -10 z" fill="#1b1830" stroke="'+stroke+'" stroke-width="4.5"/><path d="M50 30 v40 M30 44 h40" stroke="'+fill+'" stroke-width="2" opacity=".45"/>';
+      case "flag":   return '<ellipse cx="40" cy="80" rx="15" ry="5" fill="#1b1830" opacity=".6"/><line x1="38" y1="20" x2="38" y2="80" stroke="#6b6477" stroke-width="4" stroke-linecap="round"/><path d="M38 23 l34 9 l-34 13 z" fill="'+fill+'" stroke="'+stroke+'" stroke-width="2.5" stroke-linejoin="round"/>';
+      case "chest":  return '<rect x="25" y="46" width="50" height="30" rx="4" fill="#1b1830" stroke="'+stroke+'" stroke-width="4"/><path d="M25 50 q25 -18 50 0 v2 h-50 z" fill="#2a2440" stroke="'+stroke+'" stroke-width="4"/><rect x="44" y="52" width="12" height="13" rx="2" fill="'+fill+'"/><circle cx="50" cy="59" r="2.4" fill="#1b1830"/>';
+      case "portal": return '<ellipse cx="50" cy="51" rx="26" ry="33" fill="none" stroke="'+stroke+'" stroke-width="5"/><ellipse cx="50" cy="51" rx="15" ry="22" fill="#0c0a16" stroke="'+fill+'" stroke-width="1.6" opacity=".85"/>';
+      case "tri":    return '<path d="M50 20 l31 53 h-62 z" fill="#1b1830" stroke="'+stroke+'" stroke-width="4.5" stroke-linejoin="round"/>';
+      case "pawn":   return '<ellipse cx="50" cy="76" rx="20" ry="6" fill="#1b1830" stroke="'+stroke+'" stroke-width="2"/><path d="M42 44 q-2 -10 8 -10 q10 0 8 10 q7 7 5 26 h-26 q-2 -19 5 -26 z" fill="#2a2440" stroke="'+stroke+'" stroke-width="4"/><circle cx="50" cy="34" r="9" fill="'+fill+'" stroke="'+stroke+'" stroke-width="3"/>';
+      default:       return '<circle cx="50" cy="50" r="30" fill="#1b1830" stroke="'+stroke+'" stroke-width="4.5"/><circle cx="50" cy="50" r="23" fill="none" stroke="'+fill+'" stroke-width="1.4" opacity=".4"/>';  // disc
+    }
+  }
+  function pieceGlyph(glyph, a){
+    switch(glyph){
+      case "sword":    return '<line x1="50" y1="62" x2="50" y2="34" stroke="'+a+'" stroke-width="4" stroke-linecap="round"/><line x1="42" y1="42" x2="58" y2="42" stroke="'+a+'" stroke-width="3.5" stroke-linecap="round"/><circle cx="50" cy="64" r="2.4" fill="'+a+'"/>';
+      case "bow":      return '<path d="M40 36 Q58 50 40 64" fill="none" stroke="'+a+'" stroke-width="3.5" stroke-linecap="round"/><line x1="40" y1="36" x2="40" y2="64" stroke="'+a+'" stroke-width="1.6"/><line x1="40" y1="50" x2="62" y2="50" stroke="'+a+'" stroke-width="2.6"/>';
+      case "cross":    return '<line x1="50" y1="34" x2="50" y2="64" stroke="'+a+'" stroke-width="5" stroke-linecap="round"/><line x1="38" y1="48" x2="62" y2="48" stroke="'+a+'" stroke-width="5" stroke-linecap="round"/>';
+      case "star":     return '<path d="M50 33 l4 11 l12 .6 l-9.4 7.6 l3.2 11.6 l-9.8 -6.6 l-9.8 6.6 l3.2 -11.6 l-9.4 -7.6 l12 -.6 z" fill="'+a+'"/>';
+      case "skull":    return '<circle cx="50" cy="46" r="13" fill="'+a+'"/><circle cx="45" cy="45" r="3.2" fill="#1b1830"/><circle cx="55" cy="45" r="3.2" fill="#1b1830"/><rect x="46" y="56" width="8" height="6" rx="1.5" fill="'+a+'"/>';
+      case "crown":    return '<path d="M34 60 l-3 -23 l11 9 l8 -15 l8 15 l11 -9 l-3 23 z" fill="'+a+'" stroke="#1b1830" stroke-width="1.4" stroke-linejoin="round"/>';
+      case "camp":     return '<path d="M50 34 q9 13 0 26 q-9 -13 0 -26 z" fill="'+a+'"/><path d="M50 42 q5 8 0 18 q-5 -10 0 -18 z" fill="#bf5560"/>';
+      case "trap":     return '<line x1="50" y1="40" x2="50" y2="56" stroke="'+a+'" stroke-width="4.5" stroke-linecap="round"/><circle cx="50" cy="64" r="3" fill="'+a+'"/>';
+      case "question": return '<path d="M42 43 q0 -11 9 -11 q9 0 9 9 q0 7 -8 9 v4" fill="none" stroke="'+a+'" stroke-width="4.5" stroke-linecap="round"/><circle cx="51" cy="65" r="3.2" fill="'+a+'"/>';
+      default:         return "";
+    }
+  }
+  /* 보드게임 말/마커: 모양(베이스) + 의미(심볼) + 색. 상태 링/이중 링/점선 옵션. */
+  function markerSvg(m, opts){
+    opts = opts || {};
+    var col = m.color, ring = opts.ring || col;
+    var s = '<svg viewBox="0 0 100 100" class="pmk" aria-hidden="true">';
+    s += '<ellipse cx="50" cy="64" rx="34" ry="20" fill="#0c0a16" opacity=".28"/>';
+    s += pieceBase(m.base, col, ring);
+    if(m.ring2 || opts.ring2) s += '<circle cx="50" cy="50" r="37" fill="none" stroke="'+ring+'" stroke-width="2.4" opacity=".9"/>';
+    if(opts.dash) s += '<circle cx="50" cy="50" r="41" fill="none" stroke="'+ring+'" stroke-width="2.6" stroke-dasharray="5 5" opacity=".95"/>';
+    s += pieceGlyph(m.glyph, "#f3ecda");
+    s += '</svg>';
+    return s;
+  }
+
+  function pieceMarkerCell(key, size, opts, cap){
+    var m = markerByKey(key);
+    var cell = document.createElement("div"); cell.className = "pc-cell pc-cell--" + (size || "m") + ((opts && opts.dim) ? " pc-cell--dim" : "");
+    var stage = document.createElement("div"); stage.className = "pc-stage";
+    var fig = document.createElement("div"); fig.className = "pc-fig";
+    fig.innerHTML = markerSvg(m, opts || {});
+    stage.appendChild(fig); cell.appendChild(stage);
+    var c = document.createElement("div"); c.className = "pc-cap"; c.innerHTML = (cap !== undefined ? cap : m.kr);
+    cell.appendChild(c);
+    return cell;
+  }
+  function pieceFrontCell(type){
+    var cell = document.createElement("div"); cell.className = "pc-cell pc-cell--m pc-cell--fig";
+    var stage = document.createElement("div"); stage.className = "pc-stage";
+    var fig = document.createElement("div"); fig.className = "pc-fig";
+    fig.appendChild(AK.previewParts(META[type].parts, META[type].gender));
+    stage.appendChild(fig); cell.appendChild(stage);
+    var c = document.createElement("div"); c.className = "pc-cap"; c.textContent = "정면 SD";
+    cell.appendChild(c);
+    return cell;
+  }
+  function pieceTokenCell(type){
+    var d = tvDesc(type);   /* 11의 탑뷰 토큰 재사용 */
+    var cell = document.createElement("div"); cell.className = "pc-cell pc-cell--m";
+    var stage = document.createElement("div"); stage.className = "pc-stage";
+    var fig = document.createElement("div"); fig.className = "pc-fig";
+    fig.innerHTML = tvTokenSvg(d.ring, d.sym, d.accent, false);
+    stage.appendChild(fig); cell.appendChild(stage);
+    var c = document.createElement("div"); c.className = "pc-cap"; c.textContent = "탑뷰 토큰";
+    cell.appendChild(c);
+    return cell;
+  }
+  function pcGroup(roleName, type, markerKey){
+    var g = document.createElement("div"); g.className = "pc-grp";
+    var nm = document.createElement("div"); nm.className = "pc-grp-name"; nm.textContent = roleName;
+    g.appendChild(nm);
+    var row = document.createElement("div"); row.className = "pc-row";
+    row.appendChild(pieceFrontCell(type));
+    row.appendChild(pieceTokenCell(type));
+    row.appendChild(pieceMarkerCell(markerKey, "m", null, "말/심볼"));
+    g.appendChild(row); return g;
+  }
+  function pcPanel(letter, name, desc){
+    var p = document.createElement("div"); p.className = "pc-panel";
+    p.innerHTML = '<div class="pc-panel-head"><span class="pc-panel-k">'+letter+'</span><span class="pc-panel-name">'+name+'</span></div>' + (desc ? '<div class="pc-panel-desc">'+desc+'</div>' : "");
+    return p;
+  }
+
+  function buildPieceShowcase(){
+    var root = document.getElementById("piece-showcase");
+    if(!root) return;
+    root.innerHTML = "";
+    var wrap = document.createElement("div"); wrap.className = "pc-wrap";
+    var intro = '<div class="pc-head"><span class="pc-eyebrow">SHELF 12</span><span class="pc-title">Piece / Marker Showcase · 말 · 심볼 · 토큰형</span></div>';
+    intro += '<p class="pc-lede"><b>보드게임 말 / 심볼 / 마커 후보</b> 전시 — 아바타가 필요 없는 화면용 범용 마커. 11의 직업 토큰보다 추상적이고, 캐릭터가 아니라 게임 말/상태/목표 상징물. (여기서 "말"은 동물이 아니라 보드게임 piece.)</p>';
+    wrap.innerHTML = intro;
+
+    var pA = pcPanel("A","아바타 vs 탑뷰 토큰 vs 말","같은 역할을 캐릭터 / 탑뷰 토큰 / 추상 말로 — 세 표현의 차이가 한눈에 보이는지.");
+    pA.appendChild(pcGroup("전사 역할", "warrior", "attack"));
+    pA.appendChild(pcGroup("사제 역할", "priest", "heal"));
+    pA.appendChild(pcGroup("적 역할", "necromancer", "danger"));
+    wrap.appendChild(pA);
+
+    var pB = pcPanel("B","기본 말 카탈로그","장르 불문 바로 꺼내 쓰는 범용 마커 — "+MARKER_SAMPLE.length+"종(모양 + 색 + 심볼).");
+    var rowB = document.createElement("div"); rowB.className = "pc-row";
+    MARKER_SAMPLE.forEach(function(m){ rowB.appendChild(pieceMarkerCell(m.key, "m")); });
+    pB.appendChild(rowB); wrap.appendChild(pB);
+
+    var pC = pcPanel("C","보드 배치 감각","말/심볼을 5×5 보드에 올린 정적 전시 — 퍼즐/전술/보드에서 읽히는지(이동/전투/스왑 없음).");
+    var board = document.createElement("div"); board.className = "pc-board";
+    PIECE_BOARD.forEach(function(k){
+      var bc = document.createElement("div"); bc.className = "pc-bcell" + (k ? "" : " is-empty");
+      if(k) bc.innerHTML = markerSvg(markerByKey(k), {});
+      board.appendChild(bc);
+    });
+    pC.appendChild(board);
+    var bFilled = PIECE_BOARD.filter(function(x){ return !!x; }).length;
+    var bcap = document.createElement("div"); bcap.className = "pc-board-cap"; bcap.textContent = "정적 전시 · " + bFilled + "말 / 25칸(5×5) · 게임 로직 없음(9×9 미구현).";
+    pC.appendChild(bcap); wrap.appendChild(pC);
+
+    var pD = pcPanel("D","상태/소속 변형","같은 말에 상태 링/프레임을 바꿔 — 아군/적/정예/보스/선택/비활성/경고(전투 아님).");
+    var rowD = document.createElement("div"); rowD.className = "pc-row";
+    PIECE_STATES.forEach(function(st){ rowD.appendChild(pieceMarkerCell("pawn", "m", { ring:st.ring, ring2:st.ring2, dash:st.dash, dim:st.dim }, "<b>"+st.kr+"</b>")); });
+    pD.appendChild(rowD); wrap.appendChild(pD);
+
+    var pE = pcPanel("E","크기 비교","말/심볼은 어느 크기까지 읽히는지 — 3단계.");
+    var rowE = document.createElement("div"); rowE.className = "pc-row";
+    PIECE_SIZES.forEach(function(z){ rowE.appendChild(pieceMarkerCell("attack", z.k, null, "<b>"+z.kr+"</b> · "+z.use)); });
+    pE.appendChild(rowE); wrap.appendChild(pE);
+
+    var pF = pcPanel("F","장르별 이식 예시","진열대 12를 어느 게임에 가져갈 수 있는지 — 장르별 추천 말.");
+    PIECE_GENRES.forEach(function(g){
+      var gd = document.createElement("div"); gd.className = "pc-genre";
+      var gn = document.createElement("div"); gn.className = "pc-genre-name"; gn.textContent = g.name;
+      gd.appendChild(gn);
+      var gr = document.createElement("div"); gr.className = "pc-row";
+      g.keys.forEach(function(k){ gr.appendChild(pieceMarkerCell(k, "s")); });
+      gd.appendChild(gr); pF.appendChild(gd);
+    });
+    wrap.appendChild(pF);
+
+    var pG = pcPanel("G","이식 메모","");
+    var note = document.createElement("div"); note.className = "pc-note";
+    note.innerHTML = '<b>말 / 심볼 자산 후보 안내</b><ul>'
+      + '<li>아바타가 필요 없는 화면은 진열대 12번 <b>말/심볼</b>을 참고.</li>'
+      + '<li>정식 <b>보드게임 로직</b>은 다음 단계.</li>'
+      + '<li>진열대 11 = <b>직업 토큰</b>, 진열대 12 = <b>범용 말/마커</b>.</li>'
+      + '<li>현재 12 = 보드게임 <b>말 후보</b> — 과거 자산 복붙 없이 박물관 톤으로 재해석.</li></ul>';
+    pG.appendChild(note); wrap.appendChild(pG);
+
+    root.appendChild(wrap);
+  }
+
+  /* =========================================================================
+     [구역 13] EXPORT / IMPORT READINESS BINDER (JS) — 진열대 13 반출 바인더
+     · 실제 이식/모듈 추출/파일 분리가 아니라 "반출 안내 카드" 정리. 새 자산/룰 0.
+     · 카드 이름/상태는 SHELVES(단일 출처)에서 조회. 요청문 = readonly textarea(클립보드 API·저장 0).
+     ========================================================================= */
+  var EB_READY = {
+    READY:         { kr:"READY",         cls:"ready",   desc:"바로 참고/이식 쉬움" },
+    NEEDS_ADAPTER: { kr:"NEEDS_ADAPTER", cls:"adapter", desc:"자산은 있고 얇은 어댑터 필요" },
+    PROTOTYPE:     { kr:"PROTOTYPE",     cls:"proto",   desc:"가능성 단계 · 정식 이식 전 구체화 필요" }
+  };
+  var EXPORT_CARDS = [
+    { n:"01", ready:"READY", prio:"이식 우선순위 높음", targets:["캐릭터 실험","행렬RPG"],
+      take:["기본 배우 실루엣","03R 정면 피규어 톤","공통 actor frame"],
+      avoid:["조합대/루프/보상 로직 전체"],
+      caution:"코어 렌더만 — 게임 룰은 분리해서 가져가기.",
+      req:"행렬RPG에 진열대 01번 정면 SD 기본형을 배우 베이스로 이식해줘. 가져갈 것은 기본 배우 실루엣·03R 정면 피규어 톤·공통 actor frame이고, 조합대/루프/보상 로직은 가져가지 마." },
+    { n:"02", ready:"READY", prio:"이식 우선순위 높음", targets:["행렬RPG","퍼즐/보드","캐릭터 실험"],
+      take:["PART 95","직업 프리셋 31","파츠 조합 문법"],
+      avoid:["95개 파츠를 한 번에 강제 적용"],
+      caution:"필요한 직업 계열만 선별 이식.",
+      req:"퍼즐RPG에 진열대 02번 직업/파츠형에서 전사·궁수·사제 계열만 우선 이식해줘. 가져갈 것은 해당 직업 프리셋과 파츠 조합 문법이고, 95개 파츠 전체를 한 번에 적용하진 마." },
+    { n:"03", ready:"PROTOTYPE", prio:"이식 우선순위 낮음(연출)", targets:["행렬RPG","퍼즐/보드","오토배틀러"],
+      take:["공격/피격/회복/방어 연출","플로팅/라인 FX 감각"],
+      avoid:["현재 데모 전투룰 전체"],
+      caution:"연출 감각만 — 전투 시스템은 게임 쪽에서 구현.",
+      req:"행렬RPG에 진열대 03번 액션/피격/FX 감각만 가져와서 전투 연출에 붙여줘. 가져갈 것은 공격·피격·회복·방어·플로팅 연출 감각이고, 데모 전투룰 전체는 가져오지 마." },
+    { n:"04", ready:"NEEDS_ADAPTER", prio:"이식 우선순위 중간", targets:["행렬RPG","미니맵/탐험"],
+      take:["M/S/XS 크기 기준","small actor frame","team/state/hp 표현","최소 렌더 계약(MiniActorStub)"],
+      avoid:["쇼케이스 UI 전체","9×9 보드 구현"],
+      caution:"크기 기준 + Mini Stub 계약만 — 얇은 어댑터로 유닛에 연결.",
+      stub:{ anchor:"mini-import-stub", badge:"Mini Stub 준비됨", contract:"입력 계약: type / size / team / state / hpRatio · 출력: 작은 배우 HTML/SVG", sizes:"행렬RPG=S · 전투 강조=M · 미니맵/목록=XS" },
+      req:"행렬RPG에 진열대 04번 S 사이즈 배우를 전투 유닛 크기 기준으로 이식해줘. 가져갈 것은 Small Scale의 S 사이즈 배우 표현이고, 쇼케이스 UI 전체나 9×9 보드 구현은 가져가지 마." },
+    { n:"05", ready:"READY", prio:"이식 우선순위 높음", targets:["행렬RPG","오토배틀러"],
+      take:["3×3 layout","cellToSlot 개념","side/row/col 계약","x/y/scale/z-index 출력","Mini Actor 결합 방식","원근/겹침 감각"],
+      avoid:["9×9 확장","실제 전투룰","이동/스왑 로직"],
+      caution:"3×3 배치 계약만 — 9×9 실동작/전투는 별도 작업.",
+      stub:{ anchor:"grid-import-stub", badge:"Grid Contract 준비됨", contract:"입력: layout/side/row/col/type/size/state · 출력: x/y · scale · z-index · className", sizes:"행렬RPG=3×3 ally/enemy board · 오토배틀러=unit placement layer · 던전 보드=room encounter layout" },
+      req:"행렬RPG에 진열대 05번 3×3 보드 배치형을 이식해줘. 가져갈 것은 ActorGridAdapter·3×3 배치 감각·cellToSlot이고, 9×9 확장이나 실제 전투룰은 가져가지 마." },
+    { n:"06", ready:"READY", prio:"이식 우선순위 높음", targets:["던전 루프","행렬RPG"],
+      take:["보상 카드 레이아웃","rarity/tone/state 체계","장착/획득 시각 문법","오늘의 수확 요약","Reward compact row","최소 렌더 계약(RewardCardStub)"],
+      avoid:["현재 던전 루프 전체 룰","LootLoop 전체","저장 기능"],
+      caution:"보상 연출/문법 + Reward Stub 계약만 — 루프 룰/저장은 분리.",
+      stub:{ anchor:"reward-import-stub", badge:"Reward Stub 준비됨", contract:"입력 계약: id / title / desc / kind / rarity / tone / state / partKey / effectText · 출력: 보상 카드 HTML/SVG", sizes:"던전=normal · 행렬RPG=compact+result · 퍼즐=clear card · 오토배틀러=round card" },
+      req:"던전 루프 게임에 진열대 06번 Reward Card Stub을 이식해줘. 입력은 id/title/desc/kind/rarity/tone/state/partKey/effectText로 받고, 출력은 보상 카드 HTML/SVG로 해줘. 가져갈 것은 카드 레이아웃·선택/장착/획득 상태·오늘의 수확 요약이고, 던전 루프 전체 룰이나 저장 기능은 가져가지 마." },
+    { n:"07", ready:"READY", prio:"이식 우선순위 중간(도구)", targets:["개인공방 도구","캐릭터 실험"],
+      take:["Look Mixer","recipe 출력","랜덤 프리셋","발견 목록 감각"],
+      avoid:["게임 내 필수 UI로 그대로 삽입"],
+      caution:"도구용 — 게임 필수 UI로 강제하지 않기.",
+      req:"개인공방 도구에 진열대 07번 조합대/레시피 발굴형을 참고해서 직업 프리셋 제작기를 만들어줘. 가져갈 것은 Look Mixer·recipe 출력·랜덤 프리셋·발견 목록 감각이고, 게임 내 필수 UI로 그대로 넣진 마." },
+    { n:"08", ready:"READY", prio:"이식 우선순위 중간(도구)", targets:["개인공방 도구"],
+      take:["정렬 모드","dx/dy 수집","가이드선","일괄 목록 출력"],
+      avoid:["브라우저 저장 기능"],
+      caution:"감수/튜닝 도구 — 저장은 외부 의존 없이.",
+      req:"파츠 감수용으로 진열대 08번 정렬/좌표 수집 도구를 이식해줘. 가져갈 것은 정렬 모드·dx/dy 수집·가이드선·일괄 목록 출력이고, 브라우저 저장 기능은 넣지 마." },
+    { n:"09", ready:"PROTOTYPE", prio:"이식 우선순위 낮음", targets:["미니맵/탐험","퍼즐/보드"],
+      take:["front/back/left/right 정지형 후보"],
+      avoid:["이동/공격 시스템으로 오해"],
+      caution:"정지 포즈 후보 — 이동/공격은 게임 쪽에서.",
+      req:"탑다운 실험에 진열대 09번 4방향 정지 포즈 후보를 참고해서 이동 말 방향을 잡아줘. 가져갈 것은 front/back/left/right 정지형 후보이고, 이동/공격 시스템으로 오해하진 마." },
+    { n:"10", ready:"PROTOTYPE", prio:"이식 우선순위 낮음", targets:["오토배틀러","미니맵/탐험"],
+      take:["quarter-right/left 후보","정면 대비","전장 배치 감각"],
+      avoid:["정식 쿼터뷰 게임 시스템"],
+      caution:"쿼터뷰 후보 — 정식 시스템 전 한 번 더 구체화.",
+      req:"오토배틀러 실험에 진열대 10번 쿼터뷰 후보를 참고해서 전장 유닛 스타일을 잡아줘. 가져갈 것은 quarter-right/left 후보·정면 대비·전장 배치 감각이고, 정식 쿼터뷰 게임 시스템으로 확장하진 마." },
+    { n:"11", ready:"NEEDS_ADAPTER", prio:"이식 우선순위 중간", targets:["미니맵/탐험","퍼즐/보드"],
+      take:["직업 토큰","링/심볼","ally/enemy/elite 구분"],
+      avoid:["정식 탑뷰 이동/맵 시스템"],
+      caution:"토큰 자산만 — 얇은 어댑터로 맵에 연결.",
+      req:"탐험형 미니맵에 진열대 11번 탑뷰 토큰형을 이식해줘. 가져갈 것은 직업 토큰·링/심볼·ally/enemy/elite 구분이고, 정식 탑뷰 이동/맵 시스템은 가져가지 마." },
+    { n:"12", ready:"NEEDS_ADAPTER", prio:"이식 우선순위 중간", targets:["퍼즐/보드","미니맵/탐험"],
+      take:["14종 말/마커(kind)","P-M/P-S/P-XS 크기 기준","team/state/value/count 표현","markerSvg 표현 문법","최소 렌더 계약(PieceMarkerStub)"],
+      avoid:["보드게임 로직 전체","쇼케이스 UI 전체","이동/스왑/전투 로직"],
+      caution:"말/마커 자산 + Piece Stub 계약만 — 보드 로직은 게임 쪽에서.",
+      stub:{ anchor:"piece-import-stub", badge:"Piece Stub 준비됨", contract:"입력 계약: kind / size / team / state / label / value / count · 출력: 작은 말/마커 HTML/SVG", sizes:"퍼즐=P-S · 전술 보드=P-M · 미니맵/UI=P-XS" },
+      req:"퍼즐 보드에 진열대 12번 Piece Marker Stub을 이식해줘. 입력은 kind/size/team/state/label/value/count로 받고, 출력은 작은 말/마커 HTML/SVG로 해줘. 가져갈 것은 14종 말/마커와 P-M/P-S/P-XS 크기 기준·team/state 표현이며, 쇼케이스 UI 전체나 보드게임 로직은 가져가지 마." }
+  ];
+  function ebShelf(n){ for(var i=0;i<SHELVES.length;i++){ if(SHELVES[i].n===n) return SHELVES[i]; } return { n:n, name:n, status:"PARTIAL" }; }
+
+  function ebList(items){
+    var ul = document.createElement("ul"); ul.className = "eb-list";
+    items.forEach(function(t){ var li = document.createElement("li"); li.textContent = t; ul.appendChild(li); });
+    return ul;
+  }
+  function ebSection(mod, label, items){
+    var sec = document.createElement("div"); sec.className = "eb-sec eb-sec--" + mod;
+    var k = document.createElement("span"); k.className = "eb-sec-k"; k.textContent = label; sec.appendChild(k);
+    sec.appendChild(ebList(items));
+    return sec;
+  }
+  function ebCard(card){
+    var sh = ebShelf(card.n), rd = EB_READY[card.ready];
+    var el = document.createElement("div");
+    el.className = "eb-card"; el.dataset.ready = card.ready;
+    var top = document.createElement("div"); top.className = "eb-card-top";
+    top.innerHTML = '<span class="eb-n">진열대 '+card.n+'</span>'
+      + '<span class="eb-name">'+sh.name+'</span>'
+      + '<span class="eb-badge eb-badge--'+(sh.status==="ACTIVE"?"active":"partial")+'">'+sh.status+'</span>'
+      + '<span class="eb-badge eb-badge--'+rd.cls+'">'+rd.kr+'</span>'
+      + '<span class="eb-prio">'+card.prio+'</span>';
+    el.appendChild(top);
+    var rdesc = document.createElement("div"); rdesc.className = "eb-ready-desc"; rdesc.textContent = "이식 준비도: " + rd.desc;
+    el.appendChild(rdesc);
+
+    var tg = document.createElement("div"); tg.className = "eb-targets";
+    card.targets.forEach(function(t){ var s = document.createElement("span"); s.className = "eb-tag"; s.textContent = "▸ " + t; tg.appendChild(s); });
+    el.appendChild(tg);
+
+    if(card.stub){
+      var sb = document.createElement("div"); sb.className = "eb-stub";
+      sb.innerHTML = '<span class="eb-badge eb-badge--stub">'+card.stub.badge+'</span>'
+        + '<div class="eb-stub-line">'+card.stub.contract+'</div>'
+        + '<div class="eb-stub-line">추천 size · '+card.stub.sizes+'</div>';
+      var jb = document.createElement("button"); jb.type = "button"; jb.className = "eb-stub-link"; jb.textContent = "이식 스텁 보기 ↓";
+      jb.addEventListener("click", function(){
+        var t = document.getElementById(card.stub.anchor);
+        if(t && t.scrollIntoView){ var rm = (typeof window!=="undefined" && window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches); t.scrollIntoView({ behavior: rm ? "auto" : "smooth", block: "start" }); }
+      });
+      sb.appendChild(jb); el.appendChild(sb);
+    }
+
+    el.appendChild(ebSection("take",  "가져갈 것",       card.take));
+    el.appendChild(ebSection("avoid", "가져가면 안 되는 것", card.avoid));
+    var cau = document.createElement("div"); cau.className = "eb-caution"; cau.innerHTML = "<b>주의</b> · " + card.caution; el.appendChild(cau);
+
+    var rw = document.createElement("div"); rw.className = "eb-req-wrap";
+    var rk = document.createElement("div"); rk.className = "eb-req-k"; rk.textContent = "[복사용 이식 요청문]";
+    var ta = document.createElement("textarea"); ta.className = "eb-req"; ta.readOnly = true; ta.rows = 3; ta.setAttribute("aria-label", "진열대 "+card.n+" 이식 요청문"); ta.value = card.req;
+    rw.appendChild(rk); rw.appendChild(ta); el.appendChild(rw);
+    return el;
+  }
+
+  function buildExportBinder(){
+    var root = document.getElementById("export-binder");
+    if(!root) return;
+    root.innerHTML = "";
+
+    /* 진열대 탭 상단에 점프 버튼(없어도 되는 보조) */
+    var sr = document.getElementById("shelf-root");
+    if(sr && sr.parentNode && !document.getElementById("eb-jump-btn")){
+      var jump = document.createElement("button");
+      jump.id = "eb-jump-btn"; jump.type = "button"; jump.className = "eb-jump"; jump.textContent = "↓ 반출 바인더 (이식 안내 카드)";
+      jump.addEventListener("click", function(){
+        var t = document.getElementById("export-binder");
+        if(t && t.scrollIntoView){ var rm = (typeof window!=="undefined" && window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches); t.scrollIntoView({ behavior: rm ? "auto" : "smooth", block: "start" }); }
+      });
+      sr.parentNode.insertBefore(jump, sr);
+    }
+
+    var wrap = document.createElement("div"); wrap.className = "eb-wrap";
+    var intro = '<div class="eb-head"><span class="eb-eyebrow">SHELF EXPORT · 13</span><span class="eb-title">반출 바인더 · Import Readiness</span></div>';
+    intro += '<p class="eb-lede"><b>이식 안내 카드</b> — 12개 진열대를 다른 R&D 게임에 가져갈 때 무엇을 가져가고/두고/어떤 요청문으로 넘기는지 정리. 실제 이식·파일 분리가 아니라 <b>반출 안내</b>.</p>';
+    wrap.innerHTML = intro;
+
+    /* 준비도 카운트 */
+    var cnt = { READY:0, NEEDS_ADAPTER:0, PROTOTYPE:0 };
+    EXPORT_CARDS.forEach(function(c){ cnt[c.ready]++; });
+    var tagSet = []; EXPORT_CARDS.forEach(function(c){ c.targets.forEach(function(t){ if(tagSet.indexOf(t)<0) tagSet.push(t); }); });
+
+    /* 요약 패널 */
+    var sum = document.createElement("div"); sum.className = "eb-summary";
+    sum.innerHTML = '<div class="eb-sum-line">12개 진열대가 모두 <b>ACTIVE/PARTIAL</b> 상태입니다 (PLANNED 0 · 개방 완료). 필요한 게임에 맞는 진열대를 골라 반출 요청하세요.</div>';
+    var stats = document.createElement("div"); stats.className = "eb-stats";
+    stats.innerHTML = '<span class="eb-stat">전체 <b>'+EXPORT_CARDS.length+'</b></span>'
+      + '<span class="eb-stat eb-stat--ready">READY <b>'+cnt.READY+'</b></span>'
+      + '<span class="eb-stat eb-stat--adapter">NEEDS_ADAPTER <b>'+cnt.NEEDS_ADAPTER+'</b></span>'
+      + '<span class="eb-stat eb-stat--proto">PROTOTYPE <b>'+cnt.PROTOTYPE+'</b></span>';
+    sum.appendChild(stats);
+    var stags = document.createElement("div"); stags.className = "eb-sum-tags";
+    tagSet.forEach(function(t){ var s = document.createElement("span"); s.className = "eb-tag"; s.textContent = t; stags.appendChild(s); });
+    sum.appendChild(stags);
+    wrap.appendChild(sum);
+
+    /* 준비도 필터 */
+    var FILTERS = [ {k:"ALL",kr:"전체"}, {k:"READY",kr:"READY"}, {k:"NEEDS_ADAPTER",kr:"NEEDS_ADAPTER"}, {k:"PROTOTYPE",kr:"PROTOTYPE"} ];
+    var fbar = document.createElement("div"); fbar.className = "eb-filter";
+    var cardEls = [];
+    FILTERS.forEach(function(f){
+      var b = document.createElement("button"); b.type = "button"; b.className = "eb-fbtn" + (f.k==="ALL"?" is-active":""); b.textContent = f.kr; b.dataset.f = f.k;
+      b.addEventListener("click", function(){
+        fbar.querySelectorAll(".eb-fbtn").forEach(function(x){ x.classList.remove("is-active"); });
+        b.classList.add("is-active");
+        cardEls.forEach(function(ce){ ce.classList.toggle("is-hidden", !(f.k==="ALL" || ce.dataset.ready===f.k)); });
+      });
+      fbar.appendChild(b);
+    });
+    wrap.appendChild(fbar);
+
+    /* 12개 반출 카드 */
+    var grid = document.createElement("div"); grid.className = "eb-grid";
+    EXPORT_CARDS.forEach(function(c){ var ce = ebCard(c); cardEls.push(ce); grid.appendChild(ce); });
+    wrap.appendChild(grid);
+
+    /* 공통 반출 금지 */
+    var note = document.createElement("div"); note.className = "eb-note";
+    note.innerHTML = '<b>반출 공통 주의 (전체 적용)</b><ul>'
+      + '<li>CSS박물관 <b>전체를 통째로 복붙하지 않기</b> — 필요한 진열대만.</li>'
+      + '<li>데모 UI와 실제 게임 UI를 <b>구분</b>하기 — 쇼케이스는 참고 자료.</li>'
+      + '<li>이식 시 해당 게임 구조에 <b>얇게 연결</b>(쇼케이스 UI 통째 이식 금지).</li>'
+      + '<li>외부 이미지/폰트/저장 없이 유지.</li>'
+      + '<li><b>06F 좌표 보정 전</b> 파츠는 최종 미감이 아닐 수 있음.</li></ul>';
+    wrap.appendChild(note);
+
+    root.appendChild(wrap);
+  }
+
+  /* =========================================================================
+     [구역 14] SHELF 04 MINI IMPORT STUB (JS) — 진열대 04 미니 배우 이식 계약/스텁
+     · MiniActorStub = 기존 AK.previewParts 재사용 내부 헬퍼(공개 API 아님). size/team/state/hp 프레임.
+     · 실제 파일 분리/모듈 export/행렬RPG 이식 0 · 계약·예시·스텁만 박물관 안에 정리.
+     ========================================================================= */
+  var MINI_SIZES = [
+    { k:"m",  kr:"M",  use:"전투 강조 화면" },
+    { k:"s",  kr:"S",  use:"행렬RPG 기본" },
+    { k:"xs", kr:"XS", use:"미니맵 · 목록" }
+  ];
+  var MINI_TEAMS = [
+    { k:"ally",    kr:"ALLY",    ring:"#6cc6d8" },
+    { k:"enemy",   kr:"ENEMY",   ring:"#bf5560" },
+    { k:"neutral", kr:"NEUTRAL", ring:"#a99fb6" }
+  ];
+  var MINI_STATES = [
+    { k:"idle",     kr:"idle" },
+    { k:"selected", kr:"selected" },
+    { k:"damaged",  kr:"damaged" },
+    { k:"dead",     kr:"dead" },
+    { k:"warning",  kr:"warning" }
+  ];
+  var MINI_INPUTS = [
+    { k:"type",    req:true,  desc:"직업/배우 key (예: warrior)" },
+    { k:"size",    req:true,  desc:"M / S / XS" },
+    { k:"team",    req:false, desc:"ally / enemy / neutral (프레임 링)" },
+    { k:"state",   req:false, desc:"idle / selected / damaged / dead / warning" },
+    { k:"hpRatio", req:false, desc:"0~1 · 미니 HP 바(선택)" },
+    { k:"label",   req:false, desc:"접근성/표시용 라벨" },
+    { k:"facing",  req:false, desc:"none (향후 placeholder)" },
+    { k:"variant", req:false, desc:"default / compact" }
+  ];
+  var MINI_OUTPUTS = [
+    "작은 배우 HTML/SVG (기존 ak-actor 래핑)",
+    'className: <code>mi-actor mi-actor--{size} mi-team--{team} mi-state--{state}</code>',
+    "data-type / data-size / data-team 속성",
+    "width/height = size 단계 기준(M→XS)",
+    "aria-label = label 또는 직업 한글명"
+  ];
+  /* 내부 스텁 헬퍼 — 기존 previewParts 위에 size/team/state/hp 프레임만 입힘(공개 API 미변경) */
+  var MiniActorStub = {
+    render: function(o){
+      o = o || {};
+      var t = o.type || "warrior", size = o.size || "s", team = o.team || "neutral", state = o.state || "idle";
+      var wrap = document.createElement("div");
+      wrap.className = "mi-actor mi-actor--" + size + " mi-team--" + team + " mi-state--" + state + (o.variant === "compact" ? " mi-actor--compact" : "");
+      wrap.dataset.type = t; wrap.dataset.size = size; wrap.dataset.team = team;
+      wrap.setAttribute("aria-label", (o.label || (META[t] ? META[t].kr : t)) + " · " + size + " · " + team + (state !== "idle" ? " · " + state : ""));
+      var fig = document.createElement("div"); fig.className = "mi-fig";
+      fig.appendChild(AK.previewParts(META[t].parts, META[t].gender));
+      wrap.appendChild(fig);
+      if(state === "dead"){ var x = document.createElement("div"); x.className = "mi-dead-x"; x.textContent = "✕"; wrap.appendChild(x); }
+      if(typeof o.hpRatio === "number"){
+        var r = Math.max(0, Math.min(1, o.hpRatio));
+        var hp = document.createElement("div"); hp.className = "mi-hp";
+        var fill = document.createElement("div"); fill.className = "mi-hp-fill " + (r > 0.5 ? "is-hi" : r > 0.25 ? "is-mid" : "is-lo");
+        fill.setAttribute("style", "width:" + Math.round(r * 100) + "%");
+        hp.appendChild(fill); wrap.appendChild(hp);
+      }
+      return wrap;
+    }
+  };
+
+  function miCell(opts, cap){
+    var cell = document.createElement("div"); cell.className = "mi-cell";
+    cell.appendChild(MiniActorStub.render(opts));
+    if(cap !== undefined){ var c = document.createElement("div"); c.className = "mi-cap"; c.innerHTML = cap; cell.appendChild(c); }
+    return cell;
+  }
+  function miPanel(letter, name, desc){
+    var p = document.createElement("div"); p.className = "mi-panel";
+    p.innerHTML = '<div class="mi-panel-head"><span class="mi-panel-k">'+letter+'</span><span class="mi-panel-name">'+name+'</span></div>' + (desc ? '<div class="mi-panel-desc">'+desc+'</div>' : "");
+    return p;
+  }
+
+  var MINI_REQ = "행렬RPG에 진열대 04번 Mini Actor Stub을 이식해줘.\n입력은 type/size/team/state/hpRatio로 받고, 출력은 작은 배우 HTML/SVG로 해줘.\n가져갈 것은 M/S/XS 크기 기준과 team/state/hp 표현이며, 쇼케이스 UI 전체나 9×9 보드 구현은 가져가지 마.";
+  var MINI_BOARD = [
+    { type:"warrior",  team:"ally"    }, null, { type:"archer", team:"ally" }, null, { type:"priest", team:"ally" },
+    null, { type:"mage", team:"ally" }, null, null, null,
+    null, null, null, { type:"necromancer", team:"enemy" }, null,
+    { type:"berserker", team:"enemy" }, null, null, null, { type:"frostwitch", team:"enemy" },
+    null, { type:"gravekeeper", team:"neutral" }, null, null, null
+  ];
+
+  function buildMiniImportStub(){
+    var root = document.getElementById("mini-import-stub");
+    if(!root) return;
+    root.innerHTML = "";
+    var wrap = document.createElement("div"); wrap.className = "mi-wrap";
+    var intro = '<div class="mi-head"><span class="mi-eyebrow">SHELF 04 · EXTRACTION 14</span><span class="mi-title">Mini Actor · 이식 스텁 / 계약</span></div>';
+    intro += '<p class="mi-lede"><b>진열대 04 초소형 배우</b>를 다른 게임(행렬RPG·다인 전장·작은 보드)에 가져갈 때의 <b>최소 입력/출력 계약 + 사용 예시</b>. 실제 파일 분리·이식이 아니라 가져갈 단위를 박물관 안에 정의.</p>';
+    wrap.innerHTML = intro;
+
+    /* A 입력/출력 계약 */
+    var pA = miPanel("A","입력 / 출력 계약","MiniActorStub.render(opts) — 무엇을 넣고 무엇이 나오는지.");
+    var card = document.createElement("div"); card.className = "mi-contract";
+    var inH = document.createElement("div"); inH.className = "mi-io-h"; inH.textContent = "INPUT (" + MINI_INPUTS.length + ")"; card.appendChild(inH);
+    MINI_INPUTS.forEach(function(f){
+      var row = document.createElement("div"); row.className = "mi-io-row";
+      row.innerHTML = '<span class="mi-io-k">'+f.k+'</span><span class="mi-io-req'+(f.req?' is-req':'')+'">'+(f.req?'필수':'선택')+'</span><span class="mi-io-d">'+f.desc+'</span>';
+      card.appendChild(row);
+    });
+    var outH = document.createElement("div"); outH.className = "mi-io-h"; outH.textContent = "OUTPUT"; card.appendChild(outH);
+    var outUl = document.createElement("ul"); outUl.className = "mi-out";
+    MINI_OUTPUTS.forEach(function(o){ var li = document.createElement("li"); li.innerHTML = o; outUl.appendChild(li); });
+    card.appendChild(outUl); pA.appendChild(card); wrap.appendChild(pA);
+
+    /* B Size × Team */
+    var pB = miPanel("B","Size × Team 샘플","같은 배우(warrior)가 M/S/XS · 소속별로 구분되는지.");
+    MINI_SIZES.forEach(function(z){
+      var rowB = document.createElement("div"); rowB.className = "mi-row";
+      MINI_TEAMS.forEach(function(tm){ rowB.appendChild(miCell({ type:"warrior", size:z.k, team:tm.k, state:"idle" }, "<b>"+z.kr+"</b> · "+tm.kr)); });
+      pB.appendChild(rowB);
+    });
+    wrap.appendChild(pB);
+
+    /* C State */
+    var pC = miPanel("C","State 샘플","작은 배우 상태가 최소한 읽히는지 — 5종(S, ally).");
+    var rowC = document.createElement("div"); rowC.className = "mi-row";
+    MINI_STATES.forEach(function(st){ rowC.appendChild(miCell({ type:"warrior", size:"s", team:"ally", state:st.k }, st.kr)); });
+    pC.appendChild(rowC); wrap.appendChild(pC);
+
+    /* D HP Mini Bar */
+    var pD = miPanel("D","HP Mini Bar 샘플","다인 전장에서 작은 체력 표시 가능성 — hpRatio(전투 로직 없음).");
+    var rowD = document.createElement("div"); rowD.className = "mi-row";
+    [1, 0.6, 0.25].forEach(function(h){ rowD.appendChild(miCell({ type:"warrior", size:"s", team:"ally", state:"idle", hpRatio:h }, "<b>"+Math.round(h*100)+"%</b>")); });
+    pD.appendChild(rowD); wrap.appendChild(pD);
+
+    /* E Dense Board Import Preview */
+    var pE = miPanel("E","Dense Board Import Preview","다른 게임에 가져갔을 때 화면 밀도 감각 — XS 스텁 정적 배치(이동/전투 없음, 9×9 아님).");
+    var board = document.createElement("div"); board.className = "mi-board";
+    var dense = 0;
+    MINI_BOARD.forEach(function(u){
+      var bc = document.createElement("div"); bc.className = "mi-bcell" + (u ? "" : " is-empty");
+      if(u){ bc.appendChild(MiniActorStub.render({ type:u.type, size:"xs", team:u.team, state:"idle" })); dense++; }
+      board.appendChild(bc);
+    });
+    pE.appendChild(board);
+    var bcap = document.createElement("div"); bcap.className = "mi-board-cap"; bcap.textContent = "정적 미리보기 · " + dense + "유닛 / 25칸(5×5) · 실제 9×9/전투 아님.";
+    pE.appendChild(bcap); wrap.appendChild(pE);
+
+    /* F 가져갈 것 / 가져가지 말 것 */
+    var pF = miPanel("F","가져갈 것 / 가져가지 말 것","");
+    var ledger = document.createElement("div"); ledger.className = "mi-ledger";
+    ledger.innerHTML =
+      '<div class="mi-col mi-col--take"><span class="mi-col-k">가져갈 것</span><ul>'
+      + '<li>M/S/XS 크기 기준</li><li>mini actor frame</li><li>team/state/hp 표현</li><li>최소 렌더 계약(MiniActorStub)</li></ul></div>'
+      + '<div class="mi-col mi-col--avoid"><span class="mi-col-k">가져가지 말 것</span><ul>'
+      + '<li>쇼케이스 UI 전체 · 진열대 탭 전체</li><li>9×9 보드 구현</li><li>던전 루프 · 조합대 · 정렬 콘솔</li><li>실제 게임 룰</li></ul></div>';
+    pF.appendChild(ledger); wrap.appendChild(pF);
+
+    /* G 복사용 이식 요청문 */
+    var pG = miPanel("G","복사용 이식 요청문","사람이 복사해 다른 렌에게 전달(클립보드 API·저장 없음).");
+    var rk = document.createElement("div"); rk.className = "mi-req-k"; rk.textContent = "[복사용 이식 요청문]";
+    var ta = document.createElement("textarea"); ta.className = "mi-req"; ta.readOnly = true; ta.rows = 4; ta.setAttribute("aria-label", "진열대 04 Mini Actor Stub 이식 요청문"); ta.value = MINI_REQ;
+    pG.appendChild(rk); pG.appendChild(ta); wrap.appendChild(pG);
+
+    root.appendChild(wrap);
+  }
+
+  /* =========================================================================
+     [구역 15] SHELF 12 PIECE IMPORT STUB (JS) — 진열대 12 말/마커 이식 계약/스텁
+     · PieceMarkerStub = 기존 markerSvg/markerByKey 재사용 내부 헬퍼(공개 API 아님). 12 Showcase와 같은 시각 문법.
+     · 실제 파일 분리/모듈 export/보드게임 이식 0 · 계약·예시·스텁만 박물관 안에 정리.
+     ========================================================================= */
+  var PIECE_KINDS  = MARKER_SAMPLE;   /* 12의 14종 재사용(중복 제작 0) */
+  var PMK_SIZES  = [
+    { k:"m",  kr:"P-M",  use:"전술 보드" },
+    { k:"s",  kr:"P-S",  use:"퍼즐/작은 보드" },
+    { k:"xs", kr:"P-XS", use:"미니맵/UI 마커" }
+  ];
+  var PIECE_TEAMS  = [
+    { k:"ally",    kr:"ALLY",    ring:"#6cc6d8" },
+    { k:"enemy",   kr:"ENEMY",   ring:"#bf5560" },
+    { k:"neutral", kr:"NEUTRAL", ring:"#a99fb6" },
+    { k:"object",  kr:"OBJECT",  ring:"#e7c873" }
+  ];
+  var PMK_STATES = [
+    { k:"idle",     kr:"idle" },
+    { k:"selected", kr:"selected" },
+    { k:"disabled", kr:"disabled" },
+    { k:"warning",  kr:"warning" },
+    { k:"active",   kr:"active" },
+    { k:"cleared",  kr:"cleared" }
+  ];
+  var PIECE_INPUTS = [
+    { k:"kind",      req:true,  desc:"마커 종류 key (pawn/attack/.../unknown · 14종)" },
+    { k:"size",      req:true,  desc:"P-M / P-S / P-XS" },
+    { k:"team",      req:false, desc:"ally / enemy / neutral / object (프레임 링)" },
+    { k:"state",     req:false, desc:"idle / selected / disabled / warning / active / cleared" },
+    { k:"label",     req:false, desc:"표시/접근성 라벨" },
+    { k:"value",     req:false, desc:"숫자/짧은 문자 배지(우상단)" },
+    { k:"count",     req:false, desc:"중첩 수량 ×N 배지(우하단)" },
+    { k:"ariaLabel", req:false, desc:"접근성 라벨(미지정 시 label/kind)" },
+    { k:"variant",   req:false, desc:"default / compact / outline" }
+  ];
+  var PIECE_OUTPUTS = [
+    "작은 말/마커 HTML/SVG (기존 markerSvg 래핑)",
+    'className: <code>pm-actor pm-actor--{size} pm-team--{team} pm-state--{state}</code>',
+    "data-kind / data-size / data-team / data-state 속성",
+    "width/height = size 단계 기준(P-M→P-XS)",
+    "aria-label · 선택적 label/value/count 배지"
+  ];
+  var PMK_GENRES = [
+    { name:"퍼즐 세트",     items:[{kind:"goal"},{kind:"door"},{kind:"trap"},{kind:"reward"},{kind:"unknown"}] },
+    { name:"전술 세트",     items:[{kind:"attack"},{kind:"defense"},{kind:"boss"},{kind:"danger"}] },
+    { name:"탐험 세트",     items:[{kind:"camp"},{kind:"reward"},{kind:"door"},{kind:"unknown"},{kind:"danger"}] },
+    { name:"행렬RPG 보조",  items:[{kind:"pawn",state:"selected"},{kind:"pawn",state:"warning"},{kind:"pawn",state:"disabled"},{kind:"danger",state:"active"}] }
+  ];
+  var PIECE_STUB_BOARD = [
+    {kind:"goal"}, null, {kind:"attack"}, null, {kind:"danger"},
+    null, {kind:"trap"}, null, {kind:"heal"}, null,
+    {kind:"door"}, null, null, {kind:"boss"}, null,
+    null, {kind:"reward"}, null, {kind:"defense"}, null,
+    null, {kind:"unknown"}, null, null, null
+  ];
+  var PIECE_REQ = "퍼즐 보드에 진열대 12번 Piece Marker Stub을 이식해줘.\n입력은 kind/size/team/state/label/value/count로 받고, 출력은 작은 말/마커 HTML/SVG로 해줘.\n가져갈 것은 14종 말/마커와 P-M/P-S/P-XS 크기 기준, team/state 표현이며, 쇼케이스 UI 전체나 보드게임 로직은 가져가지 마.";
+
+  var PM_SIZEMAP = { "P-M":"m", "P-S":"s", "P-XS":"xs", m:"m", s:"s", xs:"xs" };
+  /* 내부 스텁 헬퍼 — 기존 markerSvg 위에 size/team/state 프레임 + label/value/count 배지(공개 API 미변경) */
+  var PieceMarkerStub = {
+    render: function(o){
+      o = o || {};
+      var kind = o.kind || "pawn", size = PM_SIZEMAP[o.size] || "s", team = o.team || "neutral", state = o.state || "idle";
+      var m = markerByKey(kind);
+      var wrap = document.createElement("div");
+      wrap.className = "pm-actor pm-actor--" + size + " pm-team--" + team + " pm-state--" + state + (o.variant === "compact" ? " pm-actor--compact" : o.variant === "outline" ? " pm-actor--outline" : "");
+      wrap.dataset.kind = kind; wrap.dataset.size = size; wrap.dataset.team = team; wrap.dataset.state = state;
+      wrap.setAttribute("aria-label", o.ariaLabel || (o.label || m.kr) + " · " + (o.size || size) + " · " + team + (state !== "idle" ? " · " + state : ""));
+      var fig = document.createElement("div"); fig.className = "pm-fig"; fig.innerHTML = markerSvg(m, {});
+      wrap.appendChild(fig);
+      if(state === "cleared"){ var ck = document.createElement("div"); ck.className = "pm-clear-mark"; ck.textContent = "✓"; wrap.appendChild(ck); }
+      if(o.value !== undefined && o.value !== null && o.value !== ""){ var v = document.createElement("div"); v.className = "pm-val"; v.textContent = String(o.value); wrap.appendChild(v); }
+      if(typeof o.count === "number" && o.count > 1){ var cn = document.createElement("div"); cn.className = "pm-cnt"; cn.textContent = "×" + o.count; wrap.appendChild(cn); }
+      return wrap;
+    }
+  };
+
+  function pmCell(opts, cap){
+    var cell = document.createElement("div"); cell.className = "pm-cell";
+    cell.appendChild(PieceMarkerStub.render(opts));
+    if(cap !== undefined){ var c = document.createElement("div"); c.className = "pm-cap"; c.innerHTML = cap; cell.appendChild(c); }
+    return cell;
+  }
+  function pmPanel(letter, name, desc){
+    var p = document.createElement("div"); p.className = "pm-panel";
+    p.innerHTML = '<div class="pm-panel-head"><span class="pm-panel-k">'+letter+'</span><span class="pm-panel-name">'+name+'</span></div>' + (desc ? '<div class="pm-panel-desc">'+desc+'</div>' : "");
+    return p;
+  }
+
+  function buildPieceImportStub(){
+    var root = document.getElementById("piece-import-stub");
+    if(!root) return;
+    root.innerHTML = "";
+    var wrap = document.createElement("div"); wrap.className = "pm-wrap";
+    var intro = '<div class="pm-head"><span class="pm-eyebrow">SHELF 12 · EXTRACTION 15</span><span class="pm-title">Piece / Marker · 이식 스텁 / 계약</span></div>';
+    intro += '<p class="pm-lede"><b>진열대 12 말/심볼/토큰형</b>을 다른 게임(퍼즐·보드·탐험·전술·목표/상태 마커)에 가져갈 <b>최소 입력/출력 계약 + 사용 예시</b>. 기존 markerSvg를 재사용하므로 12 Showcase와 같은 시각 문법.</p>';
+    wrap.innerHTML = intro;
+
+    /* 14 vs 15 차이 */
+    var diff = document.createElement("div"); diff.className = "pm-diff";
+    diff.innerHTML =
+      '<div class="pm-diff-col pm-diff-col--mini"><span class="pm-diff-k">14 · Mini Actor Stub</span><p><b>직업 배우</b>를 작게. type/size/team/state/<b>hpRatio</b> 중심. 행렬RPG 유닛 표시용.</p></div>'
+      + '<div class="pm-diff-col pm-diff-col--piece"><span class="pm-diff-k">15 · Piece Marker Stub</span><p>캐릭터가 아닌 <b>말/마커</b>. kind/size/team/state/<b>label/value/count</b> 중심. 퍼즐/보드/맵/목표물 표시용.</p></div>';
+    wrap.appendChild(diff);
+
+    /* A 입력/출력 계약 */
+    var pA = pmPanel("A","입력 / 출력 계약","PieceMarkerStub.render(opts) — 무엇을 넣고 무엇이 나오는지.");
+    var card = document.createElement("div"); card.className = "pm-contract";
+    var inH = document.createElement("div"); inH.className = "pm-io-h"; inH.textContent = "INPUT (" + PIECE_INPUTS.length + ")"; card.appendChild(inH);
+    PIECE_INPUTS.forEach(function(f){
+      var row = document.createElement("div"); row.className = "pm-io-row";
+      row.innerHTML = '<span class="pm-io-k">'+f.k+'</span><span class="pm-io-req'+(f.req?' is-req':'')+'">'+(f.req?'필수':'선택')+'</span><span class="pm-io-d">'+f.desc+'</span>';
+      card.appendChild(row);
+    });
+    var outH = document.createElement("div"); outH.className = "pm-io-h"; outH.textContent = "OUTPUT"; card.appendChild(outH);
+    var outUl = document.createElement("ul"); outUl.className = "pm-out";
+    PIECE_OUTPUTS.forEach(function(o){ var li = document.createElement("li"); li.innerHTML = o; outUl.appendChild(li); });
+    card.appendChild(outUl); pA.appendChild(card); wrap.appendChild(pA);
+
+    /* B Kind Catalog Stub (14종, value/count 배지 예시 포함) */
+    var pB = pmPanel("B","Kind Catalog Stub","12 카탈로그와 같은 의미가 스텁에서도 유지되는지 — "+PIECE_KINDS.length+"종(P-S).");
+    var rowB = document.createElement("div"); rowB.className = "pm-row";
+    PIECE_KINDS.forEach(function(m){
+      var o = { kind:m.key, size:"P-S", team:"neutral" };
+      if(m.key === "reward") o.count = 3;
+      if(m.key === "boss")   o.value = "★";
+      rowB.appendChild(pmCell(o, m.kr));
+    });
+    pB.appendChild(rowB); wrap.appendChild(pB);
+
+    /* C Size × Purpose */
+    var pC = pmPanel("C","Size × Purpose","실제 이식 시 어느 크기를 쓸지 — 3단계.");
+    var rowC = document.createElement("div"); rowC.className = "pm-row";
+    PMK_SIZES.forEach(function(z){ rowC.appendChild(pmCell({ kind:"attack", size:z.kr, team:"ally" }, "<b>"+z.kr+"</b> · "+z.use)); });
+    pC.appendChild(rowC); wrap.appendChild(pC);
+
+    /* D Team / Object */
+    var pD = pmPanel("D","Team / Object","아군/적/중립/오브젝트 구분 — 같은 말(pawn) 프레임 링.");
+    var rowD = document.createElement("div"); rowD.className = "pm-row";
+    PIECE_TEAMS.forEach(function(tm){ rowD.appendChild(pmCell({ kind:"pawn", size:"P-S", team:tm.k }, "<b>"+tm.kr+"</b>")); });
+    pD.appendChild(rowD); wrap.appendChild(pD);
+
+    /* E State */
+    var pE = pmPanel("E","State 샘플","퍼즐/보드/탐험에서 필요한 상태 — 6종(pawn, object).");
+    var rowE = document.createElement("div"); rowE.className = "pm-row";
+    PMK_STATES.forEach(function(st){ rowE.appendChild(pmCell({ kind:"pawn", size:"P-S", team:"object", state:st.k }, st.kr)); });
+    pE.appendChild(rowE); wrap.appendChild(pE);
+
+    /* F Board Import Preview */
+    var pF = pmPanel("F","Board Import Preview","다른 게임에 가져갔을 때 화면 밀도 — 정적 배치(이동/스왑/전투 없음, 9×9 아님).");
+    var board = document.createElement("div"); board.className = "pm-board";
+    var bN = 0;
+    PIECE_STUB_BOARD.forEach(function(u){
+      var bc = document.createElement("div"); bc.className = "pm-bcell" + (u ? "" : " is-empty");
+      if(u){ bc.innerHTML = markerSvg(markerByKey(u.kind), {}); bN++; }
+      board.appendChild(bc);
+    });
+    pF.appendChild(board);
+    var bcap = document.createElement("div"); bcap.className = "pm-board-cap"; bcap.textContent = "정적 미리보기 · " + bN + "말 / 25칸(5×5) · 실제 9×9/보드 로직 아님.";
+    pF.appendChild(bcap); wrap.appendChild(pF);
+
+    /* G Genre Recipes */
+    var pG = pmPanel("G","Genre Recipes","장르별로 어떤 마커 묶음을 가져가면 좋은지.");
+    PMK_GENRES.forEach(function(g){
+      var gd = document.createElement("div"); gd.className = "pm-genre";
+      var gn = document.createElement("div"); gn.className = "pm-genre-name"; gn.textContent = g.name;
+      gd.appendChild(gn);
+      var gr = document.createElement("div"); gr.className = "pm-row";
+      g.items.forEach(function(it){ gr.appendChild(pmCell({ kind:it.kind, size:"P-XS", team:"object", state:it.state || "idle" }, markerByKey(it.kind).kr + (it.state ? " · "+it.state : ""))); });
+      gd.appendChild(gr); pG.appendChild(gd);
+    });
+    wrap.appendChild(pG);
+
+    /* H 가져갈 것 / 가져가지 말 것 */
+    var pH = pmPanel("H","가져갈 것 / 가져가지 말 것","");
+    var ledger = document.createElement("div"); ledger.className = "pm-ledger";
+    ledger.innerHTML =
+      '<div class="pm-col pm-col--take"><span class="pm-col-k">가져갈 것</span><ul>'
+      + '<li>14종 kind</li><li>P-M/P-S/P-XS 크기 기준</li><li>team/state/value/count 표현</li><li>markerSvg 표현 문법</li><li>최소 렌더 계약(PieceMarkerStub)</li></ul></div>'
+      + '<div class="pm-col pm-col--avoid"><span class="pm-col-k">가져가지 말 것</span><ul>'
+      + '<li>쇼케이스 UI 전체 · 진열대 탭 전체</li><li>실제 보드게임 룰 · 이동/스왑/전투 로직</li><li>9×9 구현</li><li>던전 루프 · 조합대 · 정렬 콘솔</li></ul></div>';
+    pH.appendChild(ledger); wrap.appendChild(pH);
+
+    /* I 복사용 이식 요청문 */
+    var pI = pmPanel("I","복사용 이식 요청문","사람이 복사해 다른 렌에게 전달(클립보드 API·저장 없음).");
+    var rk = document.createElement("div"); rk.className = "pm-req-k"; rk.textContent = "[복사용 이식 요청문]";
+    var ta = document.createElement("textarea"); ta.className = "pm-req"; ta.readOnly = true; ta.rows = 4; ta.setAttribute("aria-label", "진열대 12 Piece Marker Stub 이식 요청문"); ta.value = PIECE_REQ;
+    pI.appendChild(rk); pI.appendChild(ta); wrap.appendChild(pI);
+
+    root.appendChild(wrap);
+  }
+
+  /* =========================================================================
+     [구역 16] SHELF 06 REWARD IMPORT STUB (JS) — 진열대 06 보상 카드 이식 계약/스텁
+     · RewardCardStub = 기존 REWARDS 34 재사용 내부 헬퍼(공개 API 아님). rarity/tone은 데이터에서 유도/데모 부여.
+     · 실제 던전 루프/LootLoop/저장 미접촉 · REWARDS 원본 미수정 · 계약·예시·스텁만 정리.
+     ========================================================================= */
+  var REWARD_KINDS = [
+    { k:"part",    kr:"파츠 장착" }, { k:"stat", kr:"능력 강화" }, { k:"heal", kr:"회복" },
+    { k:"aura",    kr:"오라/연출" }, { k:"marker", kr:"마커" },    { k:"special", kr:"특수" }
+  ];
+  var REWARD_RARITIES = [
+    { k:"common", kr:"COMMON" }, { k:"rare", kr:"RARE" }, { k:"epic", kr:"EPIC" }, { k:"legendary", kr:"LEGENDARY" }
+  ];
+  var REWARD_TONES = [
+    { k:"attack", kr:"공격" }, { k:"defense", kr:"방어" }, { k:"heal", kr:"회복" }, { k:"magic", kr:"마법" },
+    { k:"utility", kr:"유틸" }, { k:"danger", kr:"위험" }, { k:"treasure", kr:"보물" }
+  ];
+  var REWARD_STATES = [
+    { k:"available", kr:"available" }, { k:"focused", kr:"focused" }, { k:"selected", kr:"selected" },
+    { k:"disabled", kr:"disabled" }, { k:"taken", kr:"taken" }
+  ];
+  var REWARD_STUB_INPUTS = [
+    { k:"id",         req:true,  desc:"보상 key (REWARDS와 연결)" },
+    { k:"title",      req:true,  desc:"보상 이름" },
+    { k:"desc",       req:false, desc:"보상 설명" },
+    { k:"kind",       req:false, desc:"part / stat / heal / aura / marker / special" },
+    { k:"rarity",     req:false, desc:"common / rare / epic / legendary" },
+    { k:"tone",       req:false, desc:"attack / defense / heal / magic / utility / danger / treasure" },
+    { k:"state",      req:false, desc:"available / focused / selected / disabled / taken" },
+    { k:"partKey",    req:false, desc:"PART 연결 시 파츠 key" },
+    { k:"actorType",  req:false, desc:"미리보기 배우가 필요한 경우 직업 key" },
+    { k:"effectText", req:false, desc:"효과 한 줄(예: 치유 +)" },
+    { k:"value",      req:false, desc:"숫자/짧은 문자 배지" },
+    { k:"count",      req:false, desc:"중첩 수량" },
+    { k:"icon",       req:false, desc:"내부 심볼 key(미지정 시 tone 유도)" },
+    { k:"ariaLabel",  req:false, desc:"접근성 라벨" },
+    { k:"variant",    req:false, desc:"normal / compact / result" }
+  ];
+  var REWARD_OUTPUTS = [
+    "보상 카드 HTML/SVG (REWARDS 데이터 래핑)",
+    'className: <code>rw-card rw-card--{variant} rw-rar--{rarity} rw-tone--{tone} rw-state--{state}</code>',
+    "data-reward-id / data-kind / data-rarity / data-state 속성",
+    "title / desc / effect 영역 · rarity 배지 · tone 스트립",
+    "선택/장착/획득 상태 표시 · aria-label · 선택 value/count 배지"
+  ];
+  var REWARD_CATALOG = [
+    {id:"cape",rarity:"common"}, {id:"quiver",rarity:"common"}, {id:"banner",rarity:"common"}, {id:"breastplate",rarity:"rare"},
+    {id:"talisman",rarity:"rare"}, {id:"amulet",rarity:"rare"}, {id:"pauldrons",rarity:"rare"}, {id:"ember",rarity:"rare"},
+    {id:"circle",rarity:"epic"}, {id:"halo",rarity:"epic"}, {id:"stardust",rarity:"epic"}, {id:"crown",rarity:"legendary"}
+  ];
+  var REWARD_GENRES = [
+    { name:"던전 루프",   note:"카드 3장 선택 → 장착 표시 → 오늘의 수확", items:["cape","circle","crown"] },
+    { name:"행렬RPG",     note:"전투 후 보상 1~3개 · 유닛 강화/파츠 장착", items:["breastplate","quiver"] },
+    { name:"퍼즐RPG",     note:"클리어 후 보상 카드 · 다음 판에 영향", items:["halo","stardust"] },
+    { name:"오토배틀러",  note:"라운드 후 시너지/장비 보상", items:["ember","amulet"] }
+  ];
+  var REWARD_HARVEST = ["circle","halo","crown"];
+  var REWARD_COMPACT = ["cape","ember","quiver","stardust"];
+  var REWARD_REQ = "던전 루프에 진열대 06번 Reward Card Stub을 이식해줘.\n입력은 id/title/desc/kind/rarity/tone/state/partKey/effectText로 받고, 출력은 보상 카드 HTML/SVG로 해줘.\n가져갈 것은 카드 레이아웃, 선택/장착/획득 상태, 오늘의 수확 요약이고, CSS박물관의 던전 루프 전체 룰이나 저장 기능은 가져가지 마.";
+
+  function rewardById(id){ for(var i=0;i<REWARDS.length;i++){ if(REWARDS[i].id===id) return REWARDS[i]; } return null; }
+  function rwDeriveKind(k){ k = k || ""; if(/오라/.test(k)) return "aura"; if(/치유/.test(k)) return "heal"; if(/강화/.test(k)) return "stat"; return "part"; }
+  function rwDeriveTone(r){ var s = r.sig; if(s==="cast") return "magic"; if(s==="heal") return "heal"; if(s==="shoot") return "attack"; if(s==="block") return "defense";
+    var k = r.kind || ""; if(/무기/.test(k)) return "attack"; if(/오라/.test(k)) return "magic"; if(/보조/.test(k)) return "utility"; return "treasure"; }
+  function rewardOpts(id, rarity, ov){
+    var r = rewardById(id) || { id:id, kr:id, desc:"", kind:"", part:null, ally:null };
+    var o = { id:r.id, title:r.kr, desc:r.desc, kind:rwDeriveKind(r.kind), tone:rwDeriveTone(r), rarity:rarity || "common", partKey:r.part, actorType:r.ally, state:"available", variant:"normal" };
+    if(ov){ for(var k in ov) o[k] = ov[k]; }
+    return o;
+  }
+
+  function rwIcon(tone){
+    switch(tone){
+      case "attack":   return '<svg viewBox="0 0 24 24" aria-hidden="true"><line x1="6" y1="18" x2="18" y2="6" stroke-width="2.3" stroke-linecap="round"/><line x1="13" y1="6" x2="18" y2="6" stroke-width="2"/><line x1="18" y1="6" x2="18" y2="11" stroke-width="2"/></svg>';
+      case "defense":  return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 q5 2 7 3 v5 q0 6 -7 8 q-7 -2 -7 -8 v-5 q2 -1 7 -3 z" fill="none" stroke-width="2"/></svg>';
+      case "heal":     return '<svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19" stroke-width="3" stroke-linecap="round"/><line x1="5" y1="12" x2="19" y2="12" stroke-width="3" stroke-linecap="round"/></svg>';
+      case "magic":    return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4 l2.2 5.6 l6 .3 l-4.7 3.8 l1.6 5.8 l-5.1 -3.3 l-5.1 3.3 l1.6 -5.8 l-4.7 -3.8 l6 -.3 z" fill="#000"/></svg>';
+      case "utility":  return '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.4" fill="none" stroke-width="2"/><line x1="12" y1="3" x2="12" y2="6" stroke-width="2"/><line x1="12" y1="18" x2="12" y2="21" stroke-width="2"/><line x1="3" y1="12" x2="6" y2="12" stroke-width="2"/><line x1="18" y1="12" x2="21" y2="12" stroke-width="2"/></svg>';
+      case "danger":   return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5 l8 14 h-16 z" fill="none" stroke-width="2" stroke-linejoin="round"/><line x1="12" y1="10" x2="12" y2="14" stroke-width="2"/><circle cx="12" cy="17" r="1.1" fill="#000"/></svg>';
+      default:         return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9 h12 l-6 10 z" fill="none" stroke-width="2" stroke-linejoin="round"/><path d="M6 9 l2 -3 h8 l2 3" fill="none" stroke-width="2"/></svg>';  // treasure
+    }
+  }
+
+  /* 내부 스텁 헬퍼 — REWARDS 데이터를 보상 카드 레이아웃으로(공개 API 미변경) */
+  var RewardCardStub = {
+    render: function(o){
+      o = o || {};
+      var rarity = o.rarity || "common", tone = o.tone || "treasure", state = o.state || "available", variant = o.variant || "normal";
+      var card = document.createElement("div");
+      card.className = "rw-card rw-card--" + variant + " rw-rar--" + rarity + " rw-tone--" + tone + " rw-state--" + state;
+      card.dataset.rewardId = o.id || ""; card.dataset.kind = o.kind || ""; card.dataset.rarity = rarity; card.dataset.state = state;
+      card.setAttribute("aria-label", o.ariaLabel || ((o.title || o.id || "보상") + " · " + rarity + " · " + tone + (state !== "available" ? " · " + state : "")));
+      var top = document.createElement("div"); top.className = "rw-top";
+      var ico = document.createElement("div"); ico.className = "rw-ico"; ico.innerHTML = rwIcon(o.icon || tone);
+      var hd = document.createElement("div"); hd.className = "rw-cardhead";
+      hd.innerHTML = '<div class="rw-title">' + (o.title || o.id || "보상") + '</div>' + (o.kind ? '<div class="rw-kindtag">' + o.kind + '</div>' : "");
+      top.appendChild(ico); top.appendChild(hd);
+      var badge = document.createElement("div"); badge.className = "rw-rar-badge rw-rar-badge--" + rarity; badge.textContent = rarity.toUpperCase();
+      top.appendChild(badge);
+      card.appendChild(top);
+      var strip = document.createElement("div"); strip.className = "rw-tone-strip"; card.appendChild(strip);
+      if(variant !== "compact" && o.desc){ var d = document.createElement("div"); d.className = "rw-desc"; d.textContent = o.desc; card.appendChild(d); }
+      if(o.effectText){ var ef = document.createElement("div"); ef.className = "rw-eff"; ef.textContent = o.effectText; card.appendChild(ef); }
+      if(state === "selected"){ var sm = document.createElement("div"); sm.className = "rw-state-mark"; sm.setAttribute("style", "color:var(--gold)"); sm.textContent = "✓"; card.appendChild(sm); }
+      else if(state === "taken"){ var tm = document.createElement("div"); tm.className = "rw-state-mark"; tm.setAttribute("style", "font-size:8px;color:var(--heal)"); tm.textContent = "장착"; card.appendChild(tm); }
+      if(o.value !== undefined && o.value !== null && o.value !== ""){ var v = document.createElement("div"); v.className = "rw-val"; v.textContent = String(o.value); card.appendChild(v); }
+      return card;
+    }
+  };
+
+  function rwCell(opts, cap){
+    var w = document.createElement("div"); w.className = "rw-colwrap";
+    w.appendChild(RewardCardStub.render(opts));
+    if(cap !== undefined){ var c = document.createElement("div"); c.className = "rw-cap"; c.innerHTML = cap; w.appendChild(c); }
+    return w;
+  }
+  function rwPanel(letter, name, desc){
+    var p = document.createElement("div"); p.className = "rw-panel";
+    p.innerHTML = '<div class="rw-panel-head"><span class="rw-panel-k">'+letter+'</span><span class="rw-panel-name">'+name+'</span></div>' + (desc ? '<div class="rw-panel-desc">'+desc+'</div>' : "");
+    return p;
+  }
+  function rwEquipFig(parts, gender){
+    var f = document.createElement("div"); f.className = "rw-equip-fig";
+    f.appendChild(AK.previewParts(parts, gender));
+    return f;
+  }
+
+  function buildRewardImportStub(){
+    var root = document.getElementById("reward-import-stub");
+    if(!root) return;
+    root.innerHTML = "";
+    var wrap = document.createElement("div"); wrap.className = "rw-wrap";
+    var intro = '<div class="rw-head-b"><span class="rw-eyebrow">SHELF 06 · EXTRACTION 16</span><span class="rw-title-b">Reward Card · 이식 스텁 / 계약</span></div>';
+    intro += '<p class="rw-lede"><b>진열대 06 보상/장착/수확형</b>을 다른 게임(로그라이트·던전·퍼즐RPG·행렬RPG·보상 선택)에 가져갈 <b>최소 입력/출력 계약 + 사용 예시</b>. 기존 REWARDS 34를 재사용(중복 작성 0).</p>';
+    wrap.innerHTML = intro;
+
+    /* 14 / 15 / 16 차이 */
+    var diff = document.createElement("div"); diff.className = "rw-diff";
+    diff.innerHTML =
+      '<div class="rw-diff-col rw-diff-col--a"><span class="rw-diff-k">14 · Mini Actor</span><p><b>작은 배우/유닛</b>. type/size/team/state/hpRatio 중심.</p></div>'
+      + '<div class="rw-diff-col rw-diff-col--p"><span class="rw-diff-k">15 · Piece Marker</span><p><b>말/마커/목표/상태</b>. kind/size/team/state/label/value/count 중심.</p></div>'
+      + '<div class="rw-diff-col rw-diff-col--r"><span class="rw-diff-k">16 · Reward Card</span><p><b>보상 선택/장착/수확</b>. id/title/desc/kind/rarity/tone/state/effect 중심.</p></div>';
+    wrap.appendChild(diff);
+
+    /* A 입력/출력 계약 */
+    var pA = rwPanel("A","입력 / 출력 계약","RewardCardStub.render(opts) — REWARDS 데이터를 보상 카드로.");
+    var card = document.createElement("div"); card.className = "rw-contract";
+    var inH = document.createElement("div"); inH.className = "rw-io-h"; inH.textContent = "INPUT (" + REWARD_STUB_INPUTS.length + ")"; card.appendChild(inH);
+    REWARD_STUB_INPUTS.forEach(function(f){
+      var row = document.createElement("div"); row.className = "rw-io-row";
+      row.innerHTML = '<span class="rw-io-k">'+f.k+'</span><span class="rw-io-req'+(f.req?' is-req':'')+'">'+(f.req?'필수':'선택')+'</span><span class="rw-io-d">'+f.desc+'</span>';
+      card.appendChild(row);
+    });
+    var outH = document.createElement("div"); outH.className = "rw-io-h"; outH.textContent = "OUTPUT"; card.appendChild(outH);
+    var outUl = document.createElement("ul"); outUl.className = "rw-out";
+    REWARD_OUTPUTS.forEach(function(o){ var li = document.createElement("li"); li.innerHTML = o; outUl.appendChild(li); });
+    card.appendChild(outUl); pA.appendChild(card); wrap.appendChild(pA);
+
+    /* B Reward Card Catalog Stub */
+    var pB = rwPanel("B","Reward Card Catalog Stub","기존 보상 풀이 카드 컴포넌트로 보이는지 — REWARDS "+REWARD_CATALOG.length+"종(part/stat/heal/aura 섞임).");
+    var rowB = document.createElement("div"); rowB.className = "rw-row";
+    REWARD_CATALOG.forEach(function(s){
+      var ov = {};
+      if(s.id === "crown") ov.value = "★";
+      rowB.appendChild(RewardCardStub.render(rewardOpts(s.id, s.rarity, ov)));
+    });
+    pB.appendChild(rowB); wrap.appendChild(pB);
+
+    /* C Rarity / Tone */
+    var pC = rwPanel("C","Rarity / Tone 샘플","색/강조 체계가 다른 게임에서도 쓸 수 있는지.");
+    var rowR = document.createElement("div"); rowR.className = "rw-row";
+    REWARD_RARITIES.forEach(function(rr){ rowR.appendChild(rwCell({ id:"sample", title:"보상 카드", kind:"part", tone:"treasure", rarity:rr.k, desc:rr.kr+" 등급 강조" }, "<b>"+rr.kr+"</b>")); });
+    pC.appendChild(rowR);
+    var rowT = document.createElement("div"); rowT.className = "rw-row";
+    REWARD_TONES.forEach(function(tn){ rowT.appendChild(rwCell({ id:"tone", title:tn.kr+" 톤", kind:"part", tone:tn.k, rarity:"rare", variant:"compact" }, tn.kr)); });
+    pC.appendChild(rowT); wrap.appendChild(pC);
+
+    /* D State */
+    var pD = rwPanel("D","State 샘플","보상 선택 화면에 필요한 상태 — 5종(ember).");
+    var rowD = document.createElement("div"); rowD.className = "rw-row";
+    REWARD_STATES.forEach(function(st){ rowD.appendChild(rwCell(rewardOpts("ember", "rare", { state:st.k }), st.kr)); });
+    pD.appendChild(rowD); wrap.appendChild(pD);
+
+    /* E 장착/획득 체감 (before/after 정적) */
+    var pE = rwPanel("E","장착 / 획득 체감","보상을 골랐다는 감각 — 선택 전 → 선택됨 → 장착됨(정적, 클릭/저장 없음).");
+    var eq = document.createElement("div"); eq.className = "rw-equip";
+    var hr = rewardById("halo") || { part:"halo", ally:"priest" };
+    var ally = hr.ally || "priest";
+    var base = (META[ally] && META[ally].parts) ? META[ally].parts : [];
+    var st1 = document.createElement("div"); st1.className = "rw-equip-step";
+    st1.appendChild(rwEquipFig(base, META[ally] ? META[ally].gender : "f"));
+    var l1 = document.createElement("div"); l1.className = "rw-equip-lab"; l1.textContent = "선택 전"; st1.appendChild(l1);
+    eq.appendChild(st1);
+    var a1 = document.createElement("div"); a1.className = "rw-equip-arrow"; a1.textContent = "→"; eq.appendChild(a1);
+    var st2 = document.createElement("div"); st2.className = "rw-equip-step";
+    st2.appendChild(RewardCardStub.render(rewardOpts("halo", "epic", { state:"selected", effectText:"치유 연출 +" })));
+    var l2 = document.createElement("div"); l2.className = "rw-equip-lab"; l2.textContent = "선택됨"; st2.appendChild(l2);
+    eq.appendChild(st2);
+    var a2 = document.createElement("div"); a2.className = "rw-equip-arrow"; a2.textContent = "→"; eq.appendChild(a2);
+    var after = base.slice ? base.slice() : [];
+    if(hr.part){
+      var hslot = (PART[hr.part] && PART[hr.part].slot) || null;
+      if(hslot){ after = after.filter(function(k){ return !(PART[k] && PART[k].slot === hslot); }); }
+      after.push(hr.part);
+    }
+    var st3 = document.createElement("div"); st3.className = "rw-equip-step";
+    st3.appendChild(rwEquipFig(after, META[ally] ? META[ally].gender : "f"));
+    var l3 = document.createElement("div"); l3.className = "rw-equip-lab"; l3.textContent = "장착됨"; st3.appendChild(l3);
+    eq.appendChild(st3);
+    pE.appendChild(eq); wrap.appendChild(pE);
+
+    /* F Harvest Summary */
+    var pF = rwPanel("F","Harvest Summary","로그라이트/던전/퍼즐RPG 결과 화면에 가져갈 수 있는지 — 오늘의 수확.");
+    var hv = document.createElement("div"); hv.className = "rw-harvest";
+    var hvh = document.createElement("div"); hvh.className = "rw-harvest-h"; hvh.textContent = "오늘의 수확 · " + REWARD_HARVEST.length + "획득"; hv.appendChild(hvh);
+    var hvr = document.createElement("div"); hvr.className = "rw-row";
+    REWARD_HARVEST.forEach(function(id){ hvr.appendChild(RewardCardStub.render(rewardOpts(id, "epic", { variant:"result", state:"taken" }))); });
+    hv.appendChild(hvr);
+    var hvf = document.createElement("div"); hvf.className = "rw-harvest-foot"; hvf.textContent = "획득 " + REWARD_HARVEST.length + " · 남은 선택지 0 · (실제 던전 루프 룰/저장 없음)"; hv.appendChild(hvf);
+    pF.appendChild(hv); wrap.appendChild(pF);
+
+    /* G Compact Reward Row */
+    var pG = rwPanel("G","Reward Row / Compact","공간이 좁은 UI용 — 미니 카드 / 한 줄 보상 로그 / 결과 칩.");
+    var rowG = document.createElement("div"); rowG.className = "rw-row";
+    REWARD_COMPACT.forEach(function(id){ rowG.appendChild(RewardCardStub.render(rewardOpts(id, "rare", { variant:"compact" }))); });
+    pG.appendChild(rowG); wrap.appendChild(pG);
+
+    /* H Genre Reward Recipes */
+    var pH = rwPanel("H","Genre Reward Recipes","장르별로 어떤 보상 묶음을 가져가면 좋은지.");
+    REWARD_GENRES.forEach(function(g){
+      var gd = document.createElement("div"); gd.className = "rw-genre";
+      gd.innerHTML = '<div class="rw-genre-name">'+g.name+'</div><div class="rw-genre-note">'+g.note+'</div>';
+      var gr = document.createElement("div"); gr.className = "rw-row";
+      g.items.forEach(function(id){ gr.appendChild(RewardCardStub.render(rewardOpts(id, "rare", { variant:"compact" }))); });
+      gd.appendChild(gr); pH.appendChild(gd);
+    });
+    wrap.appendChild(pH);
+
+    /* I 가져갈 것 / 가져가지 말 것 */
+    var pI = rwPanel("I","가져갈 것 / 가져가지 말 것","");
+    var ledger = document.createElement("div"); ledger.className = "rw-ledger";
+    ledger.innerHTML =
+      '<div class="rw-col rw-col--take"><span class="rw-col-k">가져갈 것</span><ul>'
+      + '<li>보상 카드 레이아웃</li><li>rarity/tone/state 체계</li><li>선택/장착/획득 시각 문법</li><li>Harvest Summary</li><li>Reward compact row</li><li>최소 렌더 계약(RewardCardStub)</li></ul></div>'
+      + '<div class="rw-col rw-col--avoid"><span class="rw-col-k">가져가지 말 것</span><ul>'
+      + '<li>던전 루프 전체 룰 · LootLoop 전체</li><li>전투 결과 계산 · 저장 기능</li><li>조합대 · 정렬 콘솔</li><li>쇼케이스 UI 전체</li></ul></div>';
+    pI.appendChild(ledger); wrap.appendChild(pI);
+
+    /* J 복사용 이식 요청문 */
+    var pJ = rwPanel("J","복사용 이식 요청문","사람이 복사해 다른 렌에게 전달(클립보드 API·저장 없음).");
+    var rk = document.createElement("div"); rk.className = "rw-req-k"; rk.textContent = "[복사용 이식 요청문]";
+    var ta = document.createElement("textarea"); ta.className = "rw-req"; ta.readOnly = true; ta.rows = 4; ta.setAttribute("aria-label", "진열대 06 Reward Card Stub 이식 요청문"); ta.value = REWARD_REQ;
+    pJ.appendChild(rk); pJ.appendChild(ta); wrap.appendChild(pJ);
+
+    root.appendChild(wrap);
+  }
+
+  /* =========================================================================
+     [구역 17] SHELF 05 GRID IMPORT STUB (JS) — 진열대 05 3×3 보드 배치 계약/스텁
+     · GridAdapterContract.place = 기존 window.ActorGridAdapter.cellToSlot 그대로 호출(라이브 어댑터와 일치, 공개 API 미변경).
+     · 배치 샘플은 14 MiniActorStub 재사용. 실제 9×9/이동/스왑/전투 0 · 계약·예시·스텁만 정리.
+     ========================================================================= */
+  var GRID_CONTRACT_INPUTS = [
+    { k:"layout",   req:true,  desc:'"3x3" (현재 실동작 레이아웃)' },
+    { k:"side",     req:true,  desc:"ally / enemy / neutral" },
+    { k:"row",      req:true,  desc:"0 / 1 / 2 (0=후열, 2=전열)" },
+    { k:"col",      req:true,  desc:"0 / 1 / 2" },
+    { k:"actorId",  req:false, desc:"배치 식별용(선택)" },
+    { k:"type",     req:false, desc:"actor type key" },
+    { k:"size",     req:false, desc:"M / S / XS (Mini Actor와 연결)" },
+    { k:"team",     req:false, desc:"ally / enemy / neutral" },
+    { k:"state",    req:false, desc:"idle / selected / damaged / dead / warning" },
+    { k:"hpRatio",  req:false, desc:"0~1 (선택)" },
+    { k:"selected", req:false, desc:"boolean" },
+    { k:"locked",   req:false, desc:"boolean" },
+    { k:"label",    req:false, desc:"접근성/표시 라벨(선택)" }
+  ];
+  var GRID_CONTRACT_OUTPUTS = [
+    "slot position { x, y } (percent)",
+    'left/top % 또는 style transform',
+    "scale (scaleForY · 앞열이 큼)",
+    "z-index (= round(y) · 앞열이 위)",
+    'perspective/원근 className (<code>ga-side--{side}</code>)',
+    "data-row / data-col / data-side",
+    "actor wrapper className",
+    "aria-label (side·row·col)"
+  ];
+  var GRID_PLACE_SAMPLE = [
+    { side:"ally",  row:2, col:0, type:"warrior",     team:"ally",  state:"idle",     hp:1 },
+    { side:"ally",  row:2, col:1, type:"knight",      team:"ally",  state:"selected", hp:0.8 },
+    { side:"ally",  row:1, col:2, type:"archer",      team:"ally",  state:"idle",     hp:1 },
+    { side:"ally",  row:0, col:1, type:"priest",      team:"ally",  state:"idle",     hp:0.6 },
+    { side:"enemy", row:2, col:0, type:"necromancer", team:"enemy", state:"idle",     hp:1 },
+    { side:"enemy", row:2, col:2, type:"berserker",   team:"enemy", state:"damaged",  hp:0.4 },
+    { side:"enemy", row:1, col:1, type:"frostwitch",  team:"enemy", state:"idle",     hp:1 },
+    { side:"enemy", row:0, col:0, type:"mage",        team:"enemy", state:"idle",     hp:1 }
+  ];
+  var GRID_CODE = 'const slot = GridAdapterContract.place({\n  layout: "3x3",\n  side: "ally",\n  row: 1, col: 2,\n  type: "warrior", size: "S",\n  state: "selected", hpRatio: 0.7\n});\n// slot → { side, row, col, x, y, scale, z, transform, className }\n// Mini Actor(진열대 04)를 slot.x% / slot.y% 에 slot.transform 으로 배치';
+  var GRID_REQ = "행렬RPG에 진열대 05번 Grid Adapter Contract를 이식해줘.\n입력은 layout/side/row/col/type/size/team/state/hpRatio로 받고, 출력은 3×3 보드의 x/y/scale/z-index/className으로 해줘.\n가져갈 것은 3×3 배치 감각, cellToSlot 규칙, Mini Actor와 결합하는 방식이며, 9×9 확장이나 전투/이동 룰은 가져가지 마.";
+
+  /* 내부 문서 헬퍼 — 기존 ActorGridAdapter.cellToSlot 을 그대로 호출(공개 API 미변경) */
+  var GridAdapterContract = {
+    place: function(o){
+      o = o || {};
+      var layout = o.layout || "3x3";
+      var cell = { side:o.side || "ally", row:(o.row == null ? 0 : o.row), col:(o.col == null ? 0 : o.col) };
+      var GAx = window.ActorGridAdapter;
+      var slot = (GAx && GAx.cellToSlot) ? GAx.cellToSlot(cell, layout) : { side:cell.side, row:cell.row, col:cell.col, x:50, y:50, s:1, z:50 };
+      var sc = (typeof slot.s === "number") ? slot.s : 1;
+      return {
+        side:slot.side, row:slot.row, col:slot.col, x:slot.x, y:slot.y, scale:sc, z:slot.z,
+        transform:"translate(-50%,-100%) scale(" + sc.toFixed(2) + ")",
+        className:"ga-slot ga-side--" + slot.side + (o.selected ? " is-selected" : "") + (o.locked ? " is-locked" : ""),
+        data:{ row:slot.row, col:slot.col, side:slot.side }
+      };
+    }
+  };
+
+  function gaPanel(letter, name, desc){
+    var p = document.createElement("div"); p.className = "ga-panel";
+    p.innerHTML = '<div class="ga-panel-head"><span class="ga-panel-k">'+letter+'</span><span class="ga-panel-name">'+name+'</span></div>' + (desc ? '<div class="ga-panel-desc">'+desc+'</div>' : "");
+    return p;
+  }
+  function gaBoard(withSides){
+    var b = document.createElement("div"); b.className = "ga-board";
+    if(withSides){ b.innerHTML = '<span class="ga-side-lab ga-side-lab--enemy">ENEMY ▲</span><span class="ga-side-lab ga-side-lab--ally">ALLY ▼</span>'; }
+    return b;
+  }
+  function gaPlaceActor(board, unit){
+    var s = GridAdapterContract.place(unit);
+    var w = document.createElement("div"); w.className = "ga-place";
+    w.setAttribute("style", "left:" + s.x + "%;top:" + s.y + "%;transform:" + s.transform + ";z-index:" + s.z + ";");
+    w.appendChild(MiniActorStub.render({ type:unit.type, size:"s", team:unit.team, state:unit.state, hpRatio:unit.hp }));
+    board.appendChild(w);
+    return s;
+  }
+
+  function buildGridImportStub(){
+    var root = document.getElementById("grid-import-stub");
+    if(!root) return;
+    root.innerHTML = "";
+    var wrap = document.createElement("div"); wrap.className = "ga-wrap";
+    var intro = '<div class="ga-head-b"><span class="ga-eyebrow">SHELF 05 · EXTRACTION 17</span><span class="ga-title-b">Grid Adapter · 배치 계약 / 스텁</span></div>';
+    intro += '<p class="ga-lede"><b>진열대 05 3×3 보드 배치형</b>을 다른 게임(행렬RPG·오토배틀러·던전 보드·다인 전장)에 가져갈 <b>최소 배치 계약</b>. 기존 ActorGridAdapter.cellToSlot를 그대로 호출(라이브 어댑터와 일치, 공개 API 미변경).</p>';
+    wrap.innerHTML = intro;
+
+    /* 14 / 15 / 16 / 17 차이 */
+    var diff = document.createElement("div"); diff.className = "ga-diff";
+    diff.innerHTML =
+      '<div class="ga-diff-col ga-diff-col--a"><span class="ga-diff-k">14 Mini Actor</span><p><b>작은 배우/유닛</b></p></div>'
+      + '<div class="ga-diff-col ga-diff-col--p"><span class="ga-diff-k">15 Piece Marker</span><p><b>말/마커/목표/상태</b></p></div>'
+      + '<div class="ga-diff-col ga-diff-col--r"><span class="ga-diff-k">16 Reward Card</span><p><b>보상 선택/장착/수확</b></p></div>'
+      + '<div class="ga-diff-col ga-diff-col--g"><span class="ga-diff-k">17 Grid Adapter</span><p>유닛/말을 <b>어디에 놓을지</b> 3×3 배치 계약</p></div>';
+    wrap.appendChild(diff);
+
+    /* A 입력/출력 계약 */
+    var pA = gaPanel("A","입력 / 출력 계약","GridAdapterContract.place(opts) — 셀(side/row/col)을 넣으면 좌표/스케일/z가 나온다.");
+    var card = document.createElement("div"); card.className = "ga-contract";
+    var inH = document.createElement("div"); inH.className = "ga-io-h"; inH.textContent = "INPUT (" + GRID_CONTRACT_INPUTS.length + ")"; card.appendChild(inH);
+    GRID_CONTRACT_INPUTS.forEach(function(f){
+      var row = document.createElement("div"); row.className = "ga-io-row";
+      row.innerHTML = '<span class="ga-io-k">'+f.k+'</span><span class="ga-io-req'+(f.req?' is-req':'')+'">'+(f.req?'필수':'선택')+'</span><span class="ga-io-d">'+f.desc+'</span>';
+      card.appendChild(row);
+    });
+    var outH = document.createElement("div"); outH.className = "ga-io-h"; outH.textContent = "OUTPUT (" + GRID_CONTRACT_OUTPUTS.length + ")"; card.appendChild(outH);
+    var outUl = document.createElement("ul"); outUl.className = "ga-out";
+    GRID_CONTRACT_OUTPUTS.forEach(function(o){ var li = document.createElement("li"); li.innerHTML = o; outUl.appendChild(li); });
+    card.appendChild(outUl); pA.appendChild(card); wrap.appendChild(pA);
+
+    /* B 3×3 Cell Map */
+    var pB = gaPanel("B","3×3 Cell Map","row/col을 헷갈리지 않게 — ally 기준 row 0=후열 · 2=전열.");
+    var cm = document.createElement("div"); cm.className = "ga-cellmap";
+    var ROWTAG = ["후열","중열","전열"];
+    for(var r=0;r<3;r++){ for(var c=0;c<3;c++){
+      var cell = document.createElement("div"); cell.className = "ga-cellmap-cell" + (r===2 ? " is-front" : "");
+      cell.innerHTML = '<span class="ga-cellmap-rc">'+r+','+c+'</span><span class="ga-cellmap-tag">'+ROWTAG[r]+'</span>';
+      cm.appendChild(cell);
+    }}
+    pB.appendChild(cm);
+    var bnote = document.createElement("div"); bnote.className = "ga-mapnote"; bnote.textContent = "라벨은 ally 기준 row0 후열 / row2 전열. 화면에선 후열이 하단(크게), 전열이 중앙(적과 마주봄).";
+    pB.appendChild(bnote); wrap.appendChild(pB);
+
+    /* C Slot Position Preview */
+    var pC = gaPanel("C","Slot Position Preview","3×3 9칸의 좌표·z 감각 — cellToSlot 결과(이동/스왑 없음).");
+    var boardC = gaBoard(true);
+    var slotN = 0;
+    for(var rr=0;rr<3;rr++){ for(var cc=0;cc<3;cc++){
+      var sp = GridAdapterContract.place({ side:"ally", row:rr, col:cc });
+      var mk = document.createElement("div"); mk.className = "ga-slotmark ga-slotmark--ally";
+      mk.setAttribute("style", "left:" + sp.x + "%;top:" + sp.y + "%;");
+      mk.innerHTML = rr + "," + cc + "<small>z" + sp.z + "</small>";
+      boardC.appendChild(mk); slotN++;
+    }}
+    pC.appendChild(boardC);
+    var cnoteEl = document.createElement("div"); cnoteEl.className = "ga-board-note"; cnoteEl.textContent = "9칸(ally) · cellToSlot 그대로 · 화면 하단(후열)일수록 y↑ · scale↑ · z-index↑.";
+    pC.appendChild(cnoteEl); wrap.appendChild(pC);
+
+    /* D Mini Actor Placement (14 Mini Actor 재사용) */
+    var pD = gaPanel("D","Mini Actor Placement","14 Mini Actor Stub과 결합 — "+GRID_PLACE_SAMPLE.length+"유닛 정적 배치(전투 없음).");
+    var boardD = gaBoard(true);
+    GRID_PLACE_SAMPLE.forEach(function(u){ gaPlaceActor(boardD, u); });
+    pD.appendChild(boardD);
+    var dnote = document.createElement("div"); dnote.className = "ga-board-note"; dnote.textContent = "ally 4 · enemy 4 · 각 유닛 = MiniActorStub(size S) at slot.transform.";
+    pD.appendChild(dnote); wrap.appendChild(pD);
+
+    /* E Enemy / Ally Perspective */
+    var pE = gaPanel("E","Enemy / Ally Perspective","적/아군이 서로 마주보는 행 방향.");
+    var persp = document.createElement("div"); persp.className = "ga-persp";
+    persp.innerHTML =
+      '<div class="ga-persp-col ga-persp-col--ally"><span class="ga-persp-k">ALLY (아래)</span><p>row <b>0=후열</b>(보드 하단, y·scale 큼) → row <b>2=전열</b>(중앙, 적과 마주봄·작게).</p></div>'
+      + '<div class="ga-persp-col ga-persp-col--enemy"><span class="ga-persp-k">ENEMY (위)</span><p>row <b>0=후열</b>(최상단) → row <b>2=전열</b>(중앙, 아군과 마주봄). ally와 대칭.</p></div>';
+    pE.appendChild(persp); wrap.appendChild(pE);
+
+    /* F Z-index / Depth */
+    var pF = gaPanel("F","Z-index / Depth","앞줄/뒷줄 겹침과 깊이 — 같은 열(col1) ally 후열→전열.");
+    var boardF = gaBoard(true);
+    [0,1,2].forEach(function(r){ gaPlaceActor(boardF, { side:"ally", row:r, col:1, type:"warrior", team:"ally", state:"idle", hp:1 }); });
+    pF.appendChild(boardF);
+    var fnote = document.createElement("div"); fnote.className = "ga-board-note"; fnote.textContent = "후열(row0)이 화면 앞(크고 z↑) → 전열(row2)이 중앙(작게) — 겹쳐도 가까운 유닛이 읽힘.";
+    pF.appendChild(fnote); wrap.appendChild(pF);
+
+    /* G Import Pseudo-code */
+    var pG = gaPanel("G","Import Pseudo-code","문서형 예시(실제 공개 API 구현 아님).");
+    var codeTa = document.createElement("textarea"); codeTa.className = "ga-code"; codeTa.readOnly = true; codeTa.rows = 8; codeTa.setAttribute("aria-label", "Grid Adapter place 의사코드"); codeTa.value = GRID_CODE;
+    pG.appendChild(codeTa); wrap.appendChild(pG);
+
+    /* H 가져갈 것 / 가져가지 말 것 */
+    var pH = gaPanel("H","가져갈 것 / 가져가지 말 것","");
+    var ledger = document.createElement("div"); ledger.className = "ga-ledger";
+    ledger.innerHTML =
+      '<div class="ga-col ga-col--take"><span class="ga-col-k">가져갈 것</span><ul>'
+      + '<li>3×3 layout</li><li>cellToSlot 개념</li><li>side/row/col 계약</li><li>x/y/scale/z-index 출력</li><li>Mini Actor 결합 방식</li><li>원근/겹침 감각</li></ul></div>'
+      + '<div class="ga-col ga-col--avoid"><span class="ga-col-k">가져가지 말 것</span><ul>'
+      + '<li>9×9 확장</li><li>실제 전투 룰 · 이동/스왑 로직</li><li>던전 루프 · 조합대 · 정렬 콘솔</li><li>쇼케이스 UI 전체</li></ul></div>';
+    pH.appendChild(ledger); wrap.appendChild(pH);
+
+    /* I 복사용 이식 요청문 */
+    var pI = gaPanel("I","복사용 이식 요청문","사람이 복사해 다른 렌에게 전달(클립보드 API·저장 없음).");
+    var rk = document.createElement("div"); rk.className = "ga-req-k"; rk.textContent = "[복사용 이식 요청문]";
+    var ta = document.createElement("textarea"); ta.className = "ga-req"; ta.readOnly = true; ta.rows = 4; ta.setAttribute("aria-label", "진열대 05 Grid Adapter Contract 이식 요청문"); ta.value = GRID_REQ;
+    pI.appendChild(rk); pI.appendChild(ta); wrap.appendChild(pI);
+
+    root.appendChild(wrap);
+  }
+
   /* ----- 초기 빌드 ----- */
   buildBase();
   buildJobs();
@@ -3417,6 +5742,15 @@ body{
   initMixer();
   buildShelf();
   buildSmallScaleShowcase();
+  buildDirectionalShowcase();
+  buildQuarterViewShowcase();
+  buildTopViewShowcase();
+  buildPieceShowcase();
+  buildExportBinder();
+  buildMiniImportStub();
+  buildPieceImportStub();
+  buildRewardImportStub();
+  buildGridImportStub();
 })();
 
 /* =========================================================================
@@ -3631,6 +5965,205 @@ body{
                         코어/어댑터/LootLoop/정렬 콘솔/03R 미감 미접촉 · 외부자원·보관 0 · 단일 HTML.
    • 다음 후보        : 09 Directional Facing Lab 01 · Quarter View Lab · Top View Token Lab ·
                         Horse/Token Shape Import · 06F Part Offset Apply Pass(나라 좌표 수집 후).
+
+   ── 09 추가: DIRECTIONAL FACING LAB 01 / SHELF 09 ACTIVATION ─────────────
+   • 목적            : 07에서 PLANNED였던 진열대 09(4방향 기본형)을 첫 방향형 쇼케이스로 활성화.
+                        실제 이동/공격/필드 게임이 아니라 front/back/left/right "정지 포즈 후보" 전시.
+   • 표현 방식        : front = 기존 ActorKit 정면 배우(previewParts, 미접촉). back/left/right = 09 전용 간단 실루엣.
+                        right = left 미러(CSS scaleX-1). back은 얼굴 없음(머리 뒤/등/망토 + 어깨 위 무기 힌트).
+                        측면은 단순(코 살짝·눈 1점)·sig별 무기(검/활/지팡이/광륜/방패)로 직업감만.
+   • 헬퍼            : DIR_SAMPLE · dirBackSvg · dirSideSvg · dirCell · dirGroup · buildDirectionalShowcase.
+                        새 공개 API 0 — 내부 헬퍼 + 쇼케이스 전용 SVG. PART 좌표/03R 미감/정면 렌더 미접촉.
+   • 쇼케이스 패널    : A 4방향 기본 비교(전사) · B 직업 4방향 샘플(6직업) · C 좌우 미러 확인(3직업) ·
+                        D 작은 사이즈 방향(S, 전사·마법사) · E 이식 메모. 진열대 탭 하단 섹션(#dir-showcase).
+   • 샘플 직업        : warrior·archer·priest·mage·paladin·gravekeeper (전부 기존 META 키). 방향 4종.
+   • 09 상태 변경     : SHELVES 09 PLANNED → PARTIAL(정지 포즈 후보는 생겼으나 이동/공격/이식 API 미분리).
+                        요약 카운트: ACTIVE 6 · PARTIAL 3(03,04,09) · PLANNED 3(10,11,12). 합 12.
+                        진열대 09 "확인하러 가기" = 같은 탭 내 #dir-showcase 로 스크롤.
+   • 범위 한정        : 파츠 95개 전체 방향 대응 아님 — 샘플 직업 주요 실루엣만. 방향형 가능성 검증 단계.
+   • 불변            : 신규 파츠/직업 0 · 좌표 미수정 · 06F 미반영 · 이동/공격/필드 게임 미구현 ·
+                        쿼터뷰/탑뷰 미구현 · 9×9 미구현 · 정면 ActorKit 렌더 변경 0 · 코어/어댑터/LootLoop/정렬 콘솔 미접촉 ·
+                        06D 정렬 모드 + 모바일 줌 방지(touch-action) 핫픽스 유지 · 외부자원·보관 0 · 단일 HTML.
+   • 다음 후보        : Directional Action Lab 02(좌우 공격 모션) · Quarter View Lab · Top View Token Lab ·
+                        Horse/Token Shape Import · Shelf 04 mini component extraction · 06F Part Offset Apply Pass.
+
+   ── 10 추가: QUARTER VIEW LAB 01 / SHELF 10 ACTIVATION ───────────────────
+   • 목적            : 07에서 PLANNED였던 진열대 10(쿼터뷰 기본형)을 첫 쿼터뷰 쇼케이스로 활성화.
+                        실제 쿼터뷰 게임/이동/공격이 아니라 "살짝 비스듬한 전장형 정지 포즈 후보" 전시.
+   • 표현 방식        : front = 기존 정면 배우(previewParts, 미접촉). quarter-right/left = 10 전용 비스듬 실루엣.
+                        quarter-left = quarter-right 미러(CSS). 깊이 그림자(오프셋) + 비스듬 몸통 + 앞쪽 어깨/무기 +
+                        단순 두 눈(오른쪽 치우침)으로 시점 차이. sig별 무기(검/활/지팡이/광륜/방패)로 직업감.
+   • 헬퍼            : QV_SAMPLE · QV_VIEWS · qvActorSvg · qvCell · qvGroup · buildQuarterViewShowcase.
+                        DIR_SKIN/DIR_HAIR/DIR_LINE·dirKind 재사용. 새 공개 API 0 · PART 좌표/정면 렌더 미접촉.
+   • 쇼케이스 패널    : A 정면 vs 쿼터뷰(전사 front/q-right/q-left) · B 직업 쿼터뷰 샘플(6직업×3뷰) ·
+                        C 쿼터뷰 전장 배치 감각(정적 6유닛 2열) · D 크기 비교(M/S) · E 이식 메모. 섹션 #qv-showcase.
+   • 샘플 직업        : warrior·archer·priest·mage·paladin·gravekeeper (전부 기존 META 키). 쿼터뷰 시점 2(좌/우)+정면 비교.
+   • 10 상태 변경     : SHELVES 10 PLANNED → PARTIAL(쿼터뷰 정지형 후보는 생겼으나 게임/이동/공격/이식 API 미분리).
+                        요약 카운트: ACTIVE 6 · PARTIAL 4(03,04,09,10) · PLANNED 2(11,12). 합 12.
+                        진열대 10 "확인하러 가기" = 같은 탭 내 #qv-showcase 로 스크롤.
+   • 범위 한정        : 파츠 95개 전체 쿼터뷰 대응 아님 — 샘플 직업 주요 실루엣만. 쿼터뷰 가능성 검증 단계.
+   • 불변            : 신규 파츠/직업 0 · 좌표 미수정 · 06F 미반영 · 쿼터뷰 게임/이동/공격 미구현 · 탑뷰 미구현 ·
+                        9×9 미구현 · 정면 ActorKit 렌더 변경 0 · 08·09 쇼케이스 유지 · 코어/어댑터/LootLoop/정렬 콘솔 미접촉 ·
+                        06D 정렬 모드 + 모바일 줌 방지(touch-action) 핫픽스 유지 · 외부자원·보관 0 · 단일 HTML.
+   • 다음 후보        : Quarter View Action Lab 02 · Top View Token Lab(진열대 11) · Horse/Token Shape Import(12) ·
+                        Directional Action Lab 02 · Shelf 04 mini component extraction · 06F Part Offset Apply Pass.
+
+   ── 11 추가: TOP VIEW TOKEN LAB 01 / SHELF 11 ACTIVATION ─────────────────
+   • 목적            : 07에서 PLANNED였던 진열대 11(탑뷰 토큰형)을 첫 탑뷰/말/미니맵 쇼케이스로 활성화.
+                        실제 탑뷰 게임/맵/이동이 아니라 "위에서 내려본 간결한 토큰/말 후보" 전시.
+   • 표현 방식        : front = 기존 정면 배우(previewParts, 미접촉). 토큰 = 11 전용 SVG(타원 베이스 +
+                        팀/직업 링 + 위에서 본 머리/어깨 + 북쪽 직업 심볼). DIR_SKIN/DIR_LINE 재사용.
+                        직업 구분 = 링 색 + 심볼(검/활/십자/별/방패/묘비/뿔/얼음/해골/다이아). 캐릭터 아님 = 보드 위 말.
+   • 헬퍼            : TV_SAMPLE · TV_SIZES · TV_TEAMS · TV_MAP · tvSymbol · tvTokenSvg · tvTokenCell · tvFrontCell ·
+                        tvGroup · buildTopViewShowcase. 새 공개 API 0 · PART 좌표/정면 렌더 미접촉.
+   • 쇼케이스 패널    : A 정면 SD vs 토큰(전사·궁수·사제) · B 직업 토큰 샘플(10직업) · C 보드/맵 배치 감각(5×5 정적 8유닛) ·
+                        D 토큰 크기 비교(T-M/T-S/T-XS) · E 팀/적 구분(ally/enemy/elite 링) · F 이식 메모. 섹션 #tv-showcase.
+   • 샘플 직업        : warrior·archer·priest·mage·paladin·gravekeeper·berserker·frostwitch·necromancer·puppeteer (전부 기존 META 키).
+   • 11 상태 변경     : SHELVES 11 PLANNED → PARTIAL(탑뷰 토큰 후보는 생겼으나 이동/맵/이식 API 미분리).
+                        요약 카운트: ACTIVE 6 · PARTIAL 5(03,04,09,10,11) · PLANNED 1(12). 합 12.
+                        진열대 11 "확인하러 가기" = 같은 탭 내 #tv-showcase 로 스크롤.
+   • 범위 한정        : 파츠 95개 전체 탑뷰 대응 아님 — 샘플 직업 토큰만. 5×5는 정적 전시(9×9/게임 로직 없음).
+   • 불변            : 신규 파츠/직업 0 · 좌표 미수정 · 06F 미반영 · 탑뷰/쿼터뷰 게임·이동·맵 미구현 · 9×9 미구현 ·
+                        정면 ActorKit 렌더 변경 0 · 08·09·10 쇼케이스 유지 · 코어/어댑터/LootLoop/정렬 콘솔 미접촉 ·
+                        06D 정렬 모드 + 모바일 줌 방지(touch-action) 핫픽스 유지 · 외부자원·보관 0 · 단일 HTML.
+   • 다음 후보        : Horse/Token Shape Import / Shelf 12 Activation(마지막 PLANNED) · Top View Movement Lab 02 ·
+                        Quarter View Action Lab 02 · Directional Action Lab 02 · Shelf 04 mini component extraction · 06F Part Offset Apply Pass.
+
+   ── 12 추가: HORSE/TOKEN SHAPE IMPORT / SHELF 12 ACTIVATION (마지막 PLANNED) ──
+   • 용어            : 여기서 "말(Horse)"은 동물이 아니라 보드게임 말 / piece / token / marker.
+   • 목적            : 07의 마지막 PLANNED 진열대 12(말/심볼/토큰형)을 활성화. 보드게임 구현이 아니라
+                        아바타가 필요 없는 화면용 "말/심볼/추상 유닛 마커 후보" 전시.
+   • 표현 방식        : front = 기존 정면 배우(previewParts, 미접촉). 토큰 = 11 tvTokenSvg 재사용.
+                        말 = 12 전용 markerSvg — 베이스 모양(disc/shield/flag/chest/portal/tri/pawn) + 색 + 심볼.
+                        11 직업 토큰보다 추상 = "캐릭터"가 아니라 "게임 말/상태/목표 상징물". 과거 자산 복붙 0.
+   • 헬퍼            : MARKER_SAMPLE · PIECE_SIZES · PIECE_STATES · PIECE_GENRES · PIECE_BOARD · pieceBase ·
+                        pieceGlyph · markerSvg · pieceMarkerCell · pieceFrontCell · pieceTokenCell · pcGroup · buildPieceShowcase.
+                        새 공개 API 0 · PART 좌표/정면 렌더 미접촉.
+   • 쇼케이스 패널    : A 아바타 vs 탑뷰 토큰 vs 말(전사·사제·적) · B 기본 말 카탈로그(14종) · C 보드 배치(5×5 정적 8말) ·
+                        D 상태/소속 변형(7: ally/enemy/elite/boss/selected/disabled/warning) · E 크기 비교(P-M/P-S/P-XS) ·
+                        F 장르별 이식 예시(퍼즐/전술/탐험/행렬RPG) · G 이식 메모. 섹션 #piece-showcase.
+   • 말 종류          : 기본 말·공격·방어·원거리·회복·마법·위험·보스·목표·쉼터·보상·문·함정·미확인 (14종).
+   • 12 상태 변경     : SHELVES 12 PLANNED → PARTIAL(말/마커 후보는 생겼으나 보드게임/이식 API 미분리).
+                        요약 카운트: ACTIVE 6 · PARTIAL 6(03,04,09,10,11,12) · PLANNED 0. 합 12.
+                        ★ 07에서 만든 12개 진열대가 전부 ACTIVE/PARTIAL — PLANNED 0 달성(리소스 전시장 1차 골격 완성).
+                        진열대 12 "확인하러 가기" = 같은 탭 내 #piece-showcase 로 스크롤.
+   • 불변            : 신규 파츠/직업 0 · 좌표 미수정 · 06F 미반영 · 보드게임/탑뷰/쿼터뷰 게임·이동·맵 미구현 ·
+                        9×9 미구현 · 정면 ActorKit 렌더 변경 0 · 08~11 쇼케이스 유지 · 코어/어댑터/LootLoop/정렬 콘솔 미접촉 ·
+                        06D 정렬 모드 + 모바일 줌 방지(touch-action) 핫픽스 유지 · 외부자원·보관·복붙 0 · 단일 HTML.
+   • 다음 후보        : Shelf 12 piece component extraction · Shelf 04 mini component extraction ·
+                        Top View Movement Lab 02 · Quarter View Action Lab 02 · Directional Action Lab 02 ·
+                        06F Part Offset Apply Pass(나라 좌표 수집 후) · 개인 공방 노트북 이식.
+
+   ── 13 추가: SHELF EXPORT HANDOFF CARDS / IMPORT READINESS BINDER ─────────
+   • 목적            : 12개 진열대가 전부 ACTIVE/PARTIAL로 열린 뒤, 각 진열대를 다른 R&D 게임에 이식할 때
+                        "무엇을 가져가고 / 무엇은 두고 / 어떤 요청문으로 넘기는지" 정리한 반출 안내서.
+                        실제 이식/모듈 추출/파일 분리가 아니라 안내 카드 정리(새 자산·룰 0).
+   • 준비도 체계      : READY(바로 이식) · NEEDS_ADAPTER(얇은 어댑터 필요) · PROTOTYPE(가능성 단계, 구체화 필요).
+                        매핑 — READY 6(01,02,05,06,07,08) · NEEDS_ADAPTER 3(04,11,12) · PROTOTYPE 3(03,09,10).
+   • 구조            : 진열대 탭 #export-binder 섹션(진열대 카드와 08~12 쇼케이스 사이) + 상단 점프 버튼.
+                        요약 패널(전체 12 · 준비도 카운트 · 대상 태그) → 준비도 필터(ALL/READY/NEEDS_ADAPTER/PROTOTYPE)
+                        → 반출 카드 12개 → 공통 반출 금지 노트. 헬퍼: EB_READY · EXPORT_CARDS · ebShelf · ebCard · buildExportBinder.
+   • 카드 항목        : 번호 · 이름·상태(SHELVES 단일 출처 조회) · 준비도 배지 · 추천 이식 대상 태그 · 가져갈 것 ·
+                        가져가면 안 되는 것 · 주의점 · 복사용 요청문(readonly textarea) · 우선순위. (요청문 12개)
+   • 복사용 요청문    : 클립보드 API 없이 readonly <textarea>로 제공 — 나라가 다른 렌에게 바로 복사해 전달.
+   • 13 영향          : 진열대 상태/카운트 불변(ACTIVE 6 · PARTIAL 6 · PLANNED 0 유지). 자산/파츠/직업 변화 0.
+   • 불변            : 신규 파츠/직업 0 · 좌표 미수정 · 06F 미반영 · export/import 모듈/파일 분리 미구현 ·
+                        보드게임/탑뷰/쿼터뷰/4방향 게임 미구현 · 정면 ActorKit 렌더 변경 0 · 08~12 쇼케이스 유지 ·
+                        코어/어댑터/LootLoop/정렬 콘솔 미접촉 · 06D 정렬 모드 + 모바일 줌 방지 핫픽스 유지 ·
+                        클립보드 API·외부자원·보관 0 · 단일 HTML.
+   • 다음 후보        : Shelf 04 mini component extraction · Shelf 12 piece component extraction ·
+                        Shelf 06 reward component extraction · 06F Part Offset Apply Pass(나라 좌표 수집 후) · 개인 공방 노트북 이식.
+
+   ── 14 추가: SHELF 04 MINI COMPONENT EXTRACTION / IMPORT STUB ─────────────
+   • 목적            : 13 바인더에서 가장 먼저 꺼낼 진열대 04(초소형 전장형)를 다른 게임(행렬RPG·다인 전장·작은 보드)에
+                        가져갈 "최소 단위"로 정리 — Mini Actor 입력/출력 계약 + 사용 예시 + 상태 샘플. 실제 파일 분리/모듈 export/이식 0.
+   • 내부 헬퍼        : MiniActorStub.render(opts) — 기존 AK.previewParts 위에 size/team/state/hp 프레임만 입히는 내부 헬퍼.
+                        새 공개 API 아님 · ActorKit 시그니처 미변경 · PART 좌표/정면 렌더 미접촉.
+   • 입력 계약(8)     : type(필수) · size(필수 M/S/XS) · team(ally/enemy/neutral) · state(idle/selected/damaged/dead/warning) ·
+                        hpRatio(0~1) · label · facing(placeholder) · variant(default/compact).
+   • 출력            : 작은 배우 HTML/SVG(ak-actor 래핑) · className mi-actor mi-actor--{size} mi-team--{team} mi-state--{state} ·
+                        data-type/size/team · width/height=size 단계 · aria-label.
+   • 쇼케이스 패널    : A 입력/출력 계약 카드 · B Size×Team(3×3) · C State(5) · D HP Mini Bar(100/60/25) ·
+                        E Dense Board Import Preview(5×5 정적 8유닛, XS) · F 가져갈 것/말 것 · G 복사용 요청문(textarea). 섹션 #mini-import-stub.
+   • 13 바인더 연결   : 진열대 04 반출 카드에 "Mini Stub 준비됨" 뱃지 + 입력 계약 + 추천 size(행렬RPG=S/전투강조=M/미니맵=XS)
+                        + "이식 스텁 보기 ↓" 점프 버튼 추가. 준비도는 NEEDS_ADAPTER 유지(아직 박물관 내부 계약/스텁 단계) →
+                        준비도 카운트 불변 READY 6 · NEEDS_ADAPTER 3 · PROTOTYPE 3.
+   • 14 영향          : 진열대 상태/카운트 불변(ACTIVE 6 · PARTIAL 6 · PLANNED 0). 파츠/직업/보상 변화 0.
+   • 불변            : 신규 파츠/직업 0 · 좌표 미수정 · 06F 미반영 · 파일 분리/모듈 export 미구현 · 실제 행렬RPG 이식 0 ·
+                        9×9 미구현 · 정면 ActorKit 렌더 변경 0 · 08~13 유지 · 코어/어댑터/LootLoop/정렬 콘솔 미접촉 ·
+                        06D 정렬 모드 + 모바일 줌 방지 핫픽스 유지 · 클립보드 API·외부자원·보관 0 · 단일 HTML.
+   • 다음 후보        : Shelf 12 piece component extraction · Shelf 06 reward component extraction ·
+                        Shelf 05 grid adapter extraction note · 06F Part Offset Apply Pass(나라 좌표 수집 후) · 개인 공방 노트북 이식.
+
+   ── 15 추가: SHELF 12 PIECE COMPONENT EXTRACTION / IMPORT STUB ────────────
+   • 목적            : 진열대 12(말/심볼/토큰형)를 다른 게임(퍼즐·보드·탐험·전술·목표/상태 마커)에 가져갈 "최소 단위"로 정리 —
+                        Piece/Marker 입력/출력 계약 + 사용 예시 + 상태 샘플 + 장르 레시피. 실제 파일 분리/모듈 export/이식 0.
+   • 내부 헬퍼        : PieceMarkerStub.render(opts) — 기존 markerSvg/markerByKey 재사용(12 Showcase와 같은 시각 문법, 중복 제작 0).
+                        새 공개 API 아님 · ActorKit 시그니처 미변경 · PART 좌표/정면 렌더 미접촉.
+   • 입력 계약(9)     : kind(필수 14종) · size(필수 P-M/P-S/P-XS) · team(ally/enemy/neutral/object) ·
+                        state(idle/selected/disabled/warning/active/cleared) · label · value(우상단 배지) · count(×N 배지) · ariaLabel · variant(default/compact/outline).
+   • 출력            : 작은 말/마커 HTML/SVG(markerSvg 래핑) · className pm-actor pm-actor--{size} pm-team--{team} pm-state--{state} ·
+                        data-kind/size/team/state · width/height=size 단계 · aria-label + 선택 label/value/count 배지.
+   • 쇼케이스 패널    : A 입력/출력 계약 · B Kind Catalog Stub(14종) · C Size×Purpose(P-M/P-S/P-XS) · D Team/Object(4) ·
+                        E State(6) · F Board Import Preview(5×5 정적 10말) · G Genre Recipes(퍼즐/전술/탐험/행렬RPG 보조 4) ·
+                        H 가져갈 것/말 것 · I 복사용 요청문(textarea). 섹션 #piece-import-stub. 상단에 14↔15 차이 표시.
+   • 14 ↔ 15 차이     : 14 Mini Actor = 직업 배우(type/size/team/state/hpRatio, 유닛 표시). 15 Piece Marker = 말/마커(kind/size/team/state/label/value/count, 목표/상태 표시).
+   • 13 바인더 연결   : 진열대 12 반출 카드에 "Piece Stub 준비됨" 뱃지 + 입력 계약 + 추천 size(퍼즐=P-S/전술=P-M/미니맵=P-XS)
+                        + "이식 스텁 보기 ↓" 점프 버튼 추가. 준비도 NEEDS_ADAPTER 유지 → 카운트 불변 READY 6 · NEEDS_ADAPTER 3 · PROTOTYPE 3.
+   • 15 영향          : 진열대 상태/카운트 불변(ACTIVE 6 · PARTIAL 6 · PLANNED 0). 파츠/직업/보상 변화 0. 12 Showcase 렌더 미접촉.
+   • 불변            : 신규 파츠/직업 0 · 좌표 미수정 · 06F 미반영 · 파일 분리/모듈 export 미구현 · 실제 퍼즐/보드 이식 0 ·
+                        9×9 미구현 · 정면 ActorKit 렌더 변경 0 · 08~14 유지 · 코어/어댑터/LootLoop/정렬 콘솔 미접촉 ·
+                        06D 정렬 모드 + 모바일 줌 방지 핫픽스 유지 · 클립보드 API·외부자원·보관 0 · 단일 HTML.
+   • 다음 후보        : Shelf 06 reward component extraction · Shelf 05 grid adapter extraction note ·
+                        Shelf 12 piece component extraction phase 2 · 06F Part Offset Apply Pass(나라 좌표 수집 후) · 개인 공방 노트북 이식.
+
+   ── 16 추가: SHELF 06 REWARD COMPONENT EXTRACTION / IMPORT STUB ───────────
+   • 목적            : 진열대 06(보상/장착/수확형)을 다른 게임(로그라이트·던전·퍼즐RPG·행렬RPG·보상 선택)에 가져갈 "최소 단위"로
+                        정리 — Reward Card / Harvest Summary / Compact Row 입력/출력 계약 + 사용 예시. 실제 보상 시스템/파일 분리/이식 0.
+   • 내부 헬퍼        : RewardCardStub.render(opts) — 기존 REWARDS 34 재사용(중복 작성 0). rarity/tone은 데이터(kind/sig)에서 유도 + 카탈로그 데모 부여.
+                        새 공개 API 아님 · ActorKit/LootLoop/REWARDS 구조 미변경 · PART 좌표/정면 렌더 미접촉. 매퍼: rewardById/rewardOpts/rwDeriveKind/rwDeriveTone.
+   • 입력 계약(15)    : id(필수) · title(필수) · desc · kind(part/stat/heal/aura/marker/special) · rarity(common/rare/epic/legendary) ·
+                        tone(attack/defense/heal/magic/utility/danger/treasure) · state(available/focused/selected/disabled/taken) ·
+                        partKey · actorType · effectText · value · count · icon · ariaLabel · variant(normal/compact/result).
+   • 출력            : 보상 카드 HTML/SVG(REWARDS 래핑) · className rw-card rw-card--{variant} rw-rar--{rarity} rw-tone--{tone} rw-state--{state} ·
+                        data-reward-id/kind/rarity/state · title/desc/effect · rarity 배지 · tone 스트립 · 선택/장착/획득 표시 · aria-label.
+   • 쇼케이스 패널    : A 입력/출력 계약 · B Reward Catalog Stub(REWARDS 12) · C Rarity(4)/Tone(7) · D State(5) ·
+                        E 장착 체감(선택 전→선택됨→장착됨, previewParts before/after) · F Harvest Summary(오늘의 수확 3) ·
+                        G Compact Reward Row(4) · H Genre Recipes(던전/행렬RPG/퍼즐/오토배틀러 4) · I 가져갈 것/말 것 · J 복사용 요청문(textarea).
+                        섹션 #reward-import-stub · 상단에 14/15/16 차이(배우/말/보상) 표시.
+   • 14 / 15 / 16     : 14 Mini Actor=작은 배우(hpRatio). 15 Piece Marker=말/마커(label/value/count). 16 Reward Card=보상 선택/장착/수확(rarity/tone/effect).
+   • 13 바인더 연결   : 진열대 06 반출 카드에 "Reward Stub 준비됨" 뱃지 + 입력 계약 + 추천 사용(던전=normal/행렬RPG=compact+result/퍼즐=clear/오토배틀러=round)
+                        + "이식 스텁 보기 ↓" 점프 버튼. 준비도 READY 유지 → 카운트 불변 READY 6 · NEEDS_ADAPTER 3 · PROTOTYPE 3.
+   • 16 영향          : 진열대 상태/카운트 불변(ACTIVE 6 · PARTIAL 6 · PLANNED 0). 보상 풀 34 불변. 던전 루프 렌더 미접촉.
+   • 불변            : 신규 파츠/직업/보상 0 · 보상 밸런스 미작업 · 좌표 미수정 · 06F 미반영 · 파일 분리/모듈 export 미구현 ·
+                        실제 던전/보상 시스템 이식 0 · 정면 ActorKit 렌더 변경 0 · 08~15 유지 · 코어/어댑터/LootLoop/REWARDS/정렬 콘솔 미접촉 ·
+                        06D 정렬 모드 + 모바일 줌 방지 핫픽스 유지 · 클립보드 API·외부자원·보관 0 · 단일 HTML.
+   • 다음 후보        : Shelf 05 grid adapter extraction note · Shelf 03 action/fx extraction note ·
+                        Shelf 06 reward phase 2 · 06F Part Offset Apply Pass(나라 좌표 수집 후) · 개인 공방 노트북 이식.
+
+   ── 17 추가: SHELF 05 GRID ADAPTER EXTRACTION / BOARD PLACEMENT CONTRACT ──
+   • 목적            : 진열대 05(3×3 보드 배치형)을 다른 게임(행렬RPG·오토배틀러·던전 보드·다인 전장)에 가져갈 "최소 배치 계약"으로
+                        정리 — Grid Adapter 입력/출력 계약 + 배치 규칙 + 사용 예시. 실제 9×9/이동/스왑/전투/파일 분리/이식 0.
+   • 내부 헬퍼        : GridAdapterContract.place(opts) — 기존 window.ActorGridAdapter.cellToSlot 을 그대로 호출(라이브 어댑터와 좌표 일치).
+                        새 공개 API 아님 · ActorGridAdapter createGrid/cellToSlot/LAYOUTS 미변경 · live Formation Adapter Lab 미접촉.
+   • 입력 계약(13)    : layout("3x3") · side(ally/enemy/neutral) · row(0~2, 0=후열·2=전열) · col(0~2) · actorId · type · size(M/S/XS) ·
+                        team · state(idle/selected/damaged/dead/warning) · hpRatio · selected · locked · label.
+   • 출력(8)          : slot {x,y}% · left/top transform · scale(scaleForY, 앞열 큼) · z-index(=round y, 앞열 위) ·
+                        perspective className(ga-side--{side}) · data-row/col/side · actor wrapper className · aria-label.
+   • 쇼케이스 패널    : A 입력/출력 계약 · B 3×3 Cell Map(9칸, 후/중/전열) · C Slot Position Preview(9 슬롯 마커, cellToSlot 좌표/z) ·
+                        D Mini Actor Placement(14 MiniActorStub 재사용, 8유닛 정적 배치) · E Ally/Enemy Perspective(행 방향) ·
+                        F Z-index/Depth(같은 열 후열→전열 겹침) · G Import Pseudo-code · H 가져갈 것/말 것 · I 복사용 요청문. 섹션 #grid-import-stub.
+   • 14 MiniActor 연결: D/F 배치 유닛 = MiniActorStub.render(size S) at GridAdapterContract.place(...)의 transform/z. 04 Mini Stub과 결합.
+   • 14/15/16/17     : 14 배우 · 15 말/마커 · 16 보상 카드 · 17 배치판(유닛/말을 어디에 놓을지 3×3 계약).
+   • 13 바인더 연결   : 진열대 05 반출 카드에 "Grid Contract 준비됨" 뱃지 + 입력/출력 계약 + 추천 사용(행렬RPG=3×3 ally/enemy board ·
+                        오토배틀러=unit placement layer · 던전 보드=room encounter layout) + "배치 계약 보기 ↓" 점프 버튼.
+                        준비도 READY 유지(문서/계약 강화) → 카운트 불변 READY 6 · NEEDS_ADAPTER 3 · PROTOTYPE 3.
+   • 17 영향          : 진열대 상태/카운트 불변(ACTIVE 6 · PARTIAL 6 · PLANNED 0). ActorGridAdapter/live 3×3 미접촉.
+   • 불변            : 신규 파츠/직업/보상 0 · 좌표 미수정 · 06F 미반영 · 파일 분리/모듈 export 미구현 · 실제 행렬RPG/9×9/이동/전투 0 ·
+                        정면 ActorKit 렌더 변경 0 · 08~16 유지 · 코어/어댑터(API)/LootLoop/REWARDS/정렬 콘솔 미접촉 ·
+                        06D 정렬 모드 + 모바일 줌 방지 핫픽스 유지 · 클립보드 API·외부자원·보관 0 · 단일 HTML.
+   • 다음 후보        : Shelf 03 action/fx extraction note · Shelf 05 grid adapter phase 2 ·
+                        Shelf 06 reward phase 2 · 06F Part Offset Apply Pass(나라 좌표 수집 후) · 개인 공방 노트북 이식.
    ========================================================================= */
 </script>
 </body>
